@@ -1,0 +1,106 @@
+MongoDB Installation on Ubuntu 22.04 LTS
+
+1. Introduction
+This document provides a step-by-step guide for installing and configuring MongoDB 8.0 on an Ubuntu 22.04 LTS system. It includes setting up dedicated directories for data and logs, creating a dedicated user and group, configuring mount points, placing MongoDB executables in a dedicated directory, and ensuring necessary ports are open.
+
+2. Scope
+This guide covers the installation of MongoDB 8.0 with the following elements:
+Dedicated directories for MongoDB data and logs
+Dedicated user and group for MongoDB
+Setting up mount points
+Placing MongoDB executables in a dedicated directory
+Enabling security authentication
+Opening necessary ports (22 and 27017)
+
+3. Hardware Requirements
+CPU: 2 cores (Intel i3 or AMD equivalent)
+RAM: 4-6 GB
+Storage: 50 GB SSD
+Network: Static IP
+
+
+4. Installation Steps
+4.1 Create the mongo User and Group 
+venkata_db_guide01:~$ sudo groupadd mongosudo useradd -r -m -g mongo 		
+mongo
+4.2 Create Directories for Data and Logs
+venkata_db_guide01:~$ sudo mkdir -p /mongo/data /mongo/logssudo chown -R 			mongo:mongo /mongo/data /mongo/logs
+4.3 Identify or Create Partitions and Format Them
+Identify available partitions:
+venkata_db_guide01:~$ sudo lsblk
+Create and format new partitions if necessary:
+venkata_db_guide01:~$ sudo fdisk /dev/sdX  # Replace /dev/sdX with the appropriate disk identifiersudo mkfs.ext4 /dev/sdX1  # Replace /dev/sdX1 with the appropriate partition identifiersudo mkfs.ext4 /dev/sdX2  # Replace /dev/sdX2 with the appropriate partition identifier
+4.4 Mount the Partitions
+Temporarily mount the partitions:
+venkata_db_guide01:~$ sudo mount /dev/sdX1 /mongo/datasudo mount /dev/sdX2 /mongo/logs
+Add entries to /etc/fstab for persistent mounts:
+venkata_db_guide01:~$ sudo nano /etc/fstab
+Add the following lines to the file:
+fstab
+/dev/sdX1  /mongo/data  ext4  defaults  0  2
+/dev/sdX2  /mongo/logs  ext4  defaults  0  2
+Mount all filesystems:
+venkata_db_guide01:~$ sudo mount -a
+4.5 Download MongoDB Binaries and Move to Dedicated Directory
+Download MongoDB 8.0:
+venkata_db_guide01:~$ wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-8.0.0.tgz
+Extract and move the binaries to a dedicated directory:
+venkata_db_guide01:~$ tar -zxvf mongodb-linux-x86_64-8.0.0.tgzsudo mkdir -p /mongo/binsudo mv mongodb-linux-x86_64-8.0.0/bin/* /mongo/bin/sudo chown -R mongo:mongo /mongo/bin
+Update the PATH environment variable:
+venkata_db_guide01:~$ echo 'export PATH=/mongo/bin:$PATH' >> ~/.bashrcsource ~/.bashrc
+4.6 Configure MongoDB
+Edit the MongoDB configuration file /etc/mongod.conf:
+yaml
+storage:
+  dbPath: /mongo/data
+  journal:
+    enabled: truesystemLog:
+  destination: file
+  path: /mongo/logs/mongod.log
+  logAppend: truenet:
+  bindIp: 0.0.0.0
+  port: 27017security:
+  authorization: enabledprocessManagement:
+  fork: true
+  user: mongo
+  group: mongo
+4.7 Configure Firewall to Open Ports
+Open the necessary ports (22 for SSH and 27017 for MongoDB):
+venkata_db_guide01:~$ sudo ufw allow 22sudo ufw allow 27017sudo ufw enablesudo ufw status
+4.8 Start MongoDB
+Start and enable MongoDB:
+venkata_db_guide01:~$ sudo systemctl start mongodsudo systemctl enable mongod
+
+5. Authentication Setup
+5.1 Create the Admin User
+Connect to MongoDB:
+venkata_db_guide01:~$ mongo
+Switch to the admin database and create an administrative user:
+javascript
+use admindb.createUser({
+  user: "admin",
+  pwd: "password",
+  roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]})
+
+5.2 Enable Authentication
+Ensure the following line is present in /etc/mongod.conf:
+yaml
+security:
+  authorization: enabled
+Restart MongoDB:
+venkata_db_guide01:~$ sudo systemctl restart mongod
+
+6. Verification and Testing
+Verify MongoDB installation and authentication:
+venkata_db_guide01:~$ mongo -u "admin" -p "password" --authenticationDatabase "admin"
+You should be able to connect to the MongoDB instance using the credentials you set up.
+
+7. Troubleshooting
+Issue: MongoDB not starting
+Solution: Check the logs in /mongo/logs/mongod.log for errors.
+Issue: Authentication failure
+Solution: Ensure that the username and password are correct and that authorization is enabled in the configuration file.
+
+8. Additional Information
+Always ensure that your MongoDB instance is secure and follow best practices for security and performance.
+For more details, refer to the official MongoDB documentation.
