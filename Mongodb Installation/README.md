@@ -50,4 +50,4 @@ By following these steps, we should have the latest version of MongoDB community
 References Documents
 https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
 https://www.mongodb.com/community/forums/t/installing-mongodb-over-ubuntu-22-04/159931 
-https://github.com/subrahmanyeswaraokrv/mongodb-handbook/commit/39814ef224d04126453993fadb2a5986b5369e8e 
+https://github.com/subrahmanyeswaraokrv/mongodb-handbook/tree/main/Mongodb%20Installation
