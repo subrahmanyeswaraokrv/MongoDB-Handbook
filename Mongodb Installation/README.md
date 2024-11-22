@@ -1,19 +1,8 @@
 Title : Mongodb Database Installation and Configuration on Ubuntu System
 
 Contents covered are 
-Objective. 
-Scope of the Document. 
-General Description. 
-Hardware Requirements. 
-Installation.
-Configuration Changes.
-Manage mongod Service.
-Start  mongod Service.
-Verfify mongod Service.
-Stop mongod Service.
-Connect or Login to Mongo Shell.
-Uninstall mongod.
-Reference Document.
+Objective,Scope of the Document,General Description,Hardware Requirements,Installation,Configuration Changes,Manage mongod Service,Start  mongod Service,
+Verfify mongod Service,Stop mongod Service,Connect or Login to Mongo Shell,Uninstall mongod,Reference Documents.
 
 Objective
 ==============
@@ -54,12 +43,11 @@ Working Set		:  Ensure your working set (indexes and frequently accessed data) 	
 Multiple CPU Cores	:  MongoDB's WiredTiger storage engine efficiently uses 				 		   multiple CPU cores.
 Dedicated Server	:  For best performance, run one mongod process per host
 
-
 Conclusion 
 ================
 By following these steps, we should have the latest version of MongoDB community edition installed on our Ubuntu 22.04.2 LTS system with default data and log directories(var/lib/mongodb & /var/log/mongodb/) and also uninstall the existing package. 
 
-References
+References Documents
 https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
 https://www.mongodb.com/community/forums/t/installing-mongodb-over-ubuntu-22-04/159931 
 https://github.com/subrahmanyeswaraokrv/mongodb-handbook/commit/39814ef224d04126453993fadb2a5986b5369e8e 
