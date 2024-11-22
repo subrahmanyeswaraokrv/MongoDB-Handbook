@@ -1,6 +1,6 @@
 Title : Mongodb Database Installation and Configuration on Ubuntu System
- 
-Table of contents
+
+Contents covered are 
 Objective. 
 Scope of the Document. 
 General Description. 
