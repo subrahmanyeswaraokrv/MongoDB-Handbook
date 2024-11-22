@@ -1,0 +1,50 @@
+Installation
+=============
+Step 1		: To determine which Ubuntu release your host is running, run the following 			  command on the host's terminal 
+venkata@krv-dev-mongo:~#  sudo cat /etc/lsb-release
+
+Step 2 	: Import the Public GPG Key
+Note : if gnupg not avialable install it with
+venkata@krv-dev-mongo:~#  sudo apt-get install gnupg curl
+
+Step 3 	:Importing  the MongoDB public GPG key
+venkata@krv-dev-mongo:~#  curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc |    sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg    --dearmor
+
+Step 4		: Create the list file for Ubuntu 22.04 (Jammy)
+venkata@krv-dev-mongo:~#  echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+
+Step 5		: Update the Package Database
+venkata@krv-dev-mongo:~# sudo apt-get update
+
+Step 6		: Install MongoDB
+venkata@krv-dev-mongo:~# sudo apt-get install -y mongodb-org
+
+Configuration Changes 
+To update any configuration changes like port bindip or replication etc… edit config file and update the parameter which we want to and save 
+venkata@krv-dev-mongo:~# sudo vi  /etc/mongod.conf 
+
+Note : Default mongodb config file is located as  /etc/mongod.conf 
+
+Manage  mongod Process 
+To run and manage your mongod process, you will be using your operating system's built-in init system. Recent versions of Linux tend to use systemd (which uses the systemctl command), while older versions of Linux tend to use System V init (which uses the service command).
+
+If you are unsure which init system your platform uses, run the following command:
+
+venkata@krv-dev-mongo:~#   ps --no-headers -o comm 1
+
+Start mongod Service
+
+venkata@krv-dev-mongo:~#  sudo systemctl start mongod
+
+Verify mongod Service 
+
+venkata@krv-dev-mongo:~#  sudo systemctl status mongod
+
+Stop mongod Service 
+
+venkata@krv-dev-mongo:~#  sudo systemctl stop mongod
+
+Connect to mongo Shell 
+venkata@krv-dev-mongo:~#  mongosh 
+
+
