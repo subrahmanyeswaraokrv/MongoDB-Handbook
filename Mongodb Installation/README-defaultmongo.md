@@ -1,4 +1,4 @@
-Title : Mongodb Database Installation and Configuration on Ubuntu System
+Title : Mongodb Database default Installation and Configuration on Ubuntu System
 
 Contents covered are 
 Objective,Scope of the Document,General Description,Hardware Requirements,Installation,Configuration Changes,Manage mongod Service,Start  mongod Service,
