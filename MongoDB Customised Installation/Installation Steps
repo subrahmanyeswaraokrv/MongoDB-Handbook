@@ -1,0 +1,97 @@
+Installation
+============
+Step 1		: MongoDB only supports the 64-bit versions of these platforms. To determine 			  Ubuntu release running on host, run the following command.
+
+Step 2 	:  Update System - Make sure system is up to date.
+
+Step 3 	: Import the MongoDB Public GPG Key MongoDB provides a GPG key for signing packages. Import it using the following command.
+
+venkata@prod-mongodb-poc:/mongo/logs$  wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo tee /etc/apt/trusted.gpg.d/mongodb.asc
+
+Step 4		:  Add the official MongoDB APT Repository to sources list.
+venkata@prod-mongodb-poc:/mongo/logs$ echo "deb [arch=amd64] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+[sudo] password for venkata:
+deb [arch=amd64] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse
+venkata@prod-mongodb-poc:/mongo/logs$
+
+Step 5		:  Update Package Database
+venkata@prod-mongodb-poc:/mongo/logs$ sudo apt update
+
+Step 6		:  Install MongoDB
+venkata@prod-mongodb-poc:/mongo/logs$ sudo apt install -y mongodb-org
+
+Error : The following packages have unmet dependencies:
+ mongodb-org-mongos : Depends: libssl1.1 (>= 1.1.1) but it is not installable
+ mongodb-org-server : Depends: libssl1.1 (>= 1.1.1) but it is not installable
+E: Unable to correct problems, you have held broken packages.
+venkata@prod-mongodb-poc:/mongo/logs$
+
+The error you're encountering suggests that the required dependency libssl1.1 (version 1.1.1 or higher) is missing from your system, which is preventing the installation of MongoDB packages. This is likely because libssl1.1 is no longer available in the repositories for newer versions of Ubuntu or other distributions. As of Ubuntu 22.04 and later, libssl1.1 was deprecated and replaced by libssl3, which MongoDB may not be compatible with yet.
+
+Solution: 
+6.1. Add the MongoDB repository for your system's version
+venkata@prod-mongodb-poc:/mongo/logs$ wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-archive-keyring.gpg
+
+venkata@prod-mongodb-poc:/mongo/logs$ echo "deb [signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+deb [signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse
+
+venkata@prod-mongodb-poc:/mongo/logs$
+venkata@prod-mongodb-poc:/mongo/logs$ sudo apt-get update
+		
+6.2. Install libssl1.1 manually (if it's not available via apt)
+venkata@prod-mongodb-poc:/mongo/logs$  sudo wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+--2024-11-25 10:51:35--  http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+venkata@prod-mongodb-poc:/mongo/logs$ sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
+Step 7		: Customize MongoDB Data and Log Directories
+	7.1  Create the directories for data and logs if not exists 
+
+venkata@prod-mongodb-poc:/mongo/logs$ sudo mkdir -p /mongo/data 
+venkata@prod-mongodb-poc:/mongo/logs$ sudo mkdir -p /mongo/logs
+
+7.2  Change the ownership of the directories to the MongoDB user (mongodb):
+
+venkata@prod-mongodb-poc:/mongo/logs$ sudo chown -R mongodb:mongodb /mongo/data 
+venkata@prod-mongodb-poc:/mongo/logs$ sudo chown -R mongodb:mongodb /mongo/logs
+
+7.3. Check user mongodb exists or not 
+
+venkata@prod-mongodb-poc:/mongo/logs$ getent passwd mongodb
+venkata@prod-mongodb-poc:/mongo/logs$
+
+If the user doesn't exist, you will see no output.
+
+7.4 To add user and group 
+
+venkata@prod-mongodb-poc:/mongo/logs$ sudo groupadd mongodb
+venkata@prod-mongodb-poc:/mongo/logs$ sudo useradd -r -g mongodb -s /bin/false -d /mongo mongodb
+
+Configuration Changes 
+Configure MongoDB to Use Custom Directories and  update any configuration changes like port bindip or replication etc… edit config file and update the parameter which we want to and save 
+
+venkata@tou-dev-mongo1:~# sudo vi  /etc/mongod.conf 
+
+# Where and how to store data.
+storage:												
+ 	dbPath: /mongo/data										
+													
+# Where to write log.											
+systemLog:												
+  	destination: file										
+ 	logAppend: true										
+  	path: /mongo/logs/mongod.log								
+Note : Default mongodb config file is located as  /etc/mongod.conf 
+
+Manage  mongod Process 
+To run and manage your mongod process, you will be using your operating system's built-in init system. Recent versions of Linux tend to use systemd (which uses the systemctl command), while older versions of Linux tend to use System V init (which uses the service command).
+
+If you are unsure which init system your platform uses, run the following command:
+venkata@tou-dev-mongo1:~#   sudo systemctl enable mongod
+Start mongod Service
+venkata@tou-dev-mongo1:~#  sudo systemctl start mongod
+Verify mongod Service 
+venkata@tou-dev-mongo1:~#  sudo systemctl status mongod
+Stop mongod Service 
+venkata@tou-dev-mongo1:~#  sudo systemctl stop mongod
+Connect to mongo Shell
+venkata@tou-dev-mongo1:~#  mongosh 
