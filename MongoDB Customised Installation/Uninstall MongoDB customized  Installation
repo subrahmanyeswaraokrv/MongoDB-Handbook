@@ -1,0 +1,20 @@
+Uninstall MongoDB Community Edition
+
+Step 1		:  Stop the mongod process 
+venkata@tou-dev-mongo1:~#  sudo systemctl stop  mongod
+
+Step 2		:  Disable MongoDB from Starting at Boot.
+venkata@tou-dev-mongo1:~#  sudo systemctl disable mongod
+
+Step 3		:  Uninstall mongodb package 
+venkata@tou-dev-mongo1:~#  sudo apt purge mongodb-org*
+
+Step 4		:  Remove mongodb data and logs 
+venkata@tou-dev-mongo1:~#  sudo rm -rf /mongo/data 
+venkata@tou-dev-mongo1:~#  sudo rm -rf /mongo/logs
+
+Step 4		:  Remove mongodb repository 
+venkata@tou-dev-mongo1:~#  sudo rm /etc/apt/sources.list.d/mongodb-org-6.0.list 
+
+Step 4		:  Verify removal package
+venkata@tou-dev-mongo1:~#  ps aux | grep mongod
