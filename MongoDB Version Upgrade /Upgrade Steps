@@ -1,0 +1,48 @@
+Upgrade Steps -  Upgrade to MongoDB 7.0 
+========================================
+Step 1		:   Stop Mongod  
+venkata@prod-mongodb-poc:~$  sudo systemctl stop mongod
+
+Step 2 	: Remove Existing MongoDB Packages
+
+The following packages were automatically installed and are no longer required:
+  mongodb-database-tools mongodb-mongosh
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  mongodb-org* mongodb-org-database* mongodb-org-database-tools-extra* mongodb-org-mongos* mongodb-org-server* mongodb-org-shell* mongodb-org-tools*
+0 upgraded, 0 newly installed, 7 to remove and 0 not upgraded.
+After this operation, 246 MB disk space will be freed.
+Do you want to continue? [Y/n] y   [Type y and Press Enter here to confirm ]
+
+Step 3 	: Add MongoDB 7.0 Repository.
+venkata@prod-mongodb-poc:~$  sudo curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server-7.0.gpg
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse
+
+Step 4		: Install MongoDB 7.0.
+venkata@prod-mongodb-poc:~$ sudo apt-get update
+venkata@prod-mongodb-poc:~$ sudo apt-get install -y mongodb-org
+
+Configuration Changes 
+To update any configuration changes like port bindip, data and log directories or replication etc… edit config file and update the parameter which we want to and save 
+venkata@prod-mongodb-poc:~$ sudo vi  /etc/mongod.conf 
+Note : Default mongodb config file is located as  /etc/mongod.conf 
+
+Manage  mongod Process 
+To run and manage your mongod process, you will be using your operating system's built-in init system. Recent versions of Linux tend to use systemd (which uses the systemctl command), while older versions of Linux tend to use System V init (which uses the service command).
+
+If you are unsure which init system your platform uses, run the following command:
+
+venkata@prod-mongodb-poc:~$   ps --no-headers -o comm 1
+Start mongod Service
+venkata@prod-mongodb-poc:~$  sudo systemctl start mongod
+Verify mongod Service 
+venkata@prod-mongodb-poc:~$  sudo systemctl status mongod
+Stop mongod Service 
+venkata@prod-mongodb-poc:~$  sudo systemctl stop mongod
+Connect to mongo Shell 
+venkata@prod-mongodb-poc:~$  mongosh 
+
+Step 5		: Set Feature Compatibility Version.
+venkata@prod-mongodb-poc:~$ mongosh
+test> db.adminCommand({ getParameter: 1, featureCompatibilityVersion: 1 })
