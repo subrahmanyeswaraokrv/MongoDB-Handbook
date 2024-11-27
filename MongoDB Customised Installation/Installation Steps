@@ -1,11 +1,12 @@
 Installation
 ============
 Step 1		: MongoDB only supports the 64-bit versions of these platforms. To determine 			  Ubuntu release running on host, run the following command.
+venkata@dev-mongodb-poc1:~$ cat /etc/lsb-release
 
 Step 2 	:  Update System - Make sure system is up to date.
+venkata@dev-mongodb-poc1:~$ sudo apt update
 
 Step 3 	: Import the MongoDB Public GPG Key MongoDB provides a GPG key for signing packages. Import it using the following command.
-
 venkata@prod-mongodb-poc:/mongo/logs$  wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo tee /etc/apt/trusted.gpg.d/mongodb.asc
 
 Step 4		:  Add the official MongoDB APT Repository to sources list.
