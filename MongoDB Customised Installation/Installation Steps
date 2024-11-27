@@ -96,3 +96,302 @@ Stop mongod Service
 venkata@tou-dev-mongo1:~#  sudo systemctl stop mongod
 Connect to mongo Shell
 venkata@tou-dev-mongo1:~#  mongosh 
+
+===============================================================
+************Below is the Shell notes from clip board **********
+===============================================================
+STEP :: 1
+venkata@dev-mongodb-poc:~$ Check Mount and disk spaces ^C
+venkata@dev-mongodb-poc:~$ ============================^C
+venkata@dev-mongodb-poc:~$ df -h
+Filesystem                        Size  Used Avail Use% Mounted on
+tmpfs                             791M  1.4M  789M   1% /run
+/dev/sda2                          48G  7.2G   39G  16% /
+tmpfs                             3.9G     0  3.9G   0% /dev/shm
+tmpfs                             5.0M     0  5.0M   0% /run/lock
+/dev/sda1                         1.1G  6.1M  1.1G   1% /boot/efi
+192.168.63.143:/mongo_prod1/logs 1007G  344G  613G  36% /mongo/logs
+192.168.63.143:/mongo_prod1/data 1007G  344G  613G  36% /mongo/data
+tmpfs                             791M  4.0K  791M   1% /run/user/1001
+venkata@dev-mongodb-poc:~$
+
+STEP :: 2
+venkata@dev-mongodb-poc:~$ Check Mongod Process if already exists or running^C
+venkata@dev-mongodb-poc:~$ =================================================^C
+venkata@dev-mongodb-poc:~$ ps -efa | grep mongo
+touadmin    1309    1284  0 09:48 pts/0    00:00:00 grep --color=auto mongo
+venkata@dev-mongodb-poc:~$
+
+STEP :: 3
+venkata@dev-mongodb-poc:~$ Verify the OS Release ^C
+venkata@dev-mongodb-poc:~$ ======================^C
+venkata@dev-mongodb-poc:~$ cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=22.04
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION="Ubuntu 22.04.4 LTS"
+venkata@dev-mongodb-poc:~$
+
+STEP :: 4
+venkata@dev-mongodb-poc:~$ Update system ^C
+venkata@dev-mongodb-poc:~$ =========================^C
+venkata@dev-mongodb-poc:~$ sudo apt update
+[sudo] password for touadmin:
+Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Hit:2 http://in.archive.ubuntu.com/ubuntu jammy InRelease
+Get:3 http://in.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Hit:4 http://in.archive.ubuntu.com/ubuntu jammy-backports InRelease
+Get:5 http://in.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [2,179 kB]
+Get:6 http://in.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1,177 kB]
+Fetched 3,614 kB in 6s (625 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+50 packages can be upgraded. Run 'apt list --upgradable' to see them.
+venkata@dev-mongodb-poc:~$
+
+STEP :: 5
+venkata@dev-mongodb-poc:~$ Import the MongoDB Public GPG Key MongoDB provides a GPG key for signing packages ^C
+venkata@dev-mongodb-poc:~$ ==================================================================================^C
+venkata@dev-mongodb-poc:~$ sudo wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo tee /etc/apt/trusted.gpg.d/mongodb.asc
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1
+
+mQINBGPILWABEACqeWP/ktugdlWEyk7YTXo3n19+5Om4AlSdIyKv49vAlKtzCfMA
+QkZq3mfvjXiKMuLnL2VeElAJQIYcPoqnHf6tJbdrNv4AX2uI1cTsvGW7YS/2WNwJ
+C/+vBa4o+yA2CG/MVWZRbtOjkFF/W07yRFtNHAcgdmpIjdWgSnPQr9eIqLuWXIhy
+H7EerKsba227Vd/HfvKnAy30Unlsdywy7wi1FupzGJck0TPoOVGmsSpSyIQu9A4Z
+uC6TE/NcJHvaN0JuHwM+bQo9oWirGsZ1NCoVqSY8/sasdUc7T9r90MbUcH674YAR
+8OKYVBzU0wch4VTFhfHZecKHQnZf+V4dmP9oXnu4fY0/0w3l4jaew7Ind7kPg3yN
+hvgAkBK8yRAbSu1NOtHDNiRoHGEQFgct6trVOvCqHbN/VToLNtGk0rhKGOp8kuSF
+OJ02PJPxF3/zHGP8n8khCjUJcrilYPqRghZC8ZWnCj6GJVg6WjwLi+hPwNMi8xK6
+cjKhRW3eCy5Wcn73PzVBX9f7fSeFDJec+IfS47eNkxunHAOUMXa2+D+1xSWgEfK0
+PClfyWPgLIXY2pGQ6v8l3A6P5gJv4o38/E1h1RTcO3H1Z6cgZLIORZHPyAj50SPQ
+cjzftEcz56Pl/Cyw3eMYC3qlbABBgsdeb6KB6G5dkNxI4or3MgmxcwfnkwARAQAB
+tDdNb25nb0RCIDcuMCBSZWxlYXNlIFNpZ25pbmcgS2V5IDxwYWNrYWdpbmdAbW9u
+Z29kYi5jb20+iQI+BBMBAgAoBQJjyC1gAhsDBQkJZgGABgsJCAcDAgYVCAIJCgsE
+FgIDAQIeAQIXgAAKCRAWDSa7F4W6OM+eD/sE7KbJyRNWyPCRTqqJXrXvyPqZtbFX
+8sio0lQ8ghn4f7lmb7LnFroUsmBeWaYirM8O3b2+iQ9oj4GeR3gbRZsEhFXQfL54
+SfrmG9hrWWpJllgPP7Six+jrzcjvkf1TENqw4jRP+cJhuihH1Gfizo9ktwwoN9Yr
+m7vgh+focEEmx8dysS38ApLxKlUEfTsE9bYsClgqyY1yrt3v4IpGbf66yfyBHNgY
+sObR3sngDRVbap7PwNyREGsuAFfKr/Dr37HfrjY7nsn3vH7hbDpSBh+H7a0b/chS
+mM60aaG4biWpvmSC7uxA/t0gz+NQuC4HL+qyNPUxvyIO+TwlaXfCI6ixazyrH+1t
+F7Bj5mVsne7oeWjRrSz85jK3Tpn9tj3Fa7PCDA6auAlPK8Upbhuoajev4lIydNd2
+70yO0idm/FtpX5a8Ck7KSHDvEnXpN70imayoB4Fs2Kigi2BdZOOdib16o5F/9cx9
+piNa7HotHCLTfR6xRmelGEPWKspU1Sm7u2A5vWgjfSab99hiNQ89n+I7BcK1M3R1
+w/ckl6qBtcxz4Py+7jYIJL8BYz2tdreWbdzWzjv+XQ8ZgOaMxhL9gtlfyYqeGfnp
+hYW8LV7a9pavxV2tLuVjMM+05ut/d38IkTV7OSJgisbSGcmycXIzxsipyXJVGMZt
+MFw3quqJhQMRsA==
+=gbRM
+-----END PGP PUBLIC KEY BLOCK-----
+venkata@dev-mongodb-poc:~$
+
+STEP :: 6
+venkata@dev-mongodb-poc:~$ Add the official MongoDB APT Repository to sources lis ^C
+venkata@dev-mongodb-poc:~$ =======================================================^C
+venkata@dev-mongodb-poc:~$ sudo echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0 multiverse
+venkata@dev-mongodb-poc:~$
+venkata@dev-mongodb-poc:~$ Update package database ^C
+venkata@dev-mongodb-poc:~$ ===============================
+venkata@dev-mongodb-poc:~$ sudo apt-get install -y gnupg curl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+curl is already the newest version (7.81.0-1ubuntu1.19).
+curl set to manually installed.
+gnupg is already the newest version (2.2.27-3ubuntu2.1).
+gnupg set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 50 not upgraded.
+venkata@dev-mongodb-poc:~$
+
+STEP :: 7
+venkata@dev-mongodb-poc:~$ sudo curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server-8.0.gpg
+venkata@dev-mongodb-poc:~$ sudo apt-get update
+Hit:1 http://in.archive.ubuntu.com/ubuntu jammy InRelease
+Hit:2 http://in.archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:3 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:4 http://in.archive.ubuntu.com/ubuntu jammy-backports InRelease
+Get:5 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0 InRelease [3,005 B]
+Get:6 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse arm64 Packages [13.9 kB]
+Get:7 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 Packages [14.2 kB]
+Fetched 31.0 kB in 2s (17.5 kB/s)
+Reading package lists... Done
+venkata@dev-mongodb-poc:~$
+
+STEP :: 8
+venkata@dev-mongodb-poc:~$ Install mongo Database ^C
+venkata@dev-mongodb-poc:~$ =======================^C
+venkata@dev-mongodb-poc:~$ sudo apt-get install -y mongodb-org
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  mongodb-database-tools mongodb-mongosh mongodb-org-database mongodb-org-database-tools-extra mongodb-org-mongos mongodb-org-server mongodb-org-shell
+  mongodb-org-tools
+The following NEW packages will be installed:
+  mongodb-database-tools mongodb-mongosh mongodb-org mongodb-org-database mongodb-org-database-tools-extra mongodb-org-mongos mongodb-org-server
+  mongodb-org-shell mongodb-org-tools
+0 upgraded, 9 newly installed, 0 to remove and 50 not upgraded.
+Need to get 173 MB of archives.
+After this operation, 652 MB of additional disk space will be used.
+Get:1 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-database-tools amd64 100.10.0 [46.4 MB]
+Get:2 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-mongosh amd64 2.3.3 [54.1 MB]
+Get:3 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-org-shell amd64 8.0.3 [2,982 B]
+Get:4 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-org-server amd64 8.0.3 [41.5 MB]
+Get:5 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-org-mongos amd64 8.0.3 [30.9 MB]
+Get:6 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-org-database-tools-extra amd64 8.0.3 [7,782 B]
+Get:7 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-org-database amd64 8.0.3 [3,420 B]
+Get:8 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-org-tools amd64 8.0.3 [2,764 B]
+Get:9 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0/multiverse amd64 mongodb-org amd64 8.0.3 [2,800 B]
+Fetched 173 MB in 19s (9,011 kB/s)
+Selecting previously unselected package mongodb-database-tools.
+(Reading database ... 74926 files and directories currently installed.)
+Preparing to unpack .../0-mongodb-database-tools_100.10.0_amd64.deb ...
+Unpacking mongodb-database-tools (100.10.0) ...
+Selecting previously unselected package mongodb-mongosh.
+Preparing to unpack .../1-mongodb-mongosh_2.3.3_amd64.deb ...
+Unpacking mongodb-mongosh (2.3.3) ...
+Selecting previously unselected package mongodb-org-shell.
+Preparing to unpack .../2-mongodb-org-shell_8.0.3_amd64.deb ...
+Unpacking mongodb-org-shell (8.0.3) ...
+Selecting previously unselected package mongodb-org-server.
+Preparing to unpack .../3-mongodb-org-server_8.0.3_amd64.deb ...
+Unpacking mongodb-org-server (8.0.3) ...
+Selecting previously unselected package mongodb-org-mongos.
+Preparing to unpack .../4-mongodb-org-mongos_8.0.3_amd64.deb ...
+Unpacking mongodb-org-mongos (8.0.3) ...
+Selecting previously unselected package mongodb-org-database-tools-extra.
+Preparing to unpack .../5-mongodb-org-database-tools-extra_8.0.3_amd64.deb ...
+Unpacking mongodb-org-database-tools-extra (8.0.3) ...
+Selecting previously unselected package mongodb-org-database.
+Preparing to unpack .../6-mongodb-org-database_8.0.3_amd64.deb ...
+Unpacking mongodb-org-database (8.0.3) ...
+Selecting previously unselected package mongodb-org-tools.
+Preparing to unpack .../7-mongodb-org-tools_8.0.3_amd64.deb ...
+Unpacking mongodb-org-tools (8.0.3) ...
+Selecting previously unselected package mongodb-org.
+Preparing to unpack .../8-mongodb-org_8.0.3_amd64.deb ...
+Unpacking mongodb-org (8.0.3) ...
+Setting up mongodb-mongosh (2.3.3) ...
+Setting up mongodb-org-server (8.0.3) ...
+Adding system user `mongodb' (UID 116) ...
+Adding new user `mongodb' (UID 116) with group `nogroup' ...
+Not creating home directory `/home/mongodb'.
+Adding group `mongodb' (GID 119) ...
+Done.
+Adding user `mongodb' to group `mongodb' ...
+Adding user mongodb to group mongodb
+Done.
+Setting up mongodb-org-shell (8.0.3) ...
+Setting up mongodb-database-tools (100.10.0) ...
+Setting up mongodb-org-mongos (8.0.3) ...
+Setting up mongodb-org-database-tools-extra (8.0.3) ...
+Setting up mongodb-org-database (8.0.3) ...
+Setting up mongodb-org-tools (8.0.3) ...
+Setting up mongodb-org (8.0.3) ...
+Processing triggers for man-db (2.10.2-1) ...
+Scanning processes...
+Scanning linux images...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+venkata@dev-mongodb-poc:~$
+
+STEP :: 9
+venkata@dev-mongodb-poc:~$ change ownership to mongodb user and group on data directory and log directory^C
+venkata@dev-mongodb-poc:~$ ==============================================================================^C
+venkata@dev-mongodb-poc:~$ sudo chown -R mongodb:mongodb /mongo/data
+venkata@dev-mongodb-poc:~$ sudo chown -R mongodb:mongodb /mongo/logs
+venkata@dev-mongodb-poc:~$
+
+STEP :: 10
+venkata@dev-mongodb-poc:~$ Update configfile with data and log directory ^C
+venkata@dev-mongodb-poc:~$ ==============================================^C
+venkata@dev-mongodb-poc:~$ sudo cat /etc/mongod.conf | grep dbPath
+  dbPath: /var/lib/mongodb
+venkata@dev-mongodb-poc:~$ sudo cat /etc/mongod.conf | grep path
+  path: /var/log/mongodb/mongod.log
+venkata@dev-mongodb-poc:~$
+venkata@dev-mongodb-poc:~$ sudo vi /etc/mongod.conf
+venkata@dev-mongodb-poc:~$
+venkata@dev-mongodb-poc:~$
+venkata@dev-mongodb-poc:~$ After Update data and logs path ^C
+venkata@dev-mongodb-poc:~$ ================================^C
+venkata@dev-mongodb-poc:~$ sudo cat /etc/mongod.conf | grep dbPath
+  dbPath: /mongo/data
+venkata@dev-mongodb-poc:~$ sudo cat /etc/mongod.conf | grep path
+  path: /mongo/logs/mongod.log
+venkata@dev-mongodb-poc:~$
+venkata@dev-mongodb-poc:~$ Also add bind IP with this host ip ^C
+venkata@dev-mongodb-poc:~$ ===================================^C
+venkata@dev-mongodb-poc:~$ Before ^C
+venkata@dev-mongodb-poc:~$ sudo cat /etc/mongod.conf | grep bindIp
+  bindIp: 127.0.0.1
+venkata@dev-mongodb-poc:~$ sudo vi /etc/mongod.conf
+venkata@dev-mongodb-poc:~$ After 
+venkata@dev-mongodb-poc:~$ sudo cat /etc/mongod.conf | grep bindIp
+  bindIp: 127.0.0.1, 192.168.61.138
+venkata@dev-mongodb-poc:~$
+
+STEP :: 11
+venkata@dev-mongodb-poc:~$ Enable mongod as service - If not sure which init system  platform uses, run the following command ^C
+venkata@dev-mongodb-poc:~$ ==================================================================================================^C
+venkata@dev-mongodb-poc:~$ sudo systemctl enable mongod
+Created symlink /etc/systemd/system/multi-user.target.wants/mongod.service → /lib/systemd/system/mongod.service.
+venkata@dev-mongodb-poc:~$
+venkata@dev-mongodb-poc:~$ Start mongod Service^C
+venkata@dev-mongodb-poc:~$ ===============================^C
+venkata@dev-mongodb-poc:~$ sudo systemctl start mongod
+venkata@dev-mongodb-poc:~$
+venkata@dev-mongodb-poc:~$ Verify mongod Service^C
+venkata@dev-mongodb-poc:~$ =====================^C
+venkata@dev-mongodb-poc:~$ sudo systemctl status mongod
+● mongod.service - MongoDB Database Server
+     Loaded: loaded (/lib/systemd/system/mongod.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2024-11-27 10:10:39 UTC; 20s ago
+       Docs: https://docs.mongodb.org/manual
+   Main PID: 3138 (mongod)
+     Memory: 88.3M
+        CPU: 875ms
+     CGroup: /system.slice/mongod.service
+             └─3138 /usr/bin/mongod --config /etc/mongod.conf
+
+Nov 27 10:10:39 dev-mongodb-poc3 systemd[1]: Started MongoDB Database Server.
+Nov 27 10:10:39 dev-mongodb-poc3 mongod[3138]: {"t":{"$date":"2024-11-27T10:10:39.092Z"},"s":"I",  "c":"CONTROL",  "id":7484500, "ctx":"main","msg":"Environm>
+lines 1-12/12 (END)
+venkata@dev-mongodb-poc:~$
+
+STEP :: 12
+venkata@dev-mongodb-poc:~$ Connect to mongo Shell^C
+venkata@dev-mongodb-poc:~$ ======================^C
+venkata@dev-mongodb-poc:~$ mongosh
+Current Mongosh Log ID: 6746f04c3b6bb81328c1c18b
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.3
+Using MongoDB:          8.0.3
+Using Mongosh:          2.3.3
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2024-11-27T10:10:40.550+00:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2024-11-27T10:10:40.550+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-27T10:10:40.550+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-27T10:10:40.550+00:00: We suggest setting the contents of sysfsFile to 0.
+   2024-11-27T10:10:40.550+00:00: vm.max_map_count is too low
+   2024-11-27T10:10:40.550+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+------
+test> exit
+venkata@dev-mongodb-poc:~$
