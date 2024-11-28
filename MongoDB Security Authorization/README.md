@@ -42,3 +42,12 @@ test> exit
 venkata@dev-mongodb-poc1:~$
 Conclusion 
 By following these steps, we should enable security for the mongo databases . 
+
+Reference URL:
+Conclusion 
+By following these steps, we should enable security for the mongo databases . 
+
+Reference Documents
+https://www.mongodb.com/docs/manual/tutorial/configure-scram-client-authentication/ 
+https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/tree/main/MongoDB%20Security%20Authorization 
+
