@@ -1,0 +1,33 @@
+Enable Security Authorization 
+ Step 1			 : 	Edit the MongoDB configuration file and add authorization: 						enabled  in security section 
+venkata@dev-mongodb-poc1:~$ sudo cat /etc/mongod.conf | grep security
+[sudo] password for venkata:
+#security:
+venkata@dev-mongodb-poc1:~$ sudo vi /etc/mongod.conf
+venkata@dev-mongodb-poc1:~$
+venkata@dev-mongodb-poc1:~$ sudo cat /etc/mongod.conf | grep security
+security:
+venkata@dev-mongodb-poc1:~$ sudo cat /etc/mongod.conf | grep authorisation
+venkata@dev-mongodb-poc1:~$ sudo cat /etc/mongod.conf | grep authorization
+  authorization: enabled
+venkata@dev-mongodb-poc1:~$
+
+venkata@dev-mongodb-poc1:~$ Save the file and restart the MongoDB service   ^C
+venkata@dev-mongodb-poc1:~$
+venkata@dev-mongodb-poc1:~$ sudo systemctl restart mongod
+venkata@dev-mongodb-poc1:~$
+venkata@dev-mongodb-poc1:~$ sudo systemctl status mongod
+● mongod.service - MongoDB Database Server
+     Loaded: loaded (/lib/systemd/system/mongod.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2024-11-27 10:34:15 UTC; 10s ago
+       Docs: https://docs.mongodb.org/manual
+   Main PID: 1727 (mongod)
+     Memory: 185.3M
+        CPU: 1.186s
+     CGroup: /system.slice/mongod.service
+             └─1727 /usr/bin/mongod --config /etc/mongod.conf
+
+Nov 27 10:34:15 dev-mongodb-poc1 systemd[1]: Started MongoDB Database Server.
+Nov 27 10:34:15 dev-mongodb-poc1 mongod[1727]: {"t":{"$date":"2024-11-27T10:34:15.954Z"},"s":"I",  "c":"CONTROL",  "id":7484500, "ctx":"main","msg":"Environment variable MONGODB_CONFIG_OVERRIDE_NO>
+
+
