@@ -1,0 +1,496 @@
+=================================================================================================
+********************************* MONGODB REPLICATION SETUP *************************************
+=================================================================================================
+
+ON PRIMARY : 
+============
+
+Step 1 : Connecto Primary and edit and set parameter Replicaset name 
+venkata@dev-mongodb-poc1:~$
+venkata@dev-mongodb-poc1:~$ sudo  vi /etc/mongod.conf
+[sudo] password for venkata:
+venkata@dev-mongodb-poc1:~$ sudo  cat  /etc/mongod.conf  | grep replSetName
+  replSetName: "mongopoc_rs0"
+
+Step  2 : Create Directory mongodb  under /etc/ssl/
+touadmin@dev-mongodb-poc3:/tmp$ cd /etc/ssl/
+touadmin@dev-mongodb-poc3:/etc/ssl$ ls
+certs  openssl.cnf  private
+touadmin@dev-mongodb-poc3:/etc/ssl$ sudo mkdir mongodb
+[sudo] password for touadmin:
+touadmin@dev-mongodb-poc3:/etc/ssl$ ls
+certs  mongodb  openssl.cnf  private
+venkata@dev-mongodb-poc1:/etc/ssl$ sudo chown -R mongodb:mongodb mongodb/
+
+Step 3 : Generate the Replica Set Keyfile with openssl rand 
+venkata@dev-mongodb-poc1:~# sudo openssl rand -base64 756 > /etc/ssl/mongodb/mongo-keyfile
+venkata@dev-mongodb-poc1:~# sudo chown mongodb:mongodb /etc/ssl/mongodb/mongo-keyfile
+venkata@dev-mongodb-poc1:/etc/ssl$
+venkata@dev-mongodb-poc1:/etc/ssl$ sudo chmod 600 /etc/ssl/mongodb/mongo-keyfile
+Note :  This makes sure that only the MongoDB process has access to the keyfile, which is essential for security 
+
+Step 4 :  Distribute the Keyfile to All MongoDB Nodes  - Copy the Keyfile to Other Nodes 
+venkata@dev-mongodb-poc1:~# sudo scp /etc/ssl/mongodb/mongo-keyfile touadmin@192.168.61.137:/tmp/
+touadmin@192.168.61.137's password:
+mongo-keyfile                                                                                                100% 1024     1.7MB/s   00:00
+venkata@dev-mongodb-poc1:~# scp /etc/ssl/mongodb/mongo-keyfile touadmin@192.168.61.138:/tmp/
+The authenticity of host '192.168.61.138 (192.168.61.138)' can't be established.
+ED25519 key fingerprint is SHA256:ZzR54RN1obHbQbpdPAQ9ZB3/fDIUWSQoFobPfQxSQWQ.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.61.138' (ED25519) to the list of known hosts.
+touadmin@192.168.61.138's password:
+mongo-keyfile                                                                                                100% 1024     2.8MB/s   00:00
+venkata@dev-mongodb-poc1:~# 
+
+Step 5 : Configure MongoDB to Use the Keyfile - Edit mongod config file  and add keyFile: /etc/ssl/mongodb/mongo-keyfile under security section along with authorization: enabled
+venkata@dev-mongodb-poc1:~# vi /etc/mongod.conf
+venkata@dev-mongodb-poc1:~# cat /etc/mongod.conf 
+*******************************
+   	security:
+		keyFile: /etc/ssl/mongodb/mongo-keyfile
+		authorization: enabled
+*******************************
+And for replication add below  replSetName thiis should be same for all nodes of the replicaset 
+*******************************
+	replication:
+		replSetName: "mongopoc_rs0"
+*******************************
+
+Step 6 : Restart Mongodb Service 
+venkata@dev-mongodb-poc1:/etc/ssl/mongodb$ sudo systemctl start mongod
+
+Step 7 : Check status of  Mongodb Service - Make sure this is running Active: active (running)
+venkata@dev-mongodb-poc1:/etc/ssl/mongodb$ systemctl status mongod
+● mongod.service - MongoDB Database Server
+     Loaded: loaded (/lib/systemd/system/mongod.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2024-11-28 09:49:25 UTC; 6s ago
+       Docs: https://docs.mongodb.org/manual
+   Main PID: 7400 (mongod)
+     Memory: 190.2M
+        CPU: 1.274s
+     CGroup: /system.slice/mongod.service
+             └─7400 /usr/bin/mongod --config /etc/mongod.conf
+venkata@dev-mongodb-poc1:/etc/ssl/mongodb$
+venkata@dev-mongodb-poc1:~#
+
+Step 8 : Connect to mongo shell and initiate the replicaset 
+venkata@dev-mongodb-poc1:~# mongosh -u superAdmin -p
+Enter password: **********
+Current Mongosh Log ID: 67483cc31ea0a27c60c1c18b
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.3
+Using MongoDB:          8.0.3
+Using Mongosh:          2.3.3
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+------
+   The server generated these startup warnings when booting
+   2024-11-28T09:49:27.877+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-28T09:49:27.878+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-28T09:49:27.878+00:00: We suggest setting the contents of sysfsFile to 0.
+   2024-11-28T09:49:27.878+00:00: vm.max_map_count is too low
+   2024-11-28T09:49:27.878+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+------
+test>
+
+Step 8.1 : Initiating replicaset (should run on and as primary node)
+test> rs.initiate()
+{
+  info2: 'no configuration specified. Using a default configuration for the set',
+  me: '192.168.61.135:27017',
+  ok: 1
+}
+mongopoc_rs0 [direct: secondary] test>
+
+mongopoc_rs0 [direct: primary] test>
+
+mongopoc_rs0 [direct: primary] test>
+
+mongopoc_rs0 [direct: primary] test>
+
+mongopoc_rs0 [direct: primary] test> 
+
+Step 8.1 : Check replicaset status
+mongopoc_rs0 [direct: primary] test> rs.status()
+{
+  set: 'mongopoc_rs0',
+  date: ISODate('2024-11-28T09:50:30.846Z'),
+  myState: 1,
+  term: Long('1'),
+  syncSourceHost: '',
+  syncSourceId: -1,
+  heartbeatIntervalMillis: Long('2000'),
+  majorityVoteCount: 1,
+  writeMajorityCount: 1,
+  votingMembersCount: 1,
+  writableVotingMembersCount: 1,
+  optimes: {
+    lastCommittedOpTime: { ts: Timestamp({ t: 1732787419, i: 17 }), t: Long('1') },
+    lastCommittedWallTime: ISODate('2024-11-28T09:50:19.605Z'),
+    readConcernMajorityOpTime: { ts: Timestamp({ t: 1732787419, i: 17 }), t: Long('1') },
+    appliedOpTime: { ts: Timestamp({ t: 1732787419, i: 17 }), t: Long('1') },
+    durableOpTime: { ts: Timestamp({ t: 1732787419, i: 17 }), t: Long('1') },
+    writtenOpTime: { ts: Timestamp({ t: 1732787419, i: 17 }), t: Long('1') },
+    lastAppliedWallTime: ISODate('2024-11-28T09:50:19.605Z'),
+    lastDurableWallTime: ISODate('2024-11-28T09:50:19.605Z'),
+    lastWrittenWallTime: ISODate('2024-11-28T09:50:19.605Z')
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1732787419, i: 1 }),
+  electionCandidateMetrics: {
+    lastElectionReason: 'electionTimeout',
+    lastElectionDate: ISODate('2024-11-28T09:50:19.459Z'),
+    electionTerm: Long('1'),
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1732787419, i: 1 }), t: Long('-1') },
+    lastSeenWrittenOpTimeAtElection: { ts: Timestamp({ t: 1732787419, i: 1 }), t: Long('-1') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1732787419, i: 1 }), t: Long('-1') },
+    numVotesNeeded: 1,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'),
+    newTermStartDate: ISODate('2024-11-28T09:50:19.506Z'),
+    wMajorityWriteAvailabilityDate: ISODate('2024-11-28T09:50:19.567Z')
+  },
+  members: [
+    {
+      _id: 0,
+      name: '192.168.61.135:27017',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 65,
+      optime: { ts: Timestamp({ t: 1732787419, i: 17 }), t: Long('1') },
+      optimeDate: ISODate('2024-11-28T09:50:19.000Z'),
+      optimeWritten: { ts: Timestamp({ t: 1732787419, i: 17 }), t: Long('1') },
+      optimeWrittenDate: ISODate('2024-11-28T09:50:19.000Z'),
+      lastAppliedWallTime: ISODate('2024-11-28T09:50:19.605Z'),
+      lastDurableWallTime: ISODate('2024-11-28T09:50:19.605Z'),
+      lastWrittenWallTime: ISODate('2024-11-28T09:50:19.605Z'),
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: 'Could not find member to sync from',
+      electionTime: Timestamp({ t: 1732787419, i: 2 }),
+      electionDate: ISODate('2024-11-28T09:50:19.000Z'),
+      configVersion: 1,
+      configTerm: 1,
+      self: true,
+      lastHeartbeatMessage: ''
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1732787419, i: 17 }),
+    signature: {
+      hash: Binary.createFromBase64('b5PbSbh2FtAvFGBAlImxXmtwVt8=', 0),
+      keyId: Long('7442265295525249031')
+    }
+  },
+  operationTime: Timestamp({ t: 1732787419, i: 17 })
+}
+mongopoc_rs0 [direct: primary] test>
+
+
+ON SECONDARY - A : 
+==================
+
+Step 8.1  : Login to Secondary Node and create directory as below 
+touadmin@dev-mongodb-poc2:~$ sudo mkdir /etc/ssl/mongodb
+[sudo] password for touadmin:
+touadmin@dev-mongodb-poc2:~$ cd /etc/ssl/mongodb/
+touadmin@dev-mongodb-poc2:/etc/ssl/mongodb$ ls
+touadmin@dev-mongodb-poc2:/etc/ssl/mongodb$
+
+Step 8.2 :  copy "mongo-keyfile" from Primay node 
+
+Step 8.3 : Edit Config File vi /etc/mongod.conf and update replicaset name from primary also enable authorization from (Step 5 ). 
+
+Step 8.4 : Change the permissions 
+touadmin@dev-mongodb-poc2:/etc/ssl/mongodb$ chmod 600 /etc/ssl/mongodb/mongo-keyfile
+touadmin@dev-mongodb-poc2:/etc/ssl/mongodb$ sudo chown mongodb:mongodb /etc/ssl/mongodb/mongo-keyfile
+
+Step 8.5 : Start mongod Service
+touadmin@dev-mongodb-poc2:/etc/ssl/mongodb$ sudo systemctl start mongod
+touadmin@dev-mongodb-poc2:/etc/ssl/mongodb$
+
+Step 8.6 : Login to mongoshe and create same user (super Admin as Primary) 
+test> use admin
+switched to db admin
+admin> db.createUser({ user: "admin", pwd: "xxxxx", roles: [{ role: "root", db: "admin" }]});
+{ ok: 1 }
+admin>
+admin> exit
+touadmin@dev-mongodb-poc2:/etc/ssl/mongodb$
+
+ON SECONDARY - B : 
+==================
+
+Login to SECONDARY Node B and repeate steps From Step 8.1 to Step 8.6
+
+ON PRIMARY  :  Goto Primary Node 
+================================
+
+Step 9 :  Add other members to replicaset as SECONDARY nodes
+
+mongopoc_rs0 [direct: primary] test> rs.add("192.168.61.137:27017")
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1732787569, i: 2 }),
+    signature: {
+      hash: Binary.createFromBase64('VsvsllD/SMaoN7w+Kenc72/x+V4=', 0),
+      keyId: Long('7442265295525249031')
+    }
+  },
+  operationTime: Timestamp({ t: 1732787569, i: 2 })
+}
+mongopoc_rs0 [direct: primary] test> rs.add("192.168.61.138:27017")
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1732787582, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('f6LKEhgx9JHQGNDMHjF1W32mx3A=', 0),
+      keyId: Long('7442265295525249031')
+    }
+  },
+  operationTime: Timestamp({ t: 1732787582, i: 1 })
+}
+mongopoc_rs0 [direct: primary] test>
+
+Step 10 : Again Check the sattus for SECONDARY Nodes 
+
+mongopoc_rs0 [direct: primary] test> rs.status()
+{
+  set: 'mongopoc_rs0',
+  date: ISODate('2024-11-28T09:57:43.226Z'),
+  myState: 1,
+  term: Long('1'),
+  syncSourceHost: '',
+  syncSourceId: -1,
+  heartbeatIntervalMillis: Long('2000'),
+  majorityVoteCount: 2,
+  writeMajorityCount: 2,
+  votingMembersCount: 3,
+  writableVotingMembersCount: 3,
+  optimes: {
+    lastCommittedOpTime: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+    lastCommittedWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+    readConcernMajorityOpTime: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+    appliedOpTime: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+    durableOpTime: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+    writtenOpTime: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+    lastAppliedWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+    lastDurableWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+    lastWrittenWallTime: ISODate('2024-11-28T09:57:39.544Z')
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1732787832, i: 1 }),
+  electionCandidateMetrics: {
+    lastElectionReason: 'electionTimeout',
+    lastElectionDate: ISODate('2024-11-28T09:50:19.459Z'),
+    electionTerm: Long('1'),
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1732787419, i: 1 }), t: Long('-1') },
+    lastSeenWrittenOpTimeAtElection: { ts: Timestamp({ t: 1732787419, i: 1 }), t: Long('-1') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1732787419, i: 1 }), t: Long('-1') },
+    numVotesNeeded: 1,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'),
+    newTermStartDate: ISODate('2024-11-28T09:50:19.506Z'),
+    wMajorityWriteAvailabilityDate: ISODate('2024-11-28T09:50:19.567Z')
+  },
+  members: [
+    {
+      _id: 0,
+      name: '192.168.61.135:27017',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 498,
+      optime: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+      optimeDate: ISODate('2024-11-28T09:57:39.000Z'),
+      optimeWritten: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+      optimeWrittenDate: ISODate('2024-11-28T09:57:39.000Z'),
+      lastAppliedWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      lastDurableWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      lastWrittenWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: '',
+      electionTime: Timestamp({ t: 1732787419, i: 2 }),
+      electionDate: ISODate('2024-11-28T09:50:19.000Z'),
+      configVersion: 5,
+      configTerm: 1,
+      self: true,
+      lastHeartbeatMessage: ''
+    },
+    {
+      _id: 1,
+      name: '192.168.61.137:27017',
+      health: 1,
+      state: 2,
+      stateStr: 'SECONDARY',
+      uptime: 8,
+      optime: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+      optimeDurable: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+      optimeWritten: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+      optimeDate: ISODate('2024-11-28T09:57:39.000Z'),
+      optimeDurableDate: ISODate('2024-11-28T09:57:39.000Z'),
+      optimeWrittenDate: ISODate('2024-11-28T09:57:39.000Z'),
+      lastAppliedWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      lastDurableWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      lastWrittenWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      lastHeartbeat: ISODate('2024-11-28T09:57:42.441Z'),
+      lastHeartbeatRecv: ISODate('2024-11-28T09:57:42.425Z'),
+      pingMs: Long('0'),
+      lastHeartbeatMessage: '',
+      syncSourceHost: '192.168.61.135:27017',
+      syncSourceId: 0,
+      infoMessage: '',
+      configVersion: 5,
+      configTerm: 1
+    },
+    {
+      _id: 2,
+      name: '192.168.61.138:27017',
+      health: 1,
+      state: 2,
+      stateStr: 'SECONDARY',
+      uptime: 133,
+      optime: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+      optimeDurable: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+      optimeWritten: { ts: Timestamp({ t: 1732787859, i: 1 }), t: Long('1') },
+      optimeDate: ISODate('2024-11-28T09:57:39.000Z'),
+      optimeDurableDate: ISODate('2024-11-28T09:57:39.000Z'),
+      optimeWrittenDate: ISODate('2024-11-28T09:57:39.000Z'),
+      lastAppliedWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      lastDurableWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      lastWrittenWallTime: ISODate('2024-11-28T09:57:39.544Z'),
+      lastHeartbeat: ISODate('2024-11-28T09:57:42.441Z'),
+      lastHeartbeatRecv: ISODate('2024-11-28T09:57:42.441Z'),
+      pingMs: Long('0'),
+      lastHeartbeatMessage: '',
+      syncSourceHost: '192.168.61.135:27017',
+      syncSourceId: 0,
+      infoMessage: '',
+      configVersion: 5,
+      configTerm: 1
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1732787859, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('7CzjzruGd7FJhGnX1FroRhTz9dk=', 0),
+      keyId: Long('7442265295525249031')
+    }
+  },
+  operationTime: Timestamp({ t: 1732787859, i: 1 })
+}
+mongopoc_rs0 [direct: primary] test>
+
+
+Verifying Data Synchronization: 
+===============================
+
+venkata@dev-mongodb-poc1:/mongo/data$ mongosh -u superAdmin -p
+Enter password: **********
+Current Mongosh Log ID: 67484c343085f5f138c1c18b
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.3
+Using MongoDB:          8.0.3
+Using Mongosh:          2.3.3
+mongosh 2.3.4 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-11-28T09:49:27.877+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-28T09:49:27.878+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-28T09:49:27.878+00:00: We suggest setting the contents of sysfsFile to 0.
+   2024-11-28T09:49:27.878+00:00: vm.max_map_count is too low
+   2024-11-28T09:49:27.878+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+------
+
+PRIMARY :
+===============================================
+mongopoc_rs0 [direct: primary] test> show dbs
+admin     172.00 KiB
+config    184.00 KiB
+local     452.00 KiB
+mongopoc   40.00 KiB
+mongopoc_rs0 [direct: primary] test> use mongopoc
+switched to db mongopoc
+mongopoc_rs0 [direct: primary] mongopoc> show collections
+testpoc
+mongopoc_rs0 [direct: primary] mongopoc> db.testpoc.find()
+[ { _id: ObjectId('67484bede8c39631fec1c18c') } ]
+mongopoc_rs0 [direct: primary] mongopoc> exit
+venkata@dev-mongodb-poc1:/mongo/data$
+
+SECONDARY A :
+===============================================
+venkata@dev-mongodb-poc1:/mongo/data$ mongosh -u superAdmin -p  --host 192.168.61.137
+Enter password: **********
+Current Mongosh Log ID: 67484c6e992d06f395c1c18b
+Connecting to:          mongodb://<credentials>@192.168.61.137:27017/?directConnection=true&appName=mongosh+2.3.3
+Using MongoDB:          8.0.3
+Using Mongosh:          2.3.3
+mongosh 2.3.4 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-11-28T09:57:33.221+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-28T09:57:33.221+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-28T09:57:33.221+00:00: We suggest setting the contents of sysfsFile to 0.
+   2024-11-28T09:57:33.221+00:00: vm.max_map_count is too low
+   2024-11-28T09:57:33.221+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+------
+
+mongopoc_rs0 [direct: secondary] test> show dbs
+admin     140.00 KiB
+config    212.00 KiB
+local     428.00 KiB
+mongopoc   40.00 KiB
+mongopoc_rs0 [direct: secondary] test> use mongopoc
+switched to db mongopoc
+mongopoc_rs0 [direct: secondary] mongopoc> show collections
+testpoc
+mongopoc_rs0 [direct: secondary] mongopoc> db.testpoc.find()
+[ { _id: ObjectId('67484bede8c39631fec1c18c') } ]
+mongopoc_rs0 [direct: secondary] mongopoc>
+
+mongopoc_rs0 [direct: secondary] mongopoc> exit
+venkata@dev-mongodb-poc1:/mongo/data$
+
+SECONDARY B :
+===============================================
+venkata@dev-mongodb-poc1:/mongo/data$ mongosh -u superAdmin -p  --host 192.168.61.138
+Enter password: **********
+Current Mongosh Log ID: 67484c9aadedda4e24c1c18b
+Connecting to:          mongodb://<credentials>@192.168.61.138:27017/?directConnection=true&appName=mongosh+2.3.3
+Using MongoDB:          8.0.3
+Using Mongosh:          2.3.3
+mongosh 2.3.4 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-11-28T09:55:29.154+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-28T09:55:29.154+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-11-28T09:55:29.154+00:00: We suggest setting the contents of sysfsFile to 0.
+   2024-11-28T09:55:29.154+00:00: vm.max_map_count is too low
+   2024-11-28T09:55:29.154+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+------
+
+mongopoc_rs0 [direct: secondary] test> show dbs
+admin     140.00 KiB
+config    212.00 KiB
+local     428.00 KiB
+mongopoc   40.00 KiB
+mongopoc_rs0 [direct: secondary] test> use mongopoc
+switched to db mongopoc
+mongopoc_rs0 [direct: secondary] mongopoc> db.testpoc.find()
+[ { _id: ObjectId('67484bede8c39631fec1c18c') } ]
+mongopoc_rs0 [direct: secondary] mongopoc> exit
+venkata@dev-mongodb-poc1:/mongo/data$
