@@ -16,7 +16,8 @@ MongoDB is a widely used NoSQL database that provides high performance, scalabil
 This document provides a comprehensive guide to enabling and configuring security features in MongoDB, focusing on authentication and authorization mechanisms. It covers the necessary steps to configure role-based access control (RBAC), enable secure connections, and implement best practices for user and data security.
 By following the instructions in this guide, administrators can ensure that MongoDB is configured to meet organizational security standards, preventing unauthorized access and ensuring compliance with security policies.
 
-Manage Mongo Service 
+Manage Mongo Service :
+=======================
 venkata@dev-mongodb-poc1:~$ sudo systemctl restart mongod
 venkata@dev-mongodb-poc1:~$ mongosh
 Current Mongosh Log ID: 6746f6eb723a366acac1c18b
@@ -39,15 +40,15 @@ admin   132.00 KiB
 config   48.00 KiB
 local    72.00 KiB
 test> exit
-venkata@dev-mongodb-poc1:~$
-Conclusion 
+
+Conclusion :
 By following these steps, we should enable security for the mongo databases . 
 
 Reference URL:
 Conclusion 
 By following these steps, we should enable security for the mongo databases . 
 
-Reference Documents
+Reference Documents:
 https://www.mongodb.com/docs/manual/tutorial/configure-scram-client-authentication/ 
 https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/tree/main/MongoDB%20Security%20Authorization 
 
