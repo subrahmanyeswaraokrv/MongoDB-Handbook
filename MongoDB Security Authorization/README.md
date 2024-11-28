@@ -19,6 +19,7 @@ By following the instructions in this guide, administrators can ensure that Mong
 Manage Mongo Service :
 =======================
 venkata@dev-mongodb-poc1:~$ sudo systemctl restart mongod
+
 venkata@dev-mongodb-poc1:~$ mongosh
 Current Mongosh Log ID: 6746f6eb723a366acac1c18b
 Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.3
