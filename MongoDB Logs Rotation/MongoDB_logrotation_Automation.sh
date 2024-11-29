@@ -7,7 +7,7 @@
 
 # Define MongoDB connection details
 MONGODB_USERNAME="logrotator"
-MONGODB_PASSWORD="xxxxxxxx"
+MONGODB_PASSWORD="10gR0tat0r"
 MONGODB_HOST="localhost"
 MONGODB_PORT="27017"
 
