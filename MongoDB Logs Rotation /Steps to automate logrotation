@@ -1,0 +1,31 @@
+MongoDB LogRotation Automation Setup
+==========================================
+Step 1 :   Login to mongo Server and set path to store scripts
+touadmin@dev-mongodb-poc3:~$ sudo mkdir /mongo/mongoscripts
+[sudo] password for touadmin:
+touadmin@dev-mongodb-poc3:~$
+touadmin@dev-mongodb-poc3:~$ cd /mongo/mongoscripts/
+touadmin@dev-mongodb-poc3:/mongo$ sudo chown -R mongodb:mongodb /mongo/mongoscripts/
+touadmin@dev-mongodb-poc3:/mongo$ sudo chown -R mongodb:mongodb /mongo
+touadmin@dev-mongodb-poc3:/mongo$
+
+Step 2 : Create role and user in mongodb 
+mongopoc_rs0 [direct: primary] admin> db.createRole({ role: "logRotateRole", privileges: [ { resource: { cluster: true }, actions: [ "logRotate" ] } ], roles: [] })
+mongopoc_rs0 [direct: primary] admin>db.createUser({ user: "logrotator", pwd: "10gR0tat0r", roles: [ "logRotateRole" ] })
+
+Step 3 : Write script to file  
+touadmin@dev-mongodb-poc3:/mongo$ vi /mongo/mongoscripts/mongo_log_rotation.sh 
+
+Step 4 : allow user to run with sudoers with out password 
+touadmin@dev-mongodb-poc3:/mongo/logs$ sudo visudo
+Add the line in the sudoers file: Scroll to the end of the file and add the following line  with the full path to your script.
+yourusername ALL=(ALL) NOPASSWD: /path/to/your/script.sh
+For example, if your username is venkata and your script is located at /mongo/mongoscripts/mongo_log_rotation.sh, you would add:
+venkata ALL=(ALL) NOPASSWD: /mongo/mongoscripts/mongo_log_rotation.sh
+
+Step 5 : Set Crontab 
+touadmin@dev-mongodb-poc3:/mongo/logs$ crontab -e
+# Edit this file to introduce tasks to be run by cron. 
+# Run crontab for every day at 0 th hour 
+# m h  dom mon dow   command
+* * * * * sudo /mongo/mongoscripts/mongo_log_rotation.sh
