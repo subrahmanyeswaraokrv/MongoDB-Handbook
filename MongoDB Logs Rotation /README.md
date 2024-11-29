@@ -26,4 +26,4 @@ By following these steps, we will be automating the log rotation process. Compre
 
 References
 https://www.claudiokuenzler.com/blog/566/mongodb-3.x-log-rotation-script
-
+https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/tree/main/MongoDB%20Logs%20Rotation%20
