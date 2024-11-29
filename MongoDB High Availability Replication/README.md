@@ -21,3 +21,16 @@ This document provides a comprehensive guide to setting up MongoDB replication w
 Authentication Setup
 Replica Set Configuration
 Verification and Maintenance
+Additional Considerations
+Make sure the mongo_keyfile should  generated with suggested permisions 
+And can copied to all replica members.
+In config file replicaset name should be same for all 3 nodes of the set.
+Rs.initiate() command should be run on the primary once.
+Make sure to add secondary nodes and port number s
+
+Conclusion 
+
+Setting up MongoDB replication is a powerful way to ensure data availability, fault tolerance, and redundancy in your MongoDB deployment. Replication provides high availability and automatic failover, making it a crucial component of any robust database infrastructure.
+References
+https://www.mongodb.com/docs/manual/administration/replica-set-deployment/ 
+https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/tree/main/MongoDB%20High%20Availability%20Replication 
