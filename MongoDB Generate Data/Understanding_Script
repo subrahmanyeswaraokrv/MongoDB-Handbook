@@ -1,0 +1,85 @@
+Script Overview:
+======================
+This Python script connects to a MongoDB database, generates 10,000 random records, and inserts them into a specified collection. The script uses the pymongo library to interact with MongoDB.
+
+Detailed Explanation :
+======================
+Import Libraries:
+
+python
+import pymongo
+import random
+from datetime import datetime, timedelta
+pymongo: Provides the tools to interact with MongoDB.
+
+random: Used to generate random values for the records.
+
+datetime and timedelta: Used for generating random dates.
+
+MongoDB Connection Details:
+============================
+python
+MONGO_URI = "mongodb://appuser:xxxxxxx@localhost:27017/?authSource=admin"
+DATABASE_NAME = "mydatabase"
+COLLECTION_NAME = "mycollection"
+MONGO_URI: The connection string that includes the username, password, host, port, and authentication database.
+
+DATABASE_NAME: The name of the database where records will be inserted.
+
+COLLECTION_NAME: The name of the collection within the database where records will be stored.
+
+Connect to MongoDB:
+======================
+python
+client = pymongo.MongoClient(MONGO_URI)
+db = client[DATABASE_NAME]
+collection = db[COLLECTION_NAME]
+pymongo.MongoClient(MONGO_URI): Creates a connection to the MongoDB server.
+
+db: Selects the database.
+collection: Selects the collection within the database.
+
+Generate Random Data:
+======================
+python
+def generate_random_data():
+    names = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Judy"]
+    return {
+        "name": random.choice(names),
+        "age": random.randint(20, 60),
+        "email": f"{random.choice(names).lower()}{random.randint(1, 100)}@example.com",
+        "signup_date": datetime.now() - timedelta(days=random.randint(1, 1000)),
+        "is_active": random.choice([True, False])
+    }
+generate_random_data: A function that creates a dictionary with random values for each record.
+
+names: A list of sample names.
+
+random.choice(names): Selects a random name from the list.
+
+random.randint(20, 60): Generates a random age between 20 and 60.
+
+f"{random.choice(names).lower()}{random.randint(1, 100)}@example.com": Creates a random email address.
+
+datetime.now() - timedelta(days=random.randint(1, 1000)): Generates a random signup date within the last 1000 days.
+
+random.choice([True, False]): Randomly assigns a boolean value for the is_active field.
+
+Insert 10,000 Records:
+======================
+python
+records_to_insert = [generate_random_data() for _ in range(10000)]
+collection.insert_many(records_to_insert)
+records_to_insert: A list comprehension that generates 10,000 records by calling generate_random_data 10,000 times.
+
+collection.insert_many(records_to_insert): Inserts the generated records into the MongoDB collection in a single bulk operation.
+
+Print Confirmation:
+======================
+python
+print("Inserted 10,000 records into the collection.")
+This prints a confirmation message to the console once the records have been successfully inserted.
+
+Summary:
+======================
+The script automates the process of connecting to a MongoDB database, generating random sample data, and inserting a large number of records. This can be useful for testing, load simulations, or seeding a database with initial data.
