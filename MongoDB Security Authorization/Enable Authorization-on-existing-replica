@@ -1,0 +1,48 @@
+Authorization: Enable on existing Replica set
+------------------------------------------------
+Step 1: x.x.x.12:
+
+Login to primary node and create admin user 
+use admin
+db.createUser({ user: "admin", pwd: "xxxrxxx", roles: [{ role: "root", db: "admin" }]})
+
+Step 2: Edit config file and enable security as below with keyfile 
+sudo vi /etc/mongod.conf
+security:
+  authorization: enabled
+  keyFile: /etc/mongodb/mongo-keyfile
+
+Step 3 :  Create keyfile  
+openssl rand -base64 756 > /etc/mongodb/mongo-keyfile
+
+Step 4: change permissions and ownership 
+sudo chmod 600 /etc/mongodb/mongo-keyfile
+sudo chown mongodb:mongodb /etc/mongodb/mongo-keyfile
+
+Step 4: Copy smae file to other nodes
+scp mongo-keyfile touadmin@192.168.61.68:/tmp/
+scp mongo-keyfile touadmin@192.168.61.38:/tmp/
+
+Step 5: Restart mongod service 
+sudo systemctl restart mongod
+
+Repeate Step 2,step 4, step 5 on other two nodes
+x.x.x.13:
+sudo vi /etc/mongod.conf
+security:
+  authorization: enabled
+  keyFile: /etc/mongodb/mongo-keyfile
+cp /tmp/mongo-keyfile /etc/mongodb/
+sudo chmod 600 /etc/mongodb/mongo-keyfile
+sudo chown mongodb:mongodb /etc/mongodb/mongo-keyfile
+sudo systemctl restart mongod
+
+x.x.x.14:
+sudo vi /etc/mongod.conf
+security:
+  authorization: enabled
+  keyFile: /etc/mongodb/mongo-keyfile
+cp /tmp/mongo-keyfile /etc/mongodb/
+sudo chmod 600 /etc/mongodb/mongo-keyfile
+sudo chown mongodb:mongodb /etc/mongodb/mongo-keyfile
+sudo systemctl restart mongod
