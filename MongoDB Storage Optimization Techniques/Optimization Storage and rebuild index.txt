@@ -1,5 +1,5 @@
 
-With 40TB of data on your MongoDB standalone server, and continuous growth, optimizing storage becomes critical to maintain performance and manage storage costs effectively. Given that data archival is not possible in your situation, here are several strategies you can consider to optimize your MongoDB storage:
+With Large data on your MongoDB standalone server, and continuous growth, optimizing storage becomes critical to maintain performance and manage storage costs effectively. Given that data archival is not possible in your situation, here are several strategies you can consider to optimize your MongoDB storage:
 
 1. Sharding (If Possible in Future)
 Sharding allows horizontal scaling by distributing data across multiple servers. While your current setup is a standalone MongoDB instance, you can consider migrating to a sharded cluster to better handle the growing data and optimize storage usage across nodes. This can help with:
