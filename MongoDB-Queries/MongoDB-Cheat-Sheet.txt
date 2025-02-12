@@ -1,0 +1,285 @@
+MongoDB Cheat Sheet
+=======================
+Show All Databases
+show dbs
+
+Show Current Database
+db
+Create Or Switch Database
+use acme
+
+Drop
+db.dropDatabase()
+
+Create Collection
+db.createCollection('posts')
+
+Show Collections
+show collections
+
+Insert Row
+db.posts.insert({
+  title: 'Post One',
+  body: 'Body of post one',
+  category: 'News',
+  tags: ['news', 'events'],
+  user: {
+    name: 'John Doe',
+    status: 'author'
+  },
+  date: Date()
+})
+
+Insert Multiple Rows
+db.posts.insertMany([
+  {
+    title: 'Post Two',
+    body: 'Body of post two',
+    category: 'Technology',
+    date: Date()
+  },
+  {
+    title: 'Post Three',
+    body: 'Body of post three',
+    category: 'News',
+    date: Date()
+  },
+  {
+    title: 'Post Four',
+    body: 'Body of post three',
+    category: 'Entertainment',
+    date: Date()
+  }
+])
+
+Get All Rows
+db.posts.find()
+
+Get All Rows Formatted
+db.posts.find().pretty()
+
+Find Rows
+db.posts.find({ category: 'News' })
+
+Sort Rows
+# asc
+db.posts.find().sort({ title: 1 }).pretty()
+# desc
+db.posts.find().sort({ title: -1 }).pretty()
+
+Count Rows
+db.posts.find().count()
+db.posts.find({ category: 'news' }).count()
+
+Limit Rows
+db.posts.find().limit(2).pretty()
+Chaining
+db.posts.find().limit(2).sort({ title: 1 }).pretty()
+
+Foreach
+db.posts.find().forEach(function(doc) {
+  print("Blog Post: " + doc.title)
+})
+
+Find One Row
+db.posts.findOne({ category: 'News' })
+
+Find Specific Fields
+db.posts.find({ title: 'Post One' }, {
+  title: 1,
+  author: 1
+})
+
+Update Row
+db.posts.update({ title: 'Post Two' },
+{
+  title: 'Post Two',
+  body: 'New body for post 2',
+  date: Date()
+},
+{
+  upsert: true
+})
+Update Specific Field
+db.posts.update({ title: 'Post Two' },
+{
+  $set: {
+    body: 'Body for post 2',
+    category: 'Technology'
+  }
+})
+Increment Field ($inc)
+db.posts.update({ title: 'Post Two' },
+{
+  $inc: {
+    likes: 5
+  }
+})
+Rename Field
+db.posts.update({ title: 'Post Two' },
+{
+  $rename: {
+    likes: 'views'
+  }
+})
+
+Delete Row
+db.posts.remove({ title: 'Post Four' })
+
+Sub-Documents
+db.posts.update({ title: 'Post One' },
+{
+  $set: {
+    comments: [
+      {
+        body: 'Comment One',
+        user: 'Mary Williams',
+        date: Date()
+      },
+      {
+        body: 'Comment Two',
+        user: 'Harry White',
+        date: Date()
+      }
+    ]
+  }
+})
+
+Find By Element in Array ($elemMatch)
+db.posts.find({
+  comments: {
+     $elemMatch: {
+       user: 'Mary Williams'
+       }
+    }
+  }
+)
+
+Add Index
+db.posts.createIndex({ title: 'text' })
+
+Text Search
+db.posts.find({
+  $text: {
+    $search: "\"Post O\""
+    }
+})
+
+Greater & Less Than
+db.posts.find({ views: { $gt: 2 } })
+db.posts.find({ views: { $gte: 7 } })
+db.posts.find({ views: { $lt: 7 } })
+db.posts.find({ views: { $lte: 7 } })
+
+Mongodump & Restore:
+====================
+root@dev-shared-database:/home/venkatas#mongodump -u admin1 -p 'xxxxxx' --authenticationDatabase admin --db mydb
+root@mongodb-vqmc4:/tmp/dump/mydb# mongodump --host 192.168.xx.xxx --port 30033
+ mongodump --uri="mongodb://issuance1:admin123@192.168.xx.xxx:27017/issuance"  --out=/home/venkatas/
+
+mongorestore --host 192.168.xx.xxx --port 27017 -u superAdmin -p 'xxxxxx' --authenticationDatabase admin --db mydb  --drop /tmp/dump/mydb/
+
+root@mongodb-vqmc4:/tmp/dump/mydb# mongodump --host 192.168.xx.xx --port 30033
+mongorestore --host 192.168.61.165 --port 27017 -u admin1 -p 'xxxxxx' --authenticationDatabase admin --db mydb  --drop /tmp/dump/mydb/
+
+----error (-bash: !n@192.168.61.140: event not found)----
+option 1: Use a backslash (\) before the ! to escape it:
+mongorestore --uri="mongodb://superAdmin:xxxxxxxxx@192.168.xx.xxx:27017/issuance" --authenticationDatabase "admin" --nsFrom="issuance.*" --nsTo="issuance.*" --dir="/home/venkatas/"
+option 2:use single quotes around the entire URI to prevent the shell from interpreting special characters inside it:
+mongorestore --uri='mongodb://superAdmin:xxxxxxxx@192.168.xx.xxx:27017/issuance' --authenticationDatabase "admin" --nsFrom="issuance.*" --nsTo="issuance.*" --dir="/home/venkatas/issuance"
+
+mongorestore --uri='mongodb://superAdmin:xxxxxxxx@192.168.xx.xxx:27017/issuance' --authenticationDatabase "admin" --nsFrom="issuance.*" --nsTo="issuance.*" --dir="/home/venkatas/issuance"
+
+Drop List Of Collections:
+=========================
+const dbName = "switch"; const collectionsToDrop = ["collection1", "collection2", "collection3"];const db = db.getSiblingDB(switch);collectionsToDrop.forEach((collection) => { db[collection].drop(); print(`Dropped collection: ${collection}`);});
+
+Find collection exists or not 
+=============================
+const collectionName = "abc"; const dbName = "switch"; const db = db.getSiblingDB(dbName); if (db.getCollectionNames().includes(collectionName)) {    print(`Collection '${collectionName}' exists.`);} else {    print(`Collection '${collectionName}' does not exist.`);}
+
+db.mycol.find({f0045: "232178281611264",updatedDate: {$gte: ISODate("2025-01-23T00:00:00.000Z"),$lt: ISODate("2025-01-24T00:00:00.000Z")}});
+db.mycol.count({d0002:"502311045009",updatedDate: {$gte: ISODate("2025-01-23T00:00:00.000Z"),$lt: ISODate("2025-01-24T00:00:00.000Z")}});
+
+Query :
+==============================
+Filter " Like "  in mongo db 
+db.s001_control.find({ _id: { $regex: "systemuser-", $options: "i" } })
+
+Update :
+db.mycol.updateMany(  { d0020 : true },    { $set: { yourField: false } }  );
+
+Index Stats:
+db.mycol.aggregate([{ $indexStats: {} }])
+
+List and count of each collection in a database :
+===================================================
+var dbName = "rwa";
+use rwa;
+var collectionCounts = db.getCollectionNames().reduce(function(counts, collectionName) {
+    counts[collectionName] = db.getCollection(collectionName).countDocuments({});
+    return counts;
+}, {});
+
+print("Database: " + dbName);
+printjson(collectionCounts);
+
+To get the sizes of all databases and their collections:
+========================================================
+db.adminCommand('listDatabases').databases.forEach(function(database) {
+    print("Database: " + database.name);
+    var dbConnection = db.getSiblingDB(database.name);
+    dbConnection.getCollectionNames().forEach(function(collection) {
+        var collectionStats = dbConnection[collection].stats();
+        print("  Collection: " + collection + " | Size: " + collectionStats.size);
+    });
+});
+
+For Single Database :
+--------------------------------
+var dbName = "mydb";
+var dbConnection = db.getSiblingDB(dbName);
+
+print("Database: " + dbName);
+
+dbConnection.getCollectionNames().forEach(function(collection) {
+    var collectionStats = dbConnection[collection].stats();
+    print("  Collection: " + collection + " | Size: " + collectionStats.size);
+});
+
+
+Show Processlist in mongodb 
+==============================
+db.currentOp().inprog.forEach(function(op) {
+    print( 
+        "opid: " + op.opid + 
+        ", active: " + op.active + 
+        ", secs_running: " + op.secs_running + 
+        ", client: " + op.client + 
+        ", query: " + JSON.stringify(op.query) + 
+        ", ns: " + op.ns
+    );
+});
+
+result as a formatted table:
+=============================
+const result = db.currentOp().inprog.map(op => ({
+    opid: op.opid,
+    active: op.active,
+    secs_running: op.secs_running,
+    client: op.client,
+    query: JSON.stringify(op.query),
+    ns: op.ns
+}));
+
+console.table(result);
+
+
+Rebuilding indexes in MongoDB on large collections:
+====================================================
+1. Use the background Option
+db.collection.createIndex({ field: 1 }, { background: true });
+
+2. Use the collation Option to Avoid Rebuilding Existing Indexes
+
+db.collection.createIndex({ field: 1 }, { collation: { locale: "en", strength: 2 } });
