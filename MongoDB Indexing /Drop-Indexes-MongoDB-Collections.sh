@@ -1,7 +1,7 @@
 #!/bin/bash
 #========================================================================================#
 # Script : Drop Indexes in MongoDB Collections     Subrahmanyeswarao  Karri              #
-# Database  : touprd                               Collections      : List               #
+# Database  : dbname                               Collections      : List               #
 # Version: 1.0                                     Environment      : Pre-Prod (On-Prem) #
 #========================================================================================#
 # MongoDB Authentication details
