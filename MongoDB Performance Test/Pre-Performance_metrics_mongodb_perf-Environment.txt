@@ -1,0 +1,6633 @@
+touadmin@mongodb-02:~$ ====================================================================================================================================
+touadmin@mongodb-02:~$ **********************        PRE PERFORMANCE LOADTEST METRICS ON PERFORMANCE ENVIRONMENT - MONGODB       **************************
+touadmin@mongodb-02:~$ ====================================================================================================================================
+touadmin@mongodb-02:~$ Throughput (Ops/sec):
+touadmin@mongodb-02:~$ ---------------------
+touadmin@mongodb-02:~$ mongostat -u superAdmin -p  $mongopwd  "" --authenticationDatabase admin
+2025-02-25T17:29:29.009+0530    WARNING: On some systems, a password provided directly using --password may be visible to system status programs such as `ps` that may be invoked by other users. Consider omitting the password to provide it via stdin, or using the --config option to specify a configuration file with the password.
+insert query update delete getmore command dirty  used flushes vsize   res qrw arw net_in net_out conn     set repl                time
+    *0  1855     *0     *0       0    10|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   474k   1.66m  111 touprd0  SLV Feb 25 17:29:31.028
+    *0  2014     *0     *0       0    14|0  0.1% 76.9%       0 8.54G 5.66G 0|0 1|0   514k   1.80m  111 touprd0  SLV Feb 25 17:29:32.028
+    *0  1857     *0     *0       0     7|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   474k   1.66m  111 touprd0  SLV Feb 25 17:29:33.028
+    *0  1663     *0     *0       0     8|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   424k   1.50m  111 touprd0  SLV Feb 25 17:29:34.029
+    *0  1973     *0     *0       1    14|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   505k   1.76m  111 touprd0  SLV Feb 25 17:29:35.029
+    *0  1911     *0     *0       0     4|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   486k   1.71m  111 touprd0  SLV Feb 25 17:29:36.029
+    *0  1896     *0     *0       0     9|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   484k   1.70m  111 touprd0  SLV Feb 25 17:29:37.028
+    *0  1992     *0     *0       0     6|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   507k   1.78m  111 touprd0  SLV Feb 25 17:29:38.030
+    *0  1979     *0     *0       0    10|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   505k   1.77m  111 touprd0  SLV Feb 25 17:29:39.029
+    *0  1933     *0     *0       1    19|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   499k   1.74m  111 touprd0  SLV Feb 25 17:29:40.030
+insert query update delete getmore command dirty  used flushes vsize   res qrw arw net_in net_out conn     set repl                time
+    *0  1786     *0     *0       0    10|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   456k   1.60m  111 touprd0  SLV Feb 25 17:29:41.029
+    *0  1965     *0     *0       0     8|0  0.1% 76.9%       0 8.54G 5.66G 0|0 1|0   501k   1.76m  111 touprd0  SLV Feb 25 17:29:42.028
+    *0  1774     *0     *0       0     8|0  0.1% 76.9%       0 8.54G 5.66G 0|0 1|0   452k   1.59m  111 touprd0  SLV Feb 25 17:29:43.028
+    *0  1855     *0     *0       0     8|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   472k   1.66m  111 touprd0  SLV Feb 25 17:29:44.029
+    *0  1843     *0     *0       0    13|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   472k   1.66m  111 touprd0  SLV Feb 25 17:29:45.029
+    *0  1895     *0     *0       0     5|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   482k   1.69m  111 touprd0  SLV Feb 25 17:29:46.029
+    *0  1875     *0     *0       0    13|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   480k   1.68m  111 touprd0  SLV Feb 25 17:29:47.030
+    *0  1856     *0     *0       0     7|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   473k   1.66m  111 touprd0  SLV Feb 25 17:29:48.028
+    *0  1881     *0     *0       0     9|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   480k   1.68m  111 touprd0  SLV Feb 25 17:29:49.028
+    *0  1734     *0     *0       2    19|0  0.1% 76.9%       0 8.54G 5.66G 0|0 0|0   448k   1.57m  111 touprd0  SLV Feb 25 17:29:50.028
+2025-02-25T17:29:50.698+0530    signal 'interrupt' received; forcefully terminating
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Latency (Response Time):
+-bash: syntax error near unexpected token `Response'
+touadmin@mongodb-02:~$ ------------------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p  $mongopwd --authenticationDatabase admin --eval "db.currentOp()"
+Current Mongosh Log ID: 67bdb0e06f0ab7e4048a5b61
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&authSource=admin&appName=mongosh+2.1.5
+Using MongoDB:          7.0.6
+Using Mongosh:          2.1.5
+mongosh 2.4.0 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-10T13:16:13.482+05:30: vm.max_map_count is too low
+------
+
+{
+  inprog: [
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260419',
+      connectionId: 260419,
+      client: '192.168.61.69:9367',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38729586,
+      secs_running: Long('3'),
+      microsecs_running: Long('3199062'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260079',
+      connectionId: 260079,
+      client: '192.168.61.70:4335',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38727969,
+      secs_running: Long('4'),
+      microsecs_running: Long('4027613'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260509',
+      connectionId: 260509,
+      client: '192.168.61.70:59169',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38716995,
+      secs_running: Long('9'),
+      microsecs_running: Long('9671015'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn259994',
+      connectionId: 259994,
+      client: '192.168.56.184:53563',
+      appName: 'MongoDB Compass',
+      clientMetadata: {
+        application: { name: 'MongoDB Compass' },
+        driver: { name: 'nodejs', version: '6.12.0' },
+        platform: 'Node.js v20.18.1, LE',
+        os: {
+          name: 'win32',
+          architecture: 'x64',
+          version: '10.0.26100',
+          type: 'Windows_NT'
+        }
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38723836,
+      secs_running: Long('6'),
+      microsecs_running: Long('6142935'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        maxAwaitTimeMS: 10000,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        '$clusterTime': {
+          clusterTime: Timestamp({ t: 1740472598, i: 1 }),
+          signature: {
+            hash: Binary.createFromBase64('yS+vEMyDy1DO9chIfufEXkdwNJU=', 0),
+            keyId: Long('7417319279361523713')
+          }
+        },
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260106',
+      connectionId: 260106,
+      client: '192.168.61.69:26097',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38726243,
+      secs_running: Long('4'),
+      microsecs_running: Long('4933699'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn7',
+      connectionId: 7,
+      client: '192.168.61.39:52564',
+      clientMetadata: {
+        driver: {
+          name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+          version: '7.0.6'
+        },
+        os: {
+          type: 'Linux',
+          name: 'Ubuntu',
+          architecture: 'x86_64',
+          version: '20.04'
+        }
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      effectiveUsers: [ { user: '__system', db: 'local' } ],
+      threaded: true,
+      opid: 38728963,
+      secs_running: Long('3'),
+      microsecs_running: Long('3519688'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        maxAwaitTimeMS: Long('10000'),
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        internalClient: { minWireVersion: 21, maxWireVersion: 21 },
+        maxTimeMSOpOnly: Long('20000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260496',
+      connectionId: 260496,
+      client: '192.168.61.70:35152',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38731219,
+      secs_running: Long('2'),
+      microsecs_running: Long('2252109'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260429',
+      connectionId: 260429,
+      client: '192.168.61.70:40081',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38720366,
+      secs_running: Long('7'),
+      microsecs_running: Long('7971716'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'OplogApplier-0',
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      effectiveUsers: [ { user: '__system', db: 'local' } ],
+      opid: 38733918,
+      op: 'none',
+      ns: '',
+      redacted: false,
+      command: {},
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260493',
+      connectionId: 260493,
+      client: '192.168.61.70:55632',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38731101,
+      secs_running: Long('2'),
+      microsecs_running: Long('2352601'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'NoopWriter',
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      opid: 38728265,
+      op: 'none',
+      ns: '',
+      redacted: false,
+      command: {},
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260575',
+      connectionId: 260575,
+      client: '192.168.61.70:50319',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38732816,
+      secs_running: Long('1'),
+      microsecs_running: Long('1477682'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'OplogCapMaintainerThread-local.oplog.rs',
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      opid: 12,
+      op: 'none',
+      ns: '',
+      redacted: false,
+      command: {},
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {
+        FeatureCompatibilityVersion: { acquireCount: { w: Long('1') } },
+        ReplicationStateTransition: { acquireCount: { w: Long('1') } },
+        Global: { acquireCount: { w: Long('1') } }
+      },
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260627',
+      connectionId: 260627,
+      client: '192.168.61.70:19786',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38720367,
+      secs_running: Long('7'),
+      microsecs_running: Long('7971694'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260418',
+      connectionId: 260418,
+      client: '192.168.61.69:4104',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38719667,
+      secs_running: Long('8'),
+      microsecs_running: Long('8331734'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn259985',
+      connectionId: 259985,
+      client: '192.168.62.39:50164',
+      appName: 'MongoDB Compass',
+      clientMetadata: {
+        application: { name: 'MongoDB Compass' },
+        driver: { name: 'nodejs', version: '6.9.0' },
+        platform: 'Node.js v20.18.0, LE',
+        os: {
+          name: 'win32',
+          architecture: 'x64',
+          version: '10.0.26100',
+          type: 'Windows_NT'
+        }
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38728378,
+      secs_running: Long('3'),
+      microsecs_running: Long('3825166'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        maxAwaitTimeMS: 10000,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        '$clusterTime': {
+          clusterTime: Timestamp({ t: 1740471948, i: 1 }),
+          signature: {
+            hash: Binary.createFromBase64('dZvfAwk07d9cmedd5W3fVyqI8jA=', 0),
+            keyId: Long('7417319279361523713')
+          }
+        },
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260619',
+      connectionId: 260619,
+      client: '192.168.61.69:60973',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38731915,
+      secs_running: Long('1'),
+      microsecs_running: Long('1911205'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260581',
+      connectionId: 260581,
+      client: '192.168.61.70:15363',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38732731,
+      secs_running: Long('1'),
+      microsecs_running: Long('1516485'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'JournalFlusher',
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      opid: 38735467,
+      op: 'none',
+      ns: '',
+      redacted: false,
+      command: {},
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260084',
+      connectionId: 260084,
+      client: '192.168.61.70:21542',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38735040,
+      secs_running: Long('0'),
+      microsecs_running: Long('259846'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260066',
+      connectionId: 260066,
+      client: '192.168.61.69:31882',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38720863,
+      secs_running: Long('7'),
+      microsecs_running: Long('7726545'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260086',
+      connectionId: 260086,
+      client: '192.168.61.69:9164',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38732180,
+      secs_running: Long('1'),
+      microsecs_running: Long('1786502'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260435',
+      connectionId: 260435,
+      client: '192.168.61.70:52875',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38730620,
+      secs_running: Long('2'),
+      microsecs_running: Long('2676680'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260538',
+      connectionId: 260538,
+      client: '192.168.61.69:62911',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38722665,
+      secs_running: Long('6'),
+      microsecs_running: Long('6778398'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260438',
+      connectionId: 260438,
+      client: '192.168.61.70:52130',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38723681,
+      secs_running: Long('6'),
+      microsecs_running: Long('6218930'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260616',
+      connectionId: 260616,
+      client: '192.168.61.69:49414',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38722714,
+      secs_running: Long('6'),
+      microsecs_running: Long('6754634'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260068',
+      connectionId: 260068,
+      client: '192.168.61.69:55322',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38725319,
+      secs_running: Long('5'),
+      microsecs_running: Long('5416125'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn259006',
+      connectionId: 259006,
+      client: '192.168.61.38:37036',
+      appName: 'OplogFetcher',
+      clientMetadata: {
+        application: { name: 'OplogFetcher' },
+        driver: { name: 'MongoDB Internal Client', version: '7.0.6' },
+        os: {
+          type: 'Linux',
+          name: 'Ubuntu',
+          architecture: 'x86_64',
+          version: '20.04'
+        }
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      effectiveUsers: [ { user: '__system', db: 'local' } ],
+      threaded: true,
+      opid: 38728277,
+      secs_running: Long('3'),
+      microsecs_running: Long('3875457'),
+      op: 'getmore',
+      ns: 'local.oplog.rs',
+      redacted: false,
+      command: {
+        getMore: Long('5317707897884214746'),
+        collection: 'oplog.rs',
+        batchSize: Long('13981010'),
+        maxTimeMS: Long('5000'),
+        term: Long('13'),
+        lastKnownCommittedOpTime: { ts: Timestamp({ t: 1740418297, i: 1 }), t: Long('13') },
+        '$replData': 1,
+        '$oplogQueryData': 1,
+        '$readPreference': { mode: 'secondaryPreferred' },
+        '$clusterTime': {
+          clusterTime: Timestamp({ t: 1740418307, i: 1 }),
+          signature: {
+            hash: Binary.createFromBase64('7hjJ6z0PBHOFczen0bDe+tMomiU=', 0),
+            keyId: Long('7417319279361523713')
+          }
+        },
+        '$db': 'local'
+      },
+      queryFramework: 'classic',
+      planSummary: 'COLLSCAN',
+      cursor: {
+        cursorId: Long('5317707897884214746'),
+        createdDate: ISODate('2025-02-24T17:31:47.456Z'),
+        lastAccessDate: ISODate('2025-02-25T12:00:29.103Z'),
+        nDocsReturned: Long('10465'),
+        nBatchesReturned: Long('26831'),
+        noCursorTimeout: false,
+        tailable: true,
+        awaitData: true,
+        originatingCommand: {
+          find: 'oplog.rs',
+          filter: { ts: { '$gte': Timestamp({ t: 1740418297, i: 1 }) } },
+          batchSize: Long('13981010'),
+          tailable: true,
+          awaitData: true,
+          term: Long('13'),
+          maxTimeMS: 60000,
+          readConcern: {
+            level: 'local',
+            afterClusterTime: Timestamp({ t: 0, i: 1 })
+          },
+          '$replData': 1,
+          '$oplogQueryData': 1,
+          '$readPreference': { mode: 'secondaryPreferred' },
+          '$clusterTime': {
+            clusterTime: Timestamp({ t: 1740418307, i: 1 }),
+            signature: {
+              hash: Binary.createFromBase64('7hjJ6z0PBHOFczen0bDe+tMomiU=', 0),
+              keyId: Long('7417319279361523713')
+            }
+          },
+          '$db': 'local'
+        },
+        operationUsingCursorId: Long('38728277'),
+        lastKnownCommittedOpTime: { ts: Timestamp({ t: 1740484829, i: 1 }), t: Long('13') }
+      },
+      numYields: 2,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {
+        FeatureCompatibilityVersion: { acquireCount: { r: Long('2') } },
+        Global: { acquireCount: { r: Long('2') } }
+      },
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260102',
+      connectionId: 260102,
+      client: '192.168.61.69:58582',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38720876,
+      secs_running: Long('7'),
+      microsecs_running: Long('7720296'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260363',
+      connectionId: 260363,
+      client: '192.168.61.69:63205',
+      clientMetadata: {
+        driver: {
+          name: 'mongo-java-driver|sync|spring-boot',
+          version: '4.9.1'
+        },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Oracle Corporation/17.0.2+8-86'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38718007,
+      secs_running: Long('9'),
+      microsecs_running: Long('9131858'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn259000',
+      connectionId: 259000,
+      client: '192.168.61.68:60744',
+      clientMetadata: {
+        driver: {
+          name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+          version: '7.0.6'
+        },
+        os: {
+          type: 'Linux',
+          name: 'Ubuntu',
+          architecture: 'x86_64',
+          version: '20.04'
+        }
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      effectiveUsers: [ { user: '__system', db: 'local' } ],
+      threaded: true,
+      opid: 38728944,
+      secs_running: Long('3'),
+      microsecs_running: Long('3527918'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        maxAwaitTimeMS: Long('10000'),
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        internalClient: { minWireVersion: 21, maxWireVersion: 21 },
+        maxTimeMSOpOnly: Long('20000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn259986',
+      connectionId: 259986,
+      client: '192.168.62.39:50166',
+      appName: 'MongoDB Compass',
+      clientMetadata: {
+        application: { name: 'MongoDB Compass' },
+        driver: { name: 'nodejs', version: '6.9.0' },
+        platform: 'Node.js v20.18.0, LE',
+        os: {
+          name: 'win32',
+          architecture: 'x64',
+          version: '10.0.26100',
+          type: 'Windows_NT'
+        }
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38727911,
+      secs_running: Long('4'),
+      microsecs_running: Long('4056322'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        maxAwaitTimeMS: 10000,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        '$clusterTime': {
+          clusterTime: Timestamp({ t: 1740471948, i: 1 }),
+          signature: {
+            hash: Binary.createFromBase64('dZvfAwk07d9cmedd5W3fVyqI8jA=', 0),
+            keyId: Long('7417319279361523713')
+          }
+        },
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260093',
+      connectionId: 260093,
+      client: '192.168.61.69:39610',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38733897,
+      secs_running: Long('0'),
+      microsecs_running: Long('921303'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260114',
+      connectionId: 260114,
+      client: '192.168.61.69:48106',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38725277,
+      secs_running: Long('5'),
+      microsecs_running: Long('5436481'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260536',
+      connectionId: 260536,
+      client: '192.168.61.69:20893',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38732702,
+      secs_running: Long('1'),
+      microsecs_running: Long('1529532'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260623',
+      connectionId: 260623,
+      client: '192.168.61.70:48400',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38720610,
+      secs_running: Long('7'),
+      microsecs_running: Long('7851918'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn69946',
+      connectionId: 69946,
+      client: '192.168.61.38:46170',
+      clientMetadata: {
+        driver: {
+          name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+          version: '7.0.6'
+        },
+        os: {
+          type: 'Linux',
+          name: 'Ubuntu',
+          architecture: 'x86_64',
+          version: '20.04'
+        }
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      effectiveUsers: [ { user: '__system', db: 'local' } ],
+      threaded: true,
+      opid: 38729896,
+      secs_running: Long('3'),
+      microsecs_running: Long('3048121'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        maxAwaitTimeMS: Long('10000'),
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        internalClient: { minWireVersion: 21, maxWireVersion: 21 },
+        maxTimeMSOpOnly: Long('20000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260511',
+      connectionId: 260511,
+      client: '192.168.61.70:33517',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38717477,
+      secs_running: Long('9'),
+      microsecs_running: Long('9430142'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260101',
+      connectionId: 260101,
+      client: '192.168.61.69:54777',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38728868,
+      secs_running: Long('3'),
+      microsecs_running: Long('3567953'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260107',
+      connectionId: 260107,
+      client: '192.168.61.69:21174',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38720260,
+      secs_running: Long('8'),
+      microsecs_running: Long('8029732'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'Checkpointer',
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      opid: 38681511,
+      op: 'none',
+      ns: '',
+      redacted: false,
+      command: {},
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260957',
+      connectionId: 260957,
+      client: '127.0.0.1:43744',
+      appName: 'mongosh 2.1.5',
+      clientMetadata: {
+        application: { name: 'mongosh 2.1.5' },
+        driver: { name: 'nodejs|mongosh', version: '6.3.0|2.1.5' },
+        platform: 'Node.js v20.11.1, LE',
+        os: {
+          name: 'linux',
+          architecture: 'x64',
+          version: '5.4.0-205-generic',
+          type: 'Linux'
+        }
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      effectiveUsers: [ { user: 'superAdmin', db: 'admin' } ],
+      threaded: true,
+      opid: 38735518,
+      lsid: {
+        id: UUID('e7f1c8f2-c3e3-458d-8c38-7f6ee4095a02'),
+        uid: Binary.createFromBase64('hO+3QZeRu4U5me0maWV8omhb7wLKmtrkggP62CKMS1w=', 0)
+      },
+      secs_running: Long('0'),
+      microsecs_running: Long('502'),
+      op: 'command',
+      ns: 'admin.$cmd.aggregate',
+      redacted: false,
+      command: {
+        aggregate: 1,
+        pipeline: [
+          {
+            '$currentOp': {
+              allUsers: true,
+              idleConnections: false,
+              truncateOps: false
+            }
+          },
+          { '$match': {} }
+        ],
+        cursor: {},
+        lsid: { id: UUID('e7f1c8f2-c3e3-458d-8c38-7f6ee4095a02') },
+        '$clusterTime': {
+          clusterTime: Timestamp({ t: 1740484829, i: 1 }),
+          signature: {
+            hash: Binary.createFromBase64('MFDYIAgA58KQwp6LrgmpW0Nzw70=', 0),
+            keyId: Long('7417319279361523713')
+          }
+        },
+        '$db': 'admin'
+      },
+      queryFramework: 'classic',
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    },
+    {
+      type: 'op',
+      host: 'mongodb-02:27017',
+      desc: 'conn260427',
+      connectionId: 260427,
+      client: '192.168.61.70:28342',
+      clientMetadata: {
+        driver: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+        os: {
+          type: 'Linux',
+          name: 'Linux',
+          architecture: 'amd64',
+          version: '5.15.0-124-generic'
+        },
+        platform: 'Java/Alpine/17.0.11+9-alpine-r0'
+      },
+      active: true,
+      currentOpTime: '2025-02-25T17:30:32.978+05:30',
+      threaded: true,
+      opid: 38716632,
+      secs_running: Long('9'),
+      microsecs_running: Long('9843538'),
+      op: 'command',
+      ns: 'admin.$cmd',
+      redacted: false,
+      command: {
+        hello: 1,
+        helloOk: true,
+        topologyVersion: {
+          processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+          counter: Long('7')
+        },
+        maxAwaitTimeMS: Long('10000'),
+        '$db': 'admin'
+      },
+      numYields: 0,
+      locks: {},
+      waitingForLock: false,
+      lockStats: {},
+      waitingForFlowControl: false,
+      flowControlStats: {}
+    }
+  ],
+  ok: 1
+}
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Database Stats :
+touadmin@mongodb-02:~$ ----------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'printjson({ db: db.getName(), collections: db.stats().collections, views: db.stats().views, objects: db.stats().objects, avgObjSize: db.stats().avgObjSize, dataSize: db.stats().dataSize, storageSize: db.stats().storageSize, indexes: db.stats().indexes, indexSize: db.stats().indexSize, totalSize: db.stats().totalSize, scaleFactor: db.stats().scaleFactor, fsUsedSize: db.stats().fsUsedSize, fsTotalSize: db.stats().fsTotalSize })'
+{
+  db: 'test',
+  collections: Long('0'),
+  views: Long('0'),
+  objects: Long('0'),
+  avgObjSize: 0,
+  dataSize: 0,
+  storageSize: 0,
+  indexes: Long('0'),
+  indexSize: 0,
+  totalSize: 0,
+  scaleFactor: Long('1'),
+  fsUsedSize: 0,
+  fsTotalSize: 0
+}
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Connections :
+touadmin@mongodb-02:~$ -------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --eval "db.serverStatus().connections"
+Current Mongosh Log ID: 67bdb139de6ce070b59d6486
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&authSource=admin&appName=mongosh+2.1.5
+Using MongoDB:          7.0.6
+Using Mongosh:          2.1.5
+mongosh 2.4.0 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-10T13:16:13.482+05:30: vm.max_map_count is too low
+------
+
+{
+  current: 112,
+  available: 51088,
+  totalCreated: 256077,
+  rejected: 0,
+  active: 38,
+  threaded: 112,
+  exhaustIsMaster: 0,
+  exhaustHello: 36,
+  awaitingTopologyChanges: 36
+}
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Indexes :
+touadmin@mongodb-02:~$ -----------
+touadmin@mongodb-02:~$ "mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval '
+>   db = db.getSiblingDB(""touprd"");
+>   db.getCollectionNames().forEach(function(collection) {
+>     print(""Collection: "" + collection);
+>     var indexes = db[collection].getIndexes();
+>     if (indexes.length === 1) {
+>       print(""Only default index (_id_) for "" + collection);
+>     } else {
+>       indexes.forEach(function(index) {
+>         printjson(index);
+>       });
+>     }
+>   });
+> '
+> "
+mongosh -u superAdmin -p $upe6Adm!n --authenticationDatabase admin --quiet --eval '
+  db = db.getSiblingDB(touprd);
+  db.getCollectionNames().forEach(function(collection) {
+    print(Collection:  + collection);
+    var indexes = db[collection].getIndexes();
+    if (indexes.length === 1) {
+      print(Only default index (_id_) for  + collection);
+    } else {
+      indexes.forEach(function(index) {
+        printjson(index);
+      });
+    }
+  });
+'
+: command not found
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval '  db = db.getSiblingDB("touprd"); db.getCollectionNames().forEach(function(collection) {
+> print("Collection: " + collection);
+> var indexes = db[collection].getIndexes();
+> if (indexes.length === 1) {print("Only default index (_id_) for " + collection);
+>     } else {      indexes.forEach(function(index) {        printjson(index);      });    }  });'
+Collection: s001_merchant_tl
+Only default index (_id_) for s001_merchant_tl
+Collection: c400_SUN_20_24
+Only default index (_id_) for c400_SUN_20_24
+Collection: c004
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0005: 1
+  },
+  name: 'd0005'
+}
+{
+  v: 2,
+  key: {
+    d0006: 1
+  },
+  name: 'd0006'
+}
+{
+  v: 2,
+  key: {
+    d0007: 1
+  },
+  name: 'd0007'
+}
+{
+  v: 2,
+  key: {
+    d0008: 1
+  },
+  name: 'd0008'
+}
+Collection: tempStore
+Only default index (_id_) for tempStore
+Collection: s001_schemedestination
+Only default index (_id_) for s001_schemedestination
+Collection: c064
+Only default index (_id_) for c064
+Collection: dm002
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    dm002: 1
+  },
+  name: 'dm002'
+}
+Collection: c026
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0003: 1
+  },
+  name: 'd0003'
+}
+{
+  v: 2,
+  key: {
+    d0004: 1
+  },
+  name: 'd0004'
+}
+{
+  v: 2,
+  key: {
+    d0005: 1
+  },
+  name: 'd0005'
+}
+{
+  v: 2,
+  key: {
+    d0006: 1
+  },
+  name: 'd0006'
+}
+{
+  v: 2,
+  key: {
+    d0007: 1
+  },
+  name: 'd0007'
+}
+{
+  v: 2,
+  key: {
+    d0008: 1
+  },
+  name: 'd0008'
+}
+{
+  v: 2,
+  key: {
+    establishmentIdProof2: 1
+  },
+  name: 'establishmentIdProof2'
+}
+{
+  v: 2,
+  key: {
+    d0009: 1
+  },
+  name: 'd0009'
+}
+{
+  v: 2,
+  key: {
+    d0010: 1
+  },
+  name: 'd0010'
+}
+Collection: c400_WED_08_12
+Only default index (_id_) for c400_WED_08_12
+Collection: c400_WED_04_08
+Only default index (_id_) for c400_WED_04_08
+Collection: s001_merchantreject
+Only default index (_id_) for s001_merchantreject
+Collection: tempCBSStore
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1,
+    d0002: 1,
+    d0006: 1
+  },
+  name: 'record_merchant_debitaccnum_idx'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1,
+    d0002: 1
+  },
+  name: 'record_merchant_idx'
+}
+Collection: c098
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0007: 1
+  },
+  name: 'f0007'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1
+  },
+  name: 'f0056'
+}
+{
+  v: 2,
+  key: {
+    f0057: 1
+  },
+  name: 'f0057'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1,
+    f0044: 1
+  },
+  name: 'transaction_refnum_terminal_number_idx'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1,
+    f0044: 1,
+    txnId: 1,
+    txnTime: 1
+  },
+  name: 'txn_refnum_terminal_txnid_txntime_idx'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1,
+    f0044: 1,
+    f0027: 1,
+    last4Digit: 1,
+    txnTime: 1
+  },
+  name: 'txn_refnum_terminal_cardbin_last4_txntime_idx'
+}
+{
+  v: 2,
+  key: {
+    f0045: 1,
+    f0060: 1,
+    pd073: 1
+  },
+  name: 'merchant_payrun_dbOrcr_to_merchant_idx'
+}
+Collection: c039
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0010: 1
+  },
+  name: 'f0010'
+}
+{
+  v: 2,
+  key: {
+    f0008: 1
+  },
+  name: 'f0008'
+}
+{
+  v: 2,
+  key: {
+    f0009: 1
+  },
+  name: 'f0009'
+}
+{
+  v: 2,
+  key: {
+    f0013: 1
+  },
+  name: 'f0013'
+}
+Collection: c028_FRI
+Only default index (_id_) for c028_FRI
+Collection: c046
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0241: 1,
+    allianceOrgKey: 1
+  },
+  name: 'consumermerchant_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    'd0229.offerCode': 1,
+    _id: 1
+  },
+  name: 'offer_id'
+}
+{
+  v: 2,
+  key: {
+    'd0229.offerCode': 1,
+    'd0229.enrollDate': 1
+  },
+  name: 'offer_enrollDate'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0148: 1
+  },
+  name: 'merNum_boardingDate'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+{
+  v: 2,
+  key: {
+    d0148: 1
+  },
+  name: 'd0148'
+}
+{
+  v: 2,
+  key: {
+    d0229: 1
+  },
+  name: 'd0229'
+}
+{
+  v: 2,
+  key: {
+    d0241: 1
+  },
+  name: 'd0241'
+}
+{
+  v: 2,
+  key: {
+    'd0229.offerCode': 1,
+    d0002: 1
+  },
+  name: 'offer_modelKey'
+}
+{
+  v: 2,
+  key: {
+    d0026: 1
+  },
+  name: 'd0026'
+}
+{
+  v: 2,
+  key: {
+    d0157: 1
+  },
+  name: 'd0157'
+}
+Collection: c400_THU_16_20
+Only default index (_id_) for c400_THU_16_20
+Collection: c400_SUN_12_16
+Only default index (_id_) for c400_SUN_12_16
+Collection: c203
+Only default index (_id_) for c203
+Collection: c088
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    a005: 1,
+    a001: 1
+  },
+  name: 'c088rrn_terminalModelKey'
+}
+{
+  v: 2,
+  key: {
+    a005: 1,
+    a002: 1
+  },
+  name: 'c088rrn_terminalNumber'
+}
+{
+  v: 2,
+  key: {
+    a001: 1
+  },
+  name: 'a001'
+}
+{
+  v: 2,
+  key: {
+    a002: 1
+  },
+  name: 'a002'
+}
+{
+  v: 2,
+  key: {
+    a003: 1
+  },
+  name: 'a003'
+}
+{
+  v: 2,
+  key: {
+    a004: 1
+  },
+  name: 'a004'
+}
+{
+  v: 2,
+  key: {
+    a005: 1
+  },
+  name: 'a005'
+}
+{
+  v: 2,
+  key: {
+    a008: 1
+  },
+  name: 'a008'
+}
+{
+  v: 2,
+  key: {
+    a026: 1
+  },
+  name: 'a026'
+}
+{
+  v: 2,
+  key: {
+    a035: 1,
+    a002: 1
+  },
+  name: 'c088originalRrn_terminalNumber'
+}
+Collection: c094
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+Collection: c040
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0007: 1
+  },
+  name: 'f0007'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1
+  },
+  name: 'f0056'
+}
+{
+  v: 2,
+  key: {
+    f0057: 1
+  },
+  name: 'f0057'
+}
+Collection: cs038
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    cs001: 1
+  },
+  name: 'cs001'
+}
+{
+  v: 2,
+  key: {
+    cs002: 1
+  },
+  name: 'cs002'
+}
+{
+  v: 2,
+  key: {
+    cs003: 1
+  },
+  name: 'cs003',
+  unique: true
+}
+{
+  v: 2,
+  key: {
+    cs004: 1
+  },
+  name: 'cs004',
+  unique: true
+}
+{
+  v: 2,
+  key: {
+    cs005: 1
+  },
+  name: 'cs005'
+}
+{
+  v: 2,
+  key: {
+    cs006: 1
+  },
+  name: 'cs006'
+}
+{
+  v: 2,
+  key: {
+    cs007: 1
+  },
+  name: 'cs007'
+}
+{
+  v: 2,
+  key: {
+    cs008: 1
+  },
+  name: 'cs008'
+}
+{
+  v: 2,
+  key: {
+    cs009: 1
+  },
+  name: 'cs009'
+}
+{
+  v: 2,
+  key: {
+    cs020: 1
+  },
+  name: 'cs020'
+}
+{
+  v: 2,
+  key: {
+    'cs026.f0007': 1
+  },
+  name: 'cs026.f0007'
+}
+{
+  v: 2,
+  key: {
+    'cs026.f0056': 1
+  },
+  name: 'cs026.f0056'
+}
+{
+  v: 2,
+  key: {
+    'cs026.f0057': 1
+  },
+  name: 'cs026.f0057'
+}
+{
+  v: 2,
+  key: {
+    cs026: 1
+  },
+  name: 'cs026'
+}
+{
+  v: 2,
+  key: {
+    'cs027.p008': 1
+  },
+  name: 'cs027.p008'
+}
+Collection: c400_WED_12_16
+Only default index (_id_) for c400_WED_12_16
+Collection: c028_SAT
+Only default index (_id_) for c028_SAT
+Collection: s001_terminal
+Only default index (_id_) for s001_terminal
+Collection: s001_merchantdomain
+Only default index (_id_) for s001_merchantdomain
+Collection: c078
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    co0001: 1
+  },
+  name: 'co0001',
+  unique: true
+}
+Collection: s001_merchantchain
+Only default index (_id_) for s001_merchantchain
+Collection: c003
+Only default index (_id_) for c003
+Collection: c085
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    p20: 1,
+    allianceOrgKey: 1
+  },
+  name: 'c85terminalnumber_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    p22: 1,
+    allianceOrgKey: 1
+  },
+  name: 'c85merchantnumber_ao_idx'
+}
+Collection: c400_SUN_08_12
+Only default index (_id_) for c400_SUN_08_12
+Collection: c077
+Only default index (_id_) for c077
+Collection: cs012
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    ip008: 1,
+    ip005: 1,
+    ip007: 1
+  },
+  name: 'ip008_1_ip005_1_ip007_1'
+}
+{
+  v: 2,
+  key: {
+    ip001: 1
+  },
+  name: 'ip001'
+}
+{
+  v: 2,
+  key: {
+    ip006: 1
+  },
+  name: 'ip006'
+}
+{
+  v: 2,
+  key: {
+    ip013: 1
+  },
+  name: 'ip013'
+}
+Collection: c000
+Only default index (_id_) for c000
+Collection: c400_TUE_20_24
+Only default index (_id_) for c400_TUE_20_24
+Collection: c075
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    a001: 1
+  },
+  name: 'a001'
+}
+{
+  v: 2,
+  key: {
+    a002: 1
+  },
+  name: 'a002'
+}
+{
+  v: 2,
+  key: {
+    a003: 1
+  },
+  name: 'a003'
+}
+{
+  v: 2,
+  key: {
+    a004: 1
+  },
+  name: 'a004'
+}
+{
+  v: 2,
+  key: {
+    a005: 1
+  },
+  name: 'a005'
+}
+{
+  v: 2,
+  key: {
+    a011: 1
+  },
+  name: 'a011'
+}
+{
+  v: 2,
+  key: {
+    'a010.d068': 1
+  },
+  name: 'a010.d068'
+}
+{
+  v: 2,
+  key: {
+    'a010.d0097': 1
+  },
+  name: 'a010.d0097'
+}
+Collection: c066
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    b0003: 1
+  },
+  name: 'b0003'
+}
+Collection: c400_THU_20_24
+Only default index (_id_) for c400_THU_20_24
+Collection: s001
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0001: 1,
+    f0003: 1
+  },
+  name: 'model_modelkey_idx'
+}
+{
+  v: 2,
+  key: {
+    _fts: 'text',
+    _ftsx: 1
+  },
+  name: 'Search_TextIndex',
+  weights: {
+    f0004: 1,
+    f0005: 1,
+    f0006: 1,
+    f0007: 1,
+    f0008: 1,
+    f0009: 1,
+    f0010: 1,
+    f0011: 1,
+    f0012: 1,
+    f0013: 1,
+    f0014: 1,
+    f0015: 1,
+    f0016: 1,
+    f0017: 1,
+    f0018: 1,
+    f0019: 1,
+    f0020: 1,
+    f0021: 1,
+    f0022: 1,
+    f0023: 1
+  },
+  default_language: 'english',
+  language_override: 'language',
+  textIndexVersion: 3
+}
+{
+  v: 2,
+  key: {
+    f0001: 1
+  },
+  name: 'f0001'
+}
+{
+  v: 2,
+  key: {
+    f0003: 1
+  },
+  name: 'f0003'
+}
+Collection: c028_WED
+Only default index (_id_) for c028_WED
+Collection: c080
+Only default index (_id_) for c080
+Collection: c400_THU_12_16
+Only default index (_id_) for c400_THU_12_16
+Collection: c053
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1,
+    f0044: 1
+  },
+  name: 'c053transactionRefNum_terminalNumber_idx'
+}
+{
+  v: 2,
+  key: {
+    f0007: 1
+  },
+  name: 'f0007'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1
+  },
+  name: 'f0056'
+}
+{
+  v: 2,
+  key: {
+    f0057: 1
+  },
+  name: 'f0057'
+}
+Collection: c025
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d6: 1
+  },
+  name: 'd6'
+}
+Collection: c400_TUE_08_12
+Only default index (_id_) for c400_TUE_08_12
+Collection: s001_control
+Only default index (_id_) for s001_control
+Collection: c032
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    p1: 1
+  },
+  name: 'p1'
+}
+{
+  v: 2,
+  key: {
+    p2: 1
+  },
+  name: 'p2'
+}
+{
+  v: 2,
+  key: {
+    p5: 1
+  },
+  name: 'p5'
+}
+Collection: c400_THU_08_12
+Only default index (_id_) for c400_THU_08_12
+Collection: c400_MON_20_24
+Only default index (_id_) for c400_MON_20_24
+Collection: c047
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1
+  },
+  name: 'd0001'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+{
+  v: 2,
+  key: {
+    d0009: 1
+  },
+  name: 'd0009'
+}
+{
+  v: 2,
+  key: {
+    d0027: 1
+  },
+  name: 'd0027'
+}
+Collection: c018
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0003: 1
+  },
+  name: 'type_value_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0003: 1,
+    allianceOrgKey: 1
+  },
+  name: 'type_value_ao_idx'
+}
+Collection: c024
+Only default index (_id_) for c024
+Collection: s001_data_download
+Only default index (_id_) for s001_data_download
+Collection: c060
+Only default index (_id_) for c060
+Collection: c400_MON_08_12
+Only default index (_id_) for c400_MON_08_12
+Collection: c083
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    mtl1: 1,
+    mtl3: 1
+  },
+  name: 'merchantModelKey_tlModelKey_index'
+}
+Collection: s001_applduplicatecheck
+Only default index (_id_) for s001_applduplicatecheck
+Collection: c043
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0024: 1
+  },
+  name: 'd0024'
+}
+{
+  v: 2,
+  key: {
+    d0018: 1,
+    d0023: 1,
+    d0001: 1,
+    d0009: 1
+  },
+  name: 'merchant_run_record_creditAcc_idx'
+}
+{
+  v: 2,
+  key: {
+    d0018: 1,
+    d0023: 1,
+    d0001: 1,
+    d0006: 1
+  },
+  name: 'merchant_run_record_debitAcc_idx'
+}
+{
+  v: 2,
+  key: {
+    d0018: 1,
+    d0023: 1,
+    d0001: 1,
+    d0009: 1,
+    d0013: 1
+  },
+  name: 'merchant_run_record_creditAcc_paymentRef_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+{
+  v: 2,
+  key: {
+    d0003: 1
+  },
+  name: 'd0003'
+}
+{
+  v: 2,
+  key: {
+    d0013: 1
+  },
+  name: 'd0013'
+}
+Collection: c400_FRI_16_20
+Only default index (_id_) for c400_FRI_16_20
+Collection: c042
+Only default index (_id_) for c042
+Collection: c030
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0003: 1
+  },
+  name: 'type_key1_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0004: 1
+  },
+  name: 'type_key2_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0003: 1,
+    allianceOrgKey: 1
+  },
+  name: 'type_key1_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0004: 1,
+    allianceOrgKey: 1
+  },
+  name: 'type_key2__ao_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+{
+  v: 2,
+  key: {
+    d0003: 1
+  },
+  name: 'd0003'
+}
+Collection: c300
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d1: 1,
+    d2: 1
+  },
+  name: 'recordKey_type_idx'
+}
+{
+  v: 2,
+  key: {
+    d2: 1
+  },
+  name: 'd2'
+}
+Collection: c059
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    p1: 1,
+    p9: 1,
+    taluk: 1,
+    p11: 1
+  },
+  name: 'c38consumerterminal_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    p1: 1,
+    taluk: 1,
+    p11: 1
+  },
+  name: 'c38merchantnumber_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    p1: 1
+  },
+  name: 'p1'
+}
+{
+  v: 2,
+  key: {
+    p8: 1
+  },
+  name: 'p8'
+}
+{
+  v: 2,
+  key: {
+    p11: 1
+  },
+  name: 'p11'
+}
+{
+  v: 2,
+  key: {
+    p12: 1
+  },
+  name: 'p12'
+}
+Collection: c096
+Only default index (_id_) for c096
+Collection: c201
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0005: 1,
+    d0009: 1
+  },
+  name: 'c201rrn_arn_idx'
+}
+{
+  v: 2,
+  key: {
+    d0005: 1,
+    d0025: 1
+  },
+  name: 'c201rrn_invoice_idx'
+}
+{
+  v: 2,
+  key: {
+    d0005: 1,
+    d0022: 1
+  },
+  name: 'c201rrn_cwhtid_idx'
+}
+{
+  v: 2,
+  key: {
+    d0005: 1
+  },
+  name: 'd0005'
+}
+{
+  v: 2,
+  key: {
+    d0009: 1
+  },
+  name: 'd0009'
+}
+{
+  v: 2,
+  key: {
+    'd0008.d068': 1
+  },
+  name: 'd0008.d068'
+}
+{
+  v: 2,
+  key: {
+    'd0008.d0097': 1
+  },
+  name: 'd0008.d0097'
+}
+Collection: c050
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    s0041: 1
+  },
+  name: 's0041'
+}
+{
+  v: 2,
+  key: {
+    s0043: 1
+  },
+  name: 's0043'
+}
+{
+  v: 2,
+  key: {
+    'mec0003.c11': 1
+  },
+  name: 'mec0003.c11'
+}
+Collection: c034
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1,
+    d0002: 1
+  },
+  name: 'c034fromCurrency_toCurrency_idx'
+}
+Collection: c206
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0007: 1
+  },
+  name: 'f0007'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1
+  },
+  name: 'f0056'
+}
+{
+  v: 2,
+  key: {
+    f0057: 1
+  },
+  name: 'f0057'
+}
+Collection: s001_reject
+Only default index (_id_) for s001_reject
+Collection: cs001
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    cs001: 1
+  },
+  name: 'cs001'
+}
+{
+  v: 2,
+  key: {
+    cs002: 1
+  },
+  name: 'cs002'
+}
+{
+  v: 2,
+  key: {
+    cs003: 1
+  },
+  name: 'cs003'
+}
+{
+  v: 2,
+  key: {
+    cs004: 1
+  },
+  name: 'cs004'
+}
+{
+  v: 2,
+  key: {
+    cs005: 1
+  },
+  name: 'cs005'
+}
+{
+  v: 2,
+  key: {
+    cs140: 1
+  },
+  name: 'cs140'
+}
+{
+  v: 2,
+  key: {
+    'cs217.f0007': 1
+  },
+  name: 'cs217.f0007'
+}
+{
+  v: 2,
+  key: {
+    'cs217.f0056': 1
+  },
+  name: 'cs217.f0056'
+}
+{
+  v: 2,
+  key: {
+    'cs217.f0057': 1
+  },
+  name: 'cs217.f0057'
+}
+{
+  v: 2,
+  key: {
+    'cs218.d0024': 1
+  },
+  name: 'cs218.d0024'
+}
+{
+  v: 2,
+  key: {
+    cs005: 1,
+    cs140: 1
+  },
+  name: 'rrn_arn_idx'
+}
+{
+  v: 2,
+  key: {
+    cs019: 1
+  },
+  name: 'cs019'
+}
+{
+  v: 2,
+  key: {
+    'cs218.merchantModelKey': 1,
+    'cs218.runNumber': 1,
+    'cs218.recordIdentifier': 1,
+    'cs218.creditAccNum': 1
+  },
+  name: 'cs218.merchant_run_record_creditAcc_idx'
+}
+{
+  v: 2,
+  key: {
+    'cs218.merchantModelKey': 1,
+    'cs218.runNumber': 1,
+    'cs218.recordIdentifier': 1,
+    'cs218.debitAccNum': 1
+  },
+  name: 'cs218.merchant_run_record_debitAcc_idx'
+}
+{
+  v: 2,
+  key: {
+    'cs218.merchantModelKey': 1,
+    'cs218.runNumber': 1,
+    'cs218.recordIdentifier': 1,
+    'cs218.creditAccNum': 1,
+    'cs218.paymentRefNum': 1
+  },
+  name: 'cs218.merchant_run_record_creditAcc_paymentRef_idx'
+}
+{
+  v: 2,
+  key: {
+    'cs218.d0002': 1
+  },
+  name: 'cs218.d0002'
+}
+{
+  v: 2,
+  key: {
+    'cs218.d0003': 1
+  },
+  name: 'cs218.d0003'
+}
+{
+  v: 2,
+  key: {
+    'cs218.d0013': 1
+  },
+  name: 'cs218.d0013'
+}
+{
+  v: 2,
+  key: {
+    'cs219.p008': 1
+  },
+  name: 'cs219.p008'
+}
+Collection: c400_FRI_20_24
+Only default index (_id_) for c400_FRI_20_24
+Collection: c205
+Only default index (_id_) for c205
+Collection: c013
+Only default index (_id_) for c013
+Collection: c400_MON_04_08
+Only default index (_id_) for c400_MON_04_08
+Collection: c027
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+{
+  v: 2,
+  key: {
+    d0003: 1
+  },
+  name: 'd0003'
+}
+{
+  v: 2,
+  key: {
+    d0004: 1
+  },
+  name: 'd0004'
+}
+{
+  v: 2,
+  key: {
+    d0005: 1
+  },
+  name: 'd0005'
+}
+{
+  v: 2,
+  key: {
+    d0006: 1
+  },
+  name: 'd0006'
+}
+{
+  v: 2,
+  key: {
+    d0007: 1
+  },
+  name: 'd0007'
+}
+Collection: c014
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    m1: -1
+  },
+  name: 'm1',
+  unique: true
+}
+Collection: c033
+Only default index (_id_) for c033
+Collection: c035
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0021: 1,
+    allianceOrgKey: 1
+  },
+  name: 'merchantkey_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    f0010: 1,
+    f0062: 1
+  },
+  name: 'merchantID_notificationRequired_idx'
+}
+{
+  v: 2,
+  key: {
+    f0027: 1,
+    f0058: 1
+  },
+  name: 'terminalModelKey_apiUser_idx'
+}
+{
+  v: 2,
+  key: {
+    f0010: 1
+  },
+  name: 'f0010'
+}
+{
+  v: 2,
+  key: {
+    f0021: 1
+  },
+  name: 'f0021'
+}
+{
+  v: 2,
+  key: {
+    f0027: 1
+  },
+  name: 'f0027'
+}
+{
+  v: 2,
+  key: {
+    f0008: 1
+  },
+  name: 'f0008'
+}
+{
+  v: 2,
+  key: {
+    f0009: 1
+  },
+  name: 'f0009'
+}
+{
+  v: 2,
+  key: {
+    f0013: 1
+  },
+  name: 'f0013'
+}
+{
+  v: 2,
+  key: {
+    f0033: 1
+  },
+  name: 'f0033'
+}
+Collection: cs020
+Only default index (_id_) for cs020
+Collection: c400_SAT_08_12
+Only default index (_id_) for c400_SAT_08_12
+Collection: s001_communicationlog
+Only default index (_id_) for s001_communicationlog
+Collection: c400_TUE_12_16
+Only default index (_id_) for c400_TUE_12_16
+Collection: c400_FRI_08_12
+Only default index (_id_) for c400_FRI_08_12
+Collection: c041
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    p008: 1
+  },
+  name: 'p008'
+}
+Collection: s001_applicationlead
+Only default index (_id_) for s001_applicationlead
+Collection: s001_service_request
+Only default index (_id_) for s001_service_request
+Collection: c011
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    p1: 1
+  },
+  name: 'p1'
+}
+{
+  v: 2,
+  key: {
+    p8: 1
+  },
+  name: 'p8'
+}
+{
+  v: 2,
+  key: {
+    p11: 1
+  },
+  name: 'p11'
+}
+{
+  v: 2,
+  key: {
+    p12: 1
+  },
+  name: 'p12'
+}
+{
+  v: 2,
+  key: {
+    p1: 1,
+    p9: 1,
+    taluk: 1,
+    p11: 1
+  },
+  name: 'pincode_division_taluk_state_idx'
+}
+{
+  v: 2,
+  key: {
+    p1: 1,
+    taluk: 1,
+    p11: 1
+  },
+  name: 'pincode_taluk_state_idx'
+}
+Collection: c028_TUE
+Only default index (_id_) for c028_TUE
+Collection: c090
+Only default index (_id_) for c090
+Collection: c031
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    c11: 1
+  },
+  name: 'c11'
+}
+Collection: c017
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0104: 1
+  },
+  name: 'd0104'
+}
+{
+  v: 2,
+  key: {
+    d0127: 1
+  },
+  name: 'd0127'
+}
+{
+  v: 2,
+  key: {
+    d0166: 1
+  },
+  name: 'd0166'
+}
+{
+  v: 2,
+  key: {
+    f0036: 1
+  },
+  name: 'f0036'
+}
+Collection: c029
+Only default index (_id_) for c029
+Collection: c400_FRI_04_08
+Only default index (_id_) for c400_FRI_04_08
+Collection: s001_posting_tl_upd
+Only default index (_id_) for s001_posting_tl_upd
+Collection: c023
+Only default index (_id_) for c023
+Collection: transaction_entries
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    terminal_model_key: 1
+  },
+  name: 'terminal_model_key'
+}
+{
+  v: 2,
+  key: {
+    terminal_number: 1
+  },
+  name: 'terminal_number'
+}
+{
+  v: 2,
+  key: {
+    merchant_model_key: 1
+  },
+  name: 'merchant_model_key'
+}
+{
+  v: 2,
+  key: {
+    merchant_number: 1
+  },
+  name: 'merchant_number'
+}
+{
+  v: 2,
+  key: {
+    rrn: 1
+  },
+  name: 'rrn'
+}
+{
+  v: 2,
+  key: {
+    arn: 1
+  },
+  name: 'arn'
+}
+Collection: dm001
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    dm003: 1
+  },
+  name: 'dm003'
+}
+Collection: c068
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d010: 1,
+    d001: 1
+  },
+  name: 'c68statusReportId'
+}
+Collection: c016
+Only default index (_id_) for c016
+Collection: c002
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0027: 1
+  },
+  name: 'f0027'
+}
+{
+  v: 2,
+  key: {
+    f0029: 1
+  },
+  name: 'f0029'
+}
+{
+  v: 2,
+  key: {
+    f0008: 1
+  },
+  name: 'f0008'
+}
+{
+  v: 2,
+  key: {
+    f0009: 1
+  },
+  name: 'f0009'
+}
+{
+  v: 2,
+  key: {
+    f0013: 1
+  },
+  name: 'f0013'
+}
+Collection: cs018
+Only default index (_id_) for cs018
+Collection: s001_trace_request_response
+Only default index (_id_) for s001_trace_request_response
+Collection: c067
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    bm001: 1
+  },
+  name: 'bm001'
+}
+{
+  v: 2,
+  key: {
+    bm016: 1
+  },
+  name: 'bm016'
+}
+Collection: c072
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1
+  },
+  name: 'd0001',
+  unique: true
+}
+{
+  v: 2,
+  key: {
+    'd0015.e9': 1
+  },
+  name: 'd0015.e9'
+}
+Collection: c028_THU
+Only default index (_id_) for c028_THU
+Collection: c801
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1
+  },
+  name: 'd0001'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+Collection: gl001
+Only default index (_id_) for gl001
+Collection: c019
+Only default index (_id_) for c019
+Collection: s001_crossreference
+Only default index (_id_) for s001_crossreference
+Collection: c022
+Only default index (_id_) for c022
+Collection: s001_fileuploadrequest
+Only default index (_id_) for s001_fileuploadrequest
+Collection: c045
+Only default index (_id_) for c045
+Collection: c008
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0003: 1
+  },
+  name: 'type_value_idx'
+}
+{
+  v: 2,
+  key: {
+    d0003: 1
+  },
+  name: 'd0003'
+}
+Collection: c074
+Only default index (_id_) for c074
+Collection: c400_MON_12_16
+Only default index (_id_) for c400_MON_12_16
+Collection: c400_MON_16_20
+Only default index (_id_) for c400_MON_16_20
+Collection: s001_payment_link
+Only default index (_id_) for s001_payment_link
+Collection: c400_THU_04_08
+Only default index (_id_) for c400_THU_04_08
+Collection: c400_WED_16_20
+Only default index (_id_) for c400_WED_16_20
+Collection: dm004
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    m001: 1
+  },
+  name: 'm001'
+}
+Collection: c084
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    c2: 1
+  },
+  name: 'c2'
+}
+Collection: s001_blacklisted_pincode
+Only default index (_id_) for s001_blacklisted_pincode
+Collection: c087
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    i3: 1
+  },
+  name: 'i3'
+}
+{
+  v: 2,
+  key: {
+    i8: 1
+  },
+  name: 'i8'
+}
+{
+  v: 2,
+  key: {
+    i10: 1
+  },
+  name: 'i10'
+}
+Collection: c089
+Only default index (_id_) for c089
+Collection: s001_merchantapplication
+Only default index (_id_) for s001_merchantapplication
+Collection: c062
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1
+  },
+  name: 'd0001'
+}
+Collection: c037
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0007: 1
+  },
+  name: 'f0007'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1
+  },
+  name: 'f0056'
+}
+{
+  v: 2,
+  key: {
+    f0057: 1
+  },
+  name: 'f0057'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1,
+    f0044: 1
+  },
+  name: 'transaction_refnum_terminal_number_idx'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1,
+    f0044: 1,
+    f0027: 1,
+    f0023: 1,
+    f0026: 1
+  },
+  name: 'txn_refnum_terminal_cardbin_last4_txntime_idx'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1,
+    f0044: 1,
+    f0049: 1,
+    f0026: 1
+  },
+  name: 'txn_refnum_terminal_txnid_txntime_idx'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1,
+    f0044: 1,
+    f0001: 1
+  },
+  name: 'txn_refnum_terminal_trancode_idx'
+}
+{
+  v: 2,
+  key: {
+    f0045: 1,
+    f0060: 1,
+    pd073: 1
+  },
+  name: 'merchant_run_dbOrcr_index'
+}
+Collection: c400_TUE_16_20
+Only default index (_id_) for c400_TUE_16_20
+Collection: c093
+Only default index (_id_) for c093
+Collection: c095
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    sw11: 1
+  },
+  name: 'sw11'
+}
+{
+  v: 2,
+  key: {
+    sw13: 1
+  },
+  name: 'sw13'
+}
+Collection: c069
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d1: 1
+  },
+  name: 'd1'
+}
+Collection: c092
+Only default index (_id_) for c092
+Collection: s001_service_directory
+Only default index (_id_) for s001_service_directory
+Collection: c005
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0001: -1
+  },
+  name: 'd0001',
+  unique: true
+}
+Collection: c400_FRI_12_16
+Only default index (_id_) for c400_FRI_12_16
+Collection: c052
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    f0007: 1
+  },
+  name: 'f0007'
+}
+{
+  v: 2,
+  key: {
+    f0056: 1
+  },
+  name: 'f0056'
+}
+{
+  v: 2,
+  key: {
+    f0057: 1
+  },
+  name: 'f0057'
+}
+Collection: c015
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1
+  },
+  name: 'd0001',
+  unique: true
+}
+Collection: c097
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    s4: 1
+  },
+  name: 's4'
+}
+{
+  v: 2,
+  key: {
+    s5: 1
+  },
+  name: 's5'
+}
+Collection: c400_SUN_16_20
+Only default index (_id_) for c400_SUN_16_20
+Collection: c099
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0003: 1
+  },
+  name: 'type_key1_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0004: 1
+  },
+  name: 'type_key2_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0003: 1,
+    allianceOrgKey: 1
+  },
+  name: 'type_key1_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1,
+    d0004: 1,
+    allianceOrgKey: 1
+  },
+  name: 'type_key2__ao_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+{
+  v: 2,
+  key: {
+    d0003: 1
+  },
+  name: 'd0003'
+}
+Collection: c103
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    'd0001.df2': 1
+  },
+  name: 'd0001.df2'
+}
+{
+  v: 2,
+  key: {
+    'd0001.df4': 1
+  },
+  name: 'd0001.df4'
+}
+{
+  v: 2,
+  key: {
+    d0001: 1
+  },
+  name: 'd0001'
+}
+{
+  v: 2,
+  key: {
+    d0006: 1
+  },
+  name: 'd0006'
+}
+Collection: c036
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0003: 1
+  },
+  name: 'd0003'
+}
+{
+  v: 2,
+  key: {
+    d0004: 1
+  },
+  name: 'd0004'
+}
+{
+  v: 2,
+  key: {
+    d0005: 1
+  },
+  name: 'd0005'
+}
+{
+  v: 2,
+  key: {
+    d0007: 1
+  },
+  name: 'd0007'
+}
+{
+  v: 2,
+  key: {
+    d0009: 1
+  },
+  name: 'd0009'
+}
+{
+  v: 2,
+  key: {
+    d0012: 1
+  },
+  name: 'd0012'
+}
+{
+  v: 2,
+  key: {
+    d0018: 1
+  },
+  name: 'd0018'
+}
+{
+  v: 2,
+  key: {
+    d0020: 1
+  },
+  name: 'd0020'
+}
+{
+  v: 2,
+  key: {
+    d0024: 1
+  },
+  name: 'd0024'
+}
+{
+  v: 2,
+  key: {
+    d0027: 1
+  },
+  name: 'd0027'
+}
+{
+  v: 2,
+  key: {
+    d0031: 1
+  },
+  name: 'd0031'
+}
+{
+  v: 2,
+  key: {
+    d0033: 1
+  },
+  name: 'd0033'
+}
+{
+  v: 2,
+  key: {
+    d0034: 1
+  },
+  name: 'd0034'
+}
+{
+  v: 2,
+  key: {
+    d0006: 1
+  },
+  name: 'd0006'
+}
+{
+  v: 2,
+  key: {
+    d0013: 1
+  },
+  name: 'd0013'
+}
+{
+  v: 2,
+  key: {
+    d0014: 1
+  },
+  name: 'd0014'
+}
+Collection: s001_terminal_auth_tracker
+Only default index (_id_) for s001_terminal_auth_tracker
+Collection: s001_merchantdemographics
+Only default index (_id_) for s001_merchantdemographics
+Collection: c028_MON
+Only default index (_id_) for c028_MON
+Collection: c091
+Only default index (_id_) for c091
+Collection: c063
+Only default index (_id_) for c063
+Collection: c009
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+{
+  v: 2,
+  key: {
+    d0012: 1
+  },
+  name: 'd0012'
+}
+{
+  v: 2,
+  key: {
+    d0013: 1
+  },
+  name: 'd0013'
+}
+{
+  v: 2,
+  key: {
+    d0149: 1
+  },
+  name: 'd0149'
+}
+{
+  v: 2,
+  key: {
+    d0096: 1
+  },
+  name: 'd0096'
+}
+Collection: c038
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    d083: 1,
+    allianceOrgKey: 1
+  },
+  name: 'c38consumerterminal_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    d0040: 1,
+    allianceOrgKey: 1
+  },
+  name: 'c38merchantnumber_ao_idx'
+}
+{
+  v: 2,
+  key: {
+    d0002: 1
+  },
+  name: 'd0002'
+}
+{
+  v: 2,
+  key: {
+    d0040: 1
+  },
+  name: 'd0040'
+}
+{
+  v: 2,
+  key: {
+    d0054: 1
+  },
+  name: 'd0054'
+}
+{
+  v: 2,
+  key: {
+    d083: 1
+  },
+  name: 'd083'
+}
+{
+  v: 2,
+  key: {
+    d095: 1
+  },
+  name: 'd095'
+}
+Collection: c010
+{
+  v: 2,
+  key: {
+    _id: 1
+  },
+  name: '_id_'
+}
+{
+  v: 2,
+  key: {
+    j2: 1
+  },
+  name: 'j2'
+}
+Collection: c400_FRI_00_04
+Only default index (_id_) for c400_FRI_00_04
+Collection: c020
+Only default index (_id_) for c020
+Collection: s001_bin
+Only default index (_id_) for s001_bin
+Collection: c028_SUN
+Only default index (_id_) for c028_SUN
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Slow Queries :
+touadmin@mongodb-02:~$ ----------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval '  db.currentOp().inprog.map(op => ({
+>     host: op.host, desc: op.desc,  connectionId: op.connectionId,
+>     client: op.client, clientMetadata: op.clientMetadata ? op.clientMetadata.driver : null,  opid: op.opid,  secs_running: op.secs_running,
+>     microsecs_running: op.microsecs_running,
+>     op: op.op,   ns: op.ns,  command: op.command,  numYields: op.numYields,
+>     locks: op.locks || {},  waitingForLock: op.waitingForLock || false,
+>     lockStats: op.lockStats || {},  waitingForFlowControl: op.waitingForFlowControl || false,   flowControlStats: op.flowControlStats || {}
+>   }))'
+[
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260419',
+    connectionId: 260419,
+    client: '192.168.61.69:9367',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39347373,
+    secs_running: Long('6'),
+    microsecs_running: Long('6302855'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260079',
+    connectionId: 260079,
+    client: '192.168.61.70:4335',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39345766,
+    secs_running: Long('7'),
+    microsecs_running: Long('7108170'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260509',
+    connectionId: 260509,
+    client: '192.168.61.70:59169',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39354350,
+    secs_running: Long('2'),
+    microsecs_running: Long('2752917'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn259994',
+    connectionId: 259994,
+    client: '192.168.56.184:53563',
+    clientMetadata: { name: 'nodejs', version: '6.12.0' },
+    opid: 39341685,
+    secs_running: Long('9'),
+    microsecs_running: Long('9200237'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1740472598, i: 1 }),
+        signature: {
+          hash: Binary.createFromBase64('yS+vEMyDy1DO9chIfufEXkdwNJU=', 0),
+          keyId: Long('7417319279361523713')
+        }
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260106',
+    connectionId: 260106,
+    client: '192.168.61.69:26097',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39344089,
+    secs_running: Long('7'),
+    microsecs_running: Long('7996871'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn7',
+    connectionId: 7,
+    client: '192.168.61.39:52564',
+    clientMetadata: {
+      name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+      version: '7.0.6'
+    },
+    opid: 39346804,
+    secs_running: Long('6'),
+    microsecs_running: Long('6585936'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: Long('10000'),
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      internalClient: { minWireVersion: 21, maxWireVersion: 21 },
+      maxTimeMSOpOnly: Long('20000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260496',
+    connectionId: 260496,
+    client: '192.168.61.70:35152',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39349216,
+    secs_running: Long('5'),
+    microsecs_running: Long('5316828'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260429',
+    connectionId: 260429,
+    client: '192.168.61.70:40081',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39357715,
+    secs_running: Long('1'),
+    microsecs_running: Long('1042396'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'OplogApplier-0',
+    connectionId: undefined,
+    client: undefined,
+    clientMetadata: null,
+    opid: 39359171,
+    secs_running: undefined,
+    microsecs_running: undefined,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260493',
+    connectionId: 260493,
+    client: '192.168.61.70:55632',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39348927,
+    secs_running: Long('5'),
+    microsecs_running: Long('5457979'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'NoopWriter',
+    connectionId: undefined,
+    client: undefined,
+    clientMetadata: null,
+    opid: 39345578,
+    secs_running: undefined,
+    microsecs_running: undefined,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260575',
+    connectionId: 260575,
+    client: '192.168.61.70:50319',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39350784,
+    secs_running: Long('4'),
+    microsecs_running: Long('4560833'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'OplogCapMaintainerThread-local.oplog.rs',
+    connectionId: undefined,
+    client: undefined,
+    clientMetadata: null,
+    opid: 12,
+    secs_running: undefined,
+    microsecs_running: undefined,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {
+      FeatureCompatibilityVersion: { acquireCount: { w: Long('1') } },
+      ReplicationStateTransition: { acquireCount: { w: Long('1') } },
+      Global: { acquireCount: { w: Long('1') } }
+    },
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260627',
+    connectionId: 260627,
+    client: '192.168.61.70:19786',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39357731,
+    secs_running: Long('1'),
+    microsecs_running: Long('1034720'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260418',
+    connectionId: 260418,
+    client: '192.168.61.69:4104',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39356989,
+    secs_running: Long('1'),
+    microsecs_running: Long('1405294'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn259985',
+    connectionId: 259985,
+    client: '192.168.62.39:50164',
+    clientMetadata: { name: 'nodejs', version: '6.9.0' },
+    opid: 39346207,
+    secs_running: Long('6'),
+    microsecs_running: Long('6888916'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1740471948, i: 1 }),
+        signature: {
+          hash: Binary.createFromBase64('dZvfAwk07d9cmedd5W3fVyqI8jA=', 0),
+          keyId: Long('7417319279361523713')
+        }
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260619',
+    connectionId: 260619,
+    client: '192.168.61.69:60973',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39349866,
+    secs_running: Long('4'),
+    microsecs_running: Long('4988306'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260581',
+    connectionId: 260581,
+    client: '192.168.61.70:15363',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39350720,
+    secs_running: Long('4'),
+    microsecs_running: Long('4591077'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'JournalFlusher',
+    connectionId: undefined,
+    client: undefined,
+    clientMetadata: null,
+    opid: 39359441,
+    secs_running: undefined,
+    microsecs_running: undefined,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260084',
+    connectionId: 260084,
+    client: '192.168.61.70:21542',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39353134,
+    secs_running: Long('3'),
+    microsecs_running: Long('3357870'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260066',
+    connectionId: 260066,
+    client: '192.168.61.69:31882',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39358181,
+    secs_running: Long('0'),
+    microsecs_running: Long('802851'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260086',
+    connectionId: 260086,
+    client: '192.168.61.69:9164',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39350153,
+    secs_running: Long('4'),
+    microsecs_running: Long('4852359'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260435',
+    connectionId: 260435,
+    client: '192.168.61.70:52875',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39348502,
+    secs_running: Long('5'),
+    microsecs_running: Long('5733769'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260538',
+    connectionId: 260538,
+    client: '192.168.61.69:62911',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39340537,
+    secs_running: Long('9'),
+    microsecs_running: Long('9859091'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260438',
+    connectionId: 260438,
+    client: '192.168.61.70:52130',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39341501,
+    secs_running: Long('9'),
+    microsecs_running: Long('9291484'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260616',
+    connectionId: 260616,
+    client: '192.168.61.69:49414',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39340554,
+    secs_running: Long('9'),
+    microsecs_running: Long('9852381'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260068',
+    connectionId: 260068,
+    client: '192.168.61.69:55322',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39343032,
+    secs_running: Long('8'),
+    microsecs_running: Long('8534415'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn259006',
+    connectionId: 259006,
+    client: '192.168.61.38:37036',
+    clientMetadata: { name: 'MongoDB Internal Client', version: '7.0.6' },
+    opid: 39355413,
+    secs_running: Long('2'),
+    microsecs_running: Long('2188678'),
+    op: 'getmore',
+    ns: 'local.oplog.rs',
+    command: {
+      getMore: Long('5317707897884214746'),
+      collection: 'oplog.rs',
+      batchSize: Long('13981010'),
+      maxTimeMS: Long('5000'),
+      term: Long('13'),
+      lastKnownCommittedOpTime: { ts: Timestamp({ t: 1740418297, i: 1 }), t: Long('13') },
+      '$replData': 1,
+      '$oplogQueryData': 1,
+      '$readPreference': { mode: 'secondaryPreferred' },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1740418307, i: 1 }),
+        signature: {
+          hash: Binary.createFromBase64('7hjJ6z0PBHOFczen0bDe+tMomiU=', 0),
+          keyId: Long('7417319279361523713')
+        }
+      },
+      '$db': 'local'
+    },
+    numYields: 2,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {
+      FeatureCompatibilityVersion: { acquireCount: { r: Long('2') } },
+      Global: { acquireCount: { r: Long('2') } }
+    },
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260102',
+    connectionId: 260102,
+    client: '192.168.61.69:58582',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39358217,
+    secs_running: Long('0'),
+    microsecs_running: Long('784416'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260363',
+    connectionId: 260363,
+    client: '192.168.61.69:63205',
+    clientMetadata: { name: 'mongo-java-driver|sync|spring-boot', version: '4.9.1' },
+    opid: 39355364,
+    secs_running: Long('2'),
+    microsecs_running: Long('2211082'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn259000',
+    connectionId: 259000,
+    client: '192.168.61.68:60744',
+    clientMetadata: {
+      name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+      version: '7.0.6'
+    },
+    opid: 39346797,
+    secs_running: Long('6'),
+    microsecs_running: Long('6589682'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: Long('10000'),
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      internalClient: { minWireVersion: 21, maxWireVersion: 21 },
+      maxTimeMSOpOnly: Long('20000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn259986',
+    connectionId: 259986,
+    client: '192.168.62.39:50166',
+    clientMetadata: { name: 'nodejs', version: '6.9.0' },
+    opid: 39345735,
+    secs_running: Long('7'),
+    microsecs_running: Long('7122645'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1740471948, i: 1 }),
+        signature: {
+          hash: Binary.createFromBase64('dZvfAwk07d9cmedd5W3fVyqI8jA=', 0),
+          keyId: Long('7417319279361523713')
+        }
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260093',
+    connectionId: 260093,
+    client: '192.168.61.69:39610',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39351907,
+    secs_running: Long('3'),
+    microsecs_running: Long('3992422'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260114',
+    connectionId: 260114,
+    client: '192.168.61.69:48106',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39343031,
+    secs_running: Long('8'),
+    microsecs_running: Long('8534540'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260536',
+    connectionId: 260536,
+    client: '192.168.61.69:20893',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39350683,
+    secs_running: Long('4'),
+    microsecs_running: Long('4607152'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260623',
+    connectionId: 260623,
+    client: '192.168.61.70:48400',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39357986,
+    secs_running: Long('0'),
+    microsecs_running: Long('904761'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn69946',
+    connectionId: 69946,
+    client: '192.168.61.38:46170',
+    clientMetadata: {
+      name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+      version: '7.0.6'
+    },
+    opid: 39347731,
+    secs_running: Long('6'),
+    microsecs_running: Long('6113013'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: Long('10000'),
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      internalClient: { minWireVersion: 21, maxWireVersion: 21 },
+      maxTimeMSOpOnly: Long('20000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260511',
+    connectionId: 260511,
+    client: '192.168.61.70:33517',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39354735,
+    secs_running: Long('2'),
+    microsecs_running: Long('2524205'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260101',
+    connectionId: 260101,
+    client: '192.168.61.69:54777',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39346729,
+    secs_running: Long('6'),
+    microsecs_running: Long('6620432'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260107',
+    connectionId: 260107,
+    client: '192.168.61.69:21174',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39357633,
+    secs_running: Long('1'),
+    microsecs_running: Long('1083162'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn261039',
+    connectionId: 261039,
+    client: '127.0.0.1:46438',
+    clientMetadata: { name: 'nodejs|mongosh', version: '6.3.0|2.1.5' },
+    opid: 39359546,
+    secs_running: Long('0'),
+    microsecs_running: Long('340'),
+    op: 'command',
+    ns: 'admin.$cmd.aggregate',
+    command: {
+      aggregate: 1,
+      pipeline: [
+        {
+          '$currentOp': {
+            allUsers: true,
+            idleConnections: false,
+            truncateOps: false
+          }
+        },
+        { '$match': {} }
+      ],
+      cursor: {},
+      lsid: { id: UUID('01dc7ed5-f521-4957-8839-8104c27838b9') },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1740485149, i: 1 }),
+        signature: {
+          hash: Binary.createFromBase64('yD+P5S7JPDgQjXqrFduGcXEqPYs=', 0),
+          keyId: Long('7417319279361523713')
+        }
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'Checkpointer',
+    connectionId: undefined,
+    client: undefined,
+    clientMetadata: null,
+    opid: 39259505,
+    secs_running: undefined,
+    microsecs_running: undefined,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    host: 'mongodb-02:27017',
+    desc: 'conn260427',
+    connectionId: 260427,
+    client: '192.168.61.70:28342',
+    clientMetadata: { name: 'mongo-java-driver|sync', version: '4.6.1' },
+    opid: 39354006,
+    secs_running: Long('2'),
+    microsecs_running: Long('2916994'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      helloOk: true,
+      topologyVersion: {
+        processId: ObjectId('67a9aec1783be4e8b0b2fd8e'),
+        counter: Long('7')
+      },
+      maxAwaitTimeMS: Long('10000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  }
+]
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Replication Lag :
+touadmin@mongodb-02:~$ --------------------
+touadmin@mongodb-02:~$  mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --eval "rs.status()"
+Current Mongosh Log ID: 67bdb24b7735bd2c9194861b
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&authSource=admin&appName=mongosh+2.1.5
+Using MongoDB:          7.0.6
+Using Mongosh:          2.1.5
+mongosh 2.4.0 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-10T13:16:13.482+05:30: vm.max_map_count is too low
+------
+
+{
+  set: 'touprd0',
+  date: ISODate('2025-02-25T12:06:35.679Z'),
+  myState: 1,
+  term: Long('13'),
+  syncSourceHost: '',
+  syncSourceId: -1,
+  heartbeatIntervalMillis: Long('2000'),
+  majorityVoteCount: 2,
+  writeMajorityCount: 2,
+  votingMembersCount: 3,
+  writableVotingMembersCount: 3,
+  optimes: {
+    lastCommittedOpTime: { ts: Timestamp({ t: 1740485195, i: 1 }), t: Long('13') },
+    lastCommittedWallTime: ISODate('2025-02-25T12:06:35.607Z'),
+    readConcernMajorityOpTime: { ts: Timestamp({ t: 1740485195, i: 1 }), t: Long('13') },
+    appliedOpTime: { ts: Timestamp({ t: 1740485195, i: 1 }), t: Long('13') },
+    durableOpTime: { ts: Timestamp({ t: 1740485195, i: 1 }), t: Long('13') },
+    lastAppliedWallTime: ISODate('2025-02-25T12:06:35.607Z'),
+    lastDurableWallTime: ISODate('2025-02-25T12:06:35.607Z')
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1740485159, i: 1 }),
+  electionCandidateMetrics: {
+    lastElectionReason: 'stepUpRequestSkipDryRun',
+    lastElectionDate: ISODate('2025-02-24T17:31:27.426Z'),
+    electionTerm: Long('13'),
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1740418281, i: 1 }), t: Long('12') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1740418281, i: 1 }), t: Long('12') },
+    numVotesNeeded: 2,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'),
+    priorPrimaryMemberId: 5,
+    numCatchUpOps: Long('0'),
+    newTermStartDate: ISODate('2025-02-24T17:31:27.439Z'),
+    wMajorityWriteAvailabilityDate: ISODate('2025-02-24T17:31:27.476Z')
+  },
+  electionParticipantMetrics: {
+    votedForCandidate: true,
+    electionTerm: Long('12'),
+    lastVoteDate: ISODate('2025-02-10T07:46:15.615Z'),
+    electionCandidateMemberId: 5,
+    voteReason: '',
+    lastAppliedOpTimeAtElection: { ts: Timestamp({ t: 1739173475, i: 1 }), t: Long('11') },
+    maxAppliedOpTimeInSet: { ts: Timestamp({ t: 1739173475, i: 1 }), t: Long('11') },
+    priorityAtElection: 1
+  },
+  members: [
+    {
+      _id: 3,
+      name: '192.168.61.39:27017',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 1311626,
+      optime: { ts: Timestamp({ t: 1740485195, i: 1 }), t: Long('13') },
+      optimeDate: ISODate('2025-02-25T12:06:35.000Z'),
+      lastAppliedWallTime: ISODate('2025-02-25T12:06:35.607Z'),
+      lastDurableWallTime: ISODate('2025-02-25T12:06:35.607Z'),
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: '',
+      electionTime: Timestamp({ t: 1740418287, i: 1 }),
+      electionDate: ISODate('2025-02-24T17:31:27.000Z'),
+      configVersion: 19,
+      configTerm: 13,
+      self: true,
+      lastHeartbeatMessage: ''
+    },
+    {
+      _id: 4,
+      name: '192.168.61.38:27017',
+      health: 1,
+      state: 2,
+      stateStr: 'SECONDARY',
+      uptime: 969466,
+      optime: { ts: Timestamp({ t: 1740485189, i: 1 }), t: Long('13') },
+      optimeDurable: { ts: Timestamp({ t: 1740485189, i: 1 }), t: Long('13') },
+      optimeDate: ISODate('2025-02-25T12:06:29.000Z'),
+      optimeDurableDate: ISODate('2025-02-25T12:06:29.000Z'),
+      lastAppliedWallTime: ISODate('2025-02-25T12:06:35.607Z'),
+      lastDurableWallTime: ISODate('2025-02-25T12:06:35.607Z'),
+      lastHeartbeat: ISODate('2025-02-25T12:06:34.560Z'),
+      lastHeartbeatRecv: ISODate('2025-02-25T12:06:34.812Z'),
+      pingMs: Long('0'),
+      lastHeartbeatMessage: '',
+      syncSourceHost: '192.168.61.39:27017',
+      syncSourceId: 3,
+      infoMessage: '',
+      configVersion: 19,
+      configTerm: 13
+    },
+    {
+      _id: 5,
+      name: '192.168.61.68:27017',
+      health: 1,
+      state: 2,
+      stateStr: 'SECONDARY',
+      uptime: 66888,
+      optime: { ts: Timestamp({ t: 1740485189, i: 1 }), t: Long('13') },
+      optimeDurable: { ts: Timestamp({ t: 1740485189, i: 1 }), t: Long('13') },
+      optimeDate: ISODate('2025-02-25T12:06:29.000Z'),
+      optimeDurableDate: ISODate('2025-02-25T12:06:29.000Z'),
+      lastAppliedWallTime: ISODate('2025-02-25T12:06:35.607Z'),
+      lastDurableWallTime: ISODate('2025-02-25T12:06:35.607Z'),
+      lastHeartbeat: ISODate('2025-02-25T12:06:35.608Z'),
+      lastHeartbeatRecv: ISODate('2025-02-25T12:06:34.850Z'),
+      pingMs: Long('0'),
+      lastHeartbeatMessage: '',
+      syncSourceHost: '192.168.61.38:27017',
+      syncSourceId: 4,
+      infoMessage: '',
+      configVersion: 19,
+      configTerm: 13
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1740485195, i: 9 }),
+    signature: {
+      hash: Binary.createFromBase64('HCG2tg1QLUxo3VPFgLjFYhKDuHM=', 0),
+      keyId: Long('7417319279361523713')
+    }
+  },
+  operationTime: Timestamp({ t: 1740485195, i: 1 })
+}
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Replication Queue Size:
+touadmin@mongodb-02:~$ ------------------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'rs.printReplicationInfo()'
+actual oplog size
+'4341.044921875 MB'
+---
+configured oplog size
+'4341.044921875 MB'
+---
+log length start to end
+'3047313 secs (846.48 hrs)'
+---
+oplog first event time
+'Tue Jan 21 2025 11:08:26 GMT+0530 (India Standard Time)'
+---
+oplog last event time
+'Tue Feb 25 2025 17:36:59 GMT+0530 (India Standard Time)'
+---
+now
+'Tue Feb 25 2025 17:37:02 GMT+0530 (India Standard Time)'
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Active Connections :
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ ----------------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'db.serverStatus().connections'
+{
+  current: 112,
+  available: 51088,
+  totalCreated: 256162,
+  rejected: 0,
+  active: 38,
+  threaded: 112,
+  exhaustIsMaster: 0,
+  exhaustHello: 36,
+  awaitingTopologyChanges: 36
+}
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Op Counters (Operations):
+touadmin@mongodb-02:~$ -------------------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'db.serverStatus().opcounters'
+{
+  insert: Long('2310'),
+  query: Long('6282141'),
+  update: Long('1402'),
+  delete: Long('201'),
+  getmore: Long('27727'),
+  command: Long('13253942')
+}
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ CPU Usage :
+touadmin@mongodb-02:~$ ----------------
+touadmin@mongodb-02:~$ top
+top - 17:40:12 up 15 days,  4:24,  2 users,  load average: 0.27, 0.29, 0.25
+Tasks: 235 total,   1 running, 234 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 10.1 us,  4.3 sy,  0.0 ni, 84.1 id,  0.0 wa,  0.0 hi,  1.4 si,  0.0 st
+MiB Mem :  15997.4 total,    253.1 free,   6377.8 used,   9366.6 buff/cache
+MiB Swap:   4096.0 total,   4095.0 free,      1.0 used.   9280.1 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    932 mongodb   20   0 8957180   5.7g  82616 S  37.5  36.2 364:13.44 mongod
+      1 root      20   0  171524  12944   8276 S   0.0   0.1   0:32.44 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:02.60 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-kblockd
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq
+      9 root      20   0       0      0      0 S   0.0   0.0   0:12.13 ksoftirqd/0
+     10 root      20   0       0      0      0 I   0.0   0.0  13:45.42 rcu_sched
+     11 root      rt   0       0      0      0 S   0.0   0.0   0:03.40 migration/0
+     12 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0
+     14 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+     15 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+     16 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1
+     17 root      rt   0       0      0      0 S   0.0   0.0   0:03.51 migration/1
+     18 root      20   0       0      0      0 S   0.0   0.0   0:03.66 ksoftirqd/1
+     20 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0H-kblockd
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/2
+     23 root      rt   0       0      0      0 S   0.0   0.0   0:03.48 migration/2
+     24 root      20   0       0      0      0 S   0.0   0.0   0:03.04 ksoftirqd/2
+     26 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/2:0H-kblockd
+     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/3
+     28 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/3
+     29 root      rt   0       0      0      0 S   0.0   0.0   0:03.37 migration/3
+     30 root      20   0       0      0      0 S   0.0   0.0   0:04.39 ksoftirqd/3
+     32 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/3:0H-kblockd
+     33 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs
+     34 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns
+     35 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_kthre
+     36 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kauditd
+     37 root      20   0       0      0      0 S   0.0   0.0   0:01.66 khungtaskd
+     38 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper
+     39 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 writeback
+     40 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kcompactd0
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Memory Usage :
+touadmin@mongodb-02:~$ --------------------
+touadmin@mongodb-02:~$ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0 171524 12944 ?        Ss   Feb10   0:32 /sbin/init
+root           2  0.0  0.0      0     0 ?        S    Feb10   0:02 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   Feb10   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   Feb10   0:00 [rcu_par_gp]
+root           6  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kworker/0:0H-kblockd]
+root           8  0.0  0.0      0     0 ?        I<   Feb10   0:00 [mm_percpu_wq]
+root           9  0.0  0.0      0     0 ?        S    Feb10   0:12 [ksoftirqd/0]
+root          10  0.0  0.0      0     0 ?        I    Feb10  13:45 [rcu_sched]
+root          11  0.0  0.0      0     0 ?        S    Feb10   0:03 [migration/0]
+root          12  0.0  0.0      0     0 ?        S    Feb10   0:00 [idle_inject/0]
+root          14  0.0  0.0      0     0 ?        S    Feb10   0:00 [cpuhp/0]
+root          15  0.0  0.0      0     0 ?        S    Feb10   0:00 [cpuhp/1]
+root          16  0.0  0.0      0     0 ?        S    Feb10   0:00 [idle_inject/1]
+root          17  0.0  0.0      0     0 ?        S    Feb10   0:03 [migration/1]
+root          18  0.0  0.0      0     0 ?        S    Feb10   0:03 [ksoftirqd/1]
+root          20  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kworker/1:0H-kblockd]
+root          21  0.0  0.0      0     0 ?        S    Feb10   0:00 [cpuhp/2]
+root          22  0.0  0.0      0     0 ?        S    Feb10   0:00 [idle_inject/2]
+root          23  0.0  0.0      0     0 ?        S    Feb10   0:03 [migration/2]
+root          24  0.0  0.0      0     0 ?        S    Feb10   0:03 [ksoftirqd/2]
+root          26  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kworker/2:0H-kblockd]
+root          27  0.0  0.0      0     0 ?        S    Feb10   0:00 [cpuhp/3]
+root          28  0.0  0.0      0     0 ?        S    Feb10   0:00 [idle_inject/3]
+root          29  0.0  0.0      0     0 ?        S    Feb10   0:03 [migration/3]
+root          30  0.0  0.0      0     0 ?        S    Feb10   0:04 [ksoftirqd/3]
+root          32  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kworker/3:0H-kblockd]
+root          33  0.0  0.0      0     0 ?        S    Feb10   0:00 [kdevtmpfs]
+root          34  0.0  0.0      0     0 ?        I<   Feb10   0:00 [netns]
+root          35  0.0  0.0      0     0 ?        S    Feb10   0:00 [rcu_tasks_kthre]
+root          36  0.0  0.0      0     0 ?        S    Feb10   0:00 [kauditd]
+root          37  0.0  0.0      0     0 ?        S    Feb10   0:01 [khungtaskd]
+root          38  0.0  0.0      0     0 ?        S    Feb10   0:00 [oom_reaper]
+root          39  0.0  0.0      0     0 ?        I<   Feb10   0:00 [writeback]
+root          40  0.0  0.0      0     0 ?        S    Feb10   0:00 [kcompactd0]
+root          41  0.0  0.0      0     0 ?        SN   Feb10   0:00 [ksmd]
+root          42  0.0  0.0      0     0 ?        SN   Feb10   0:00 [khugepaged]
+root          89  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kintegrityd]
+root          90  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kblockd]
+root          91  0.0  0.0      0     0 ?        I<   Feb10   0:00 [blkcg_punt_bio]
+root          92  0.0  0.0      0     0 ?        I<   Feb10   0:00 [tpm_dev_wq]
+root          93  0.0  0.0      0     0 ?        I<   Feb10   0:00 [ata_sff]
+root          94  0.0  0.0      0     0 ?        I<   Feb10   0:00 [md]
+root          95  0.0  0.0      0     0 ?        I<   Feb10   0:00 [edac-poller]
+root          96  0.0  0.0      0     0 ?        I<   Feb10   0:00 [devfreq_wq]
+root          98  0.0  0.0      0     0 ?        S    Feb10   0:00 [watchdogd]
+root         102  0.0  0.0      0     0 ?        S    Feb10   0:00 [kswapd0]
+root         103  0.0  0.0      0     0 ?        S    Feb10   0:00 [ecryptfs-kthrea]
+root         105  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kthrotld]
+root         106  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/24-pciehp]
+root         107  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/25-pciehp]
+root         108  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/26-pciehp]
+root         109  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/27-pciehp]
+root         110  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/28-pciehp]
+root         111  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/29-pciehp]
+root         112  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/30-pciehp]
+root         113  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/31-pciehp]
+root         114  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/32-pciehp]
+root         115  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/33-pciehp]
+root         116  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/34-pciehp]
+root         117  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/35-pciehp]
+root         118  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/36-pciehp]
+root         119  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/37-pciehp]
+root         120  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/38-pciehp]
+root         121  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/39-pciehp]
+root         122  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/40-pciehp]
+root         123  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/41-pciehp]
+root         124  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/42-pciehp]
+root         125  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/43-pciehp]
+root         126  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/44-pciehp]
+root         127  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/45-pciehp]
+root         128  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/46-pciehp]
+root         129  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/47-pciehp]
+root         130  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/48-pciehp]
+root         131  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/49-pciehp]
+root         132  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/50-pciehp]
+root         133  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/51-pciehp]
+root         134  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/52-pciehp]
+root         135  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/53-pciehp]
+root         136  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/54-pciehp]
+root         137  0.0  0.0      0     0 ?        S    Feb10   0:00 [irq/55-pciehp]
+root         138  0.0  0.0      0     0 ?        I<   Feb10   0:00 [acpi_thermal_pm]
+root         139  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_0]
+root         140  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_0]
+root         141  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_1]
+root         142  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_1]
+root         144  0.0  0.0      0     0 ?        I<   Feb10   0:00 [vfio-irqfd-clea]
+root         146  0.0  0.0      0     0 ?        I<   Feb10   0:00 [ipv6_addrconf]
+root         155  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kstrp]
+root         171  0.0  0.0      0     0 ?        I<   Feb10   0:00 [charger_manager]
+root         221  0.0  0.0      0     0 ?        I<   Feb10   0:00 [mpt_poll_0]
+root         222  0.0  0.0      0     0 ?        I<   Feb10   0:00 [mpt/0]
+root         223  0.0  0.0      0     0 ?        I<   Feb10   0:00 [cryptd]
+root         224  0.0  0.0      0     0 ?        S    Feb10   1:06 [irq/16-vmwgfx]
+root         225  0.0  0.0      0     0 ?        I<   Feb10   0:00 [ttm_swap]
+root         260  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_2]
+root         261  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_2]
+root         262  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_3]
+root         263  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_3]
+root         264  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_4]
+root         265  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_4]
+root         266  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_5]
+root         267  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_5]
+root         268  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_6]
+root         269  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_6]
+root         270  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_7]
+root         271  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_7]
+root         272  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_8]
+root         273  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_8]
+root         274  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_9]
+root         275  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_9]
+root         276  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_10]
+root         277  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_10]
+root         278  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_11]
+root         279  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_11]
+root         280  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_12]
+root         281  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_12]
+root         282  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_13]
+root         283  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_13]
+root         284  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_14]
+root         285  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_14]
+root         286  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_15]
+root         287  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_15]
+root         288  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_16]
+root         289  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_16]
+root         290  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_17]
+root         291  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_17]
+root         292  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_18]
+root         293  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_18]
+root         294  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_19]
+root         295  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_19]
+root         296  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_20]
+root         297  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_20]
+root         298  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_21]
+root         299  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_21]
+root         300  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_22]
+root         301  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_22]
+root         302  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_23]
+root         303  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_23]
+root         304  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_24]
+root         305  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_24]
+root         306  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_25]
+root         307  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_25]
+root         308  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_26]
+root         309  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_26]
+root         310  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_27]
+root         311  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_27]
+root         312  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_28]
+root         313  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_28]
+root         314  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_29]
+root         315  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_29]
+root         316  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_30]
+root         317  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_30]
+root         318  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_31]
+root         319  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_31]
+root         347  0.0  0.0      0     0 ?        S    Feb10   0:00 [scsi_eh_32]
+root         348  0.0  0.0      0     0 ?        I<   Feb10   0:00 [scsi_tmf_32]
+root         351  0.0  0.0      0     0 ?        I<   Feb10   0:04 [kworker/1:1H-kblockd]
+root         352  0.0  0.0      0     0 ?        I<   Feb10   0:04 [kworker/3:1H-kblockd]
+root         368  0.0  0.0      0     0 ?        I<   Feb10   0:04 [kworker/2:1H-kblockd]
+root         389  0.0  0.0      0     0 ?        I<   Feb10   0:00 [raid5wq]
+root         432  0.0  0.0      0     0 ?        I<   Feb10   0:05 [kworker/0:1H-kblockd]
+root         433  0.0  0.0      0     0 ?        S    Feb10   0:36 [jbd2/sda2-8]
+root         434  0.0  0.0      0     0 ?        I<   Feb10   0:00 [ext4-rsv-conver]
+root         510  0.0  1.0 304288 168956 ?       S<s  Feb10   6:03 /lib/systemd/systemd-journald
+root         513  0.0  0.0      0     0 ?        I<   Feb10   0:00 [rpciod]
+root         515  0.0  0.0      0     0 ?        I<   Feb10   0:00 [xprtiod]
+root         539  0.0  0.0   2488   568 ?        S    Feb10   0:00 bpfilter_umh
+root         609  0.0  0.0  22904  6300 ?        Ss   Feb10   0:07 /lib/systemd/systemd-udevd
+root         763  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kaluad]
+root         764  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kmpath_rdacd]
+root         765  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kmpathd]
+root         766  0.0  0.0      0     0 ?        I<   Feb10   0:00 [kmpath_handlerd]
+root         767  0.0  0.1 345820 18224 ?        SLsl Feb10   7:59 /sbin/multipathd -d -s
+root         782  0.0  0.0      0     0 ?        S<   Feb10   0:00 [loop1]
+root         783  0.0  0.0      0     0 ?        S<   Feb10   0:00 [loop2]
+root         784  0.0  0.0      0     0 ?        S<   Feb10   0:00 [loop3]
+root         785  0.0  0.0      0     0 ?        S<   Feb10   0:00 [loop4]
+root         786  0.0  0.0      0     0 ?        S<   Feb10   0:00 [loop5]
+_rpc         812  0.0  0.0   7100  3868 ?        Ss   Feb10   0:01 /sbin/rpcbind -f -w
+systemd+     814  0.0  0.0  90888  6144 ?        Ssl  Feb10   0:02 /lib/systemd/systemd-timesyncd
+root         821  0.0  0.0  47548 10472 ?        Ss   Feb10   0:00 /usr/bin/VGAuthService
+root         822  0.0  0.0 310708  7948 ?        Ssl  Feb10  17:11 /usr/bin/vmtoolsd
+systemd+     900  0.0  0.0  19080  7532 ?        Ss   Feb10   0:20 /lib/systemd/systemd-networkd
+systemd+     902  0.0  0.0  24820 12332 ?        Ss   Feb10   0:02 /lib/systemd/systemd-resolved
+root         922  0.0  0.0 236556  8392 ?        Ssl  Feb10   1:21 /usr/lib/accountsservice/accounts-daemon
+message+     923  0.0  0.0   7960  4864 ?        Ss   Feb10   0:02 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation -
+root         931  0.0  0.0  81964  3832 ?        Ssl  Feb10   1:26 /usr/sbin/irqbalance --foreground
+mongodb      932  1.6 36.2 8957180 5933012 ?     SLsl Feb10 364:23 /usr/bin/mongod --config /mongo/mongod.conf
+root         936  0.0  0.1  29664 18672 ?        Ss   Feb10   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root         937  0.0  0.0      0     0 ?        I<   Feb10   0:00 [nfsiod]
+node_ex+     940  0.1  0.1 1241944 20704 ?       Ssl  Feb10  25:14 /usr/local/bin/node_exporter --web.listen-address=:9200
+root         942  0.0  0.0 237552  8604 ?        Ssl  Feb10   0:00 /usr/lib/policykit-1/polkitd --no-debug
+root         962  0.0  0.0  17548  7980 ?        Ss   Feb10   0:02 /lib/systemd/systemd-logind
+root         963  0.0  0.0 393260 12244 ?        Ssl  Feb10   0:01 /usr/lib/udisks2/udisksd
+root         973  0.0  0.0 241384 11816 ?        Ssl  Feb10   0:00 /usr/sbin/ModemManager
+root        1008  0.0  0.1 107940 20780 ?        Ssl  Feb10   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signa
+mysql       1040  0.4  2.4 2382244 396972 ?      Ssl  Feb10  93:55 /usr/sbin/mysqld
+root        1046  0.0  0.0      0     0 ?        S    Feb10   0:02 [NFSv4 callback]
+root        1061  0.0  0.0   6816  3056 ?        Ss   Feb10   0:01 /usr/sbin/cron -f
+daemon      1064  0.0  0.0   3796  2156 ?        Ss   Feb10   0:00 /usr/sbin/atd -f
+root        1071  0.0  0.0   5828  1868 tty1     Ss+  Feb10   0:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+root       13249  0.0  0.0 249508  9600 ?        Ssl  Feb10   0:00 /usr/lib/upower/upowerd
+root      495757  0.0  0.0      0     0 ?        S<   Feb19   0:00 [loop6]
+root      566392  0.0  0.0  12188  7112 ?        Ss   Feb20   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root      817067  0.0  0.1 1468896 29964 ?       Ssl  Feb24   0:04 /usr/lib/snapd/snapd
+syslog    817490  0.0  0.0 224348  4524 ?        Ssl  Feb24   0:09 /usr/sbin/rsyslogd -n -iNONE
+touadmin  870030  0.0  0.0  19056  9440 ?        Ss   10:09   0:00 /lib/systemd/systemd --user
+touadmin  870031  0.0  0.0 172740  4808 ?        S    10:09   0:00 (sd-pam)
+root      872649  0.0  0.0      0     0 ?        I    10:37   0:03 [kworker/2:0-cgroup_destroy]
+root      875085  0.0  0.0      0     0 ?        I    11:58   0:03 [kworker/3:1-events]
+root      875700  0.0  0.0      0     0 ?        I    12:08   0:03 [kworker/u8:5-events_unbound]
+root      880021  0.0  0.0      0     0 ?        I    14:39   0:01 [kworker/u8:1-rpciod]
+root      883920  0.0  0.0      0     0 ?        I    16:14   0:00 [kworker/2:2-events]
+root      884243  0.0  0.0      0     0 ?        I    16:25   0:00 [kworker/3:0-events]
+root      884318  0.0  0.0  13940  8160 ?        Ss   16:28   0:00 sshd: touadmin [priv]
+touadmin  884433  0.0  0.0  14072  5116 ?        S    16:28   0:00 sshd: touadmin@pts/1
+touadmin  884434  0.0  0.0   8672  5480 pts/1    Ss+  16:28   0:00 -bash
+root      884623  0.0  0.0      0     0 ?        I    16:31   0:00 [kworker/1:1-events]
+root      886024  0.0  0.0      0     0 ?        I    16:59   0:01 [kworker/u8:0-nfsiod]
+root      886178  0.0  0.0      0     0 ?        I    17:02   0:01 [kworker/u8:6-nfsiod]
+mongodb   886759  0.1  0.1 1247408 30256 ?       Ssl  17:12   0:01 /usr/local/bin/mongodb_exporter --mongodb.uri=mongodb://prometheus_user:your_password@localh
+root      886786  0.0  0.0      0     0 ?        I    17:12   0:00 [kworker/0:0-events]
+root      887179  0.0  0.0      0     0 ?        I<   17:20   0:00 [kworker/u9:3-xprtiod]
+root      887359  0.0  0.0      0     0 ?        I    17:23   0:00 [kworker/1:0-events]
+root      887383  0.0  0.0  13940  9088 ?        Ss   17:23   0:00 sshd: touadmin [priv]
+root      887396  0.0  0.0  13940  9164 ?        Ss   17:23   0:00 sshd: touadmin [priv]
+touadmin  887541  0.0  0.0  14072  6264 ?        R    17:24   0:00 sshd: touadmin@pts/0
+touadmin  887548  0.0  0.0   8408  5340 pts/0    Ss   17:24   0:00 -bash
+touadmin  887550  0.0  0.0  14076  6096 ?        S    17:24   0:00 sshd: touadmin@notty
+touadmin  887562  0.0  0.0   5888  4352 ?        Ss   17:24   0:00 /usr/lib/openssh/sftp-server
+root      887664  0.0  0.0      0     0 ?        I<   17:26   0:00 [kworker/u9:1-xprtiod]
+root      887764  0.0  0.0      0     0 ?        I    17:28   0:00 [kworker/u8:3-rpciod]
+root      887972  0.0  0.0      0     0 ?        I    17:31   0:00 [kworker/0:1-events]
+root      888374  0.0  0.0      0     0 ?        I    17:39   0:00 [kworker/u8:2-events_unbound]
+touadmin  888436  0.0  0.0   8888  3360 pts/0    R+   17:40   0:00 ps aux
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'printjson(db.serverStatus().mem)'
+{
+  bits: 64,
+  resident: 5793,
+  virtual: 8747,
+  supported: true
+}
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Disk I/O :
+touadmin@mongodb-02:~$ -------------
+touadmin@mongodb-02:~$ iostat -d 1
+Linux 5.4.0-205-generic (mongodb-02)    02/25/2025      _x86_64_        (4 CPU)
+
+Device             tps    kB_read/s    kB_wrtn/s    kB_dscd/s    kB_read    kB_wrtn    kB_dscd
+loop0             0.00         0.00         0.00         0.00        359          0          0
+loop1             0.00         0.00         0.00         0.00       2223          0          0
+loop2             0.00         0.00         0.00         0.00       1483          0          0
+loop3             0.00         0.00         0.00         0.00        757          0          0
+loop4             0.00         0.00         0.00         0.00       1509          0          0
+loop5             0.02         0.02         0.00         0.00      24215          0          0
+loop6             0.00         0.00         0.00         0.00        772          0          0
+sda               2.25         0.93        17.56        72.96    1221232   23033928   95719684
+
+
+Device             tps    kB_read/s    kB_wrtn/s    kB_dscd/s    kB_read    kB_wrtn    kB_dscd
+loop0             0.00         0.00         0.00         0.00          0          0          0
+loop1             0.00         0.00         0.00         0.00          0          0          0
+loop2             0.00         0.00         0.00         0.00          0          0          0
+loop3             0.00         0.00         0.00         0.00          0          0          0
+loop4             0.00         0.00         0.00         0.00          0          0          0
+loop5             0.00         0.00         0.00         0.00          0          0          0
+loop6             0.00         0.00         0.00         0.00          0          0          0
+sda               0.00         0.00         0.00         0.00          0          0          0
+
+
+Device             tps    kB_read/s    kB_wrtn/s    kB_dscd/s    kB_read    kB_wrtn    kB_dscd
+loop0             0.00         0.00         0.00         0.00          0          0          0
+loop1             0.00         0.00         0.00         0.00          0          0          0
+loop2             0.00         0.00         0.00         0.00          0          0          0
+loop3             0.00         0.00         0.00         0.00          0          0          0
+loop4             0.00         0.00         0.00         0.00          0          0          0
+loop5             0.00         0.00         0.00         0.00          0          0          0
+loop6             0.00         0.00         0.00         0.00          0          0          0
+sda               0.00         0.00         0.00         0.00          0          0          0
+
+
+Device             tps    kB_read/s    kB_wrtn/s    kB_dscd/s    kB_read    kB_wrtn    kB_dscd
+loop0             0.00         0.00         0.00         0.00          0          0          0
+loop1             0.00         0.00         0.00         0.00          0          0          0
+loop2             0.00         0.00         0.00         0.00          0          0          0
+loop3             0.00         0.00         0.00         0.00          0          0          0
+loop4             0.00         0.00         0.00         0.00          0          0          0
+loop5             0.00         0.00         0.00         0.00          0          0          0
+loop6             0.00         0.00         0.00         0.00          0          0          0
+sda               2.00         0.00        32.00         0.00          0         32          0
+
+
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Log File Size :
+touadmin@mongodb-02:~$ -------------------
+touadmin@mongodb-02:~$ sudo du -sh /mongo/logs/mongod.log
+[sudo] password for touadmin:
+9.1G    /mongo/logs/mongod.log
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Network I/O :
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ -----------------
+touadmin@mongodb-02:~$ netstat -i
+Kernel Interface table
+Iface      MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+ens160    1500 72322081      0 681748 0      57700093      0      0      0 BMRU
+lo       65536 15077962      0      0 0      15077962      0      0      0 LRU
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Page Faults :
+touadmin@mongodb-02:~$ ---------------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'db.serverStatus().extra_info.page_faults'
+Long('675')
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Cache Utilization :
+touadmin@mongodb-02:~$ -----------------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'db.serverStatus().wiredTiger.cache'
+{
+  'application threads page read from disk to cache count': 101174,
+  'application threads page read from disk to cache time (usecs)': 13197241,
+  'application threads page write from cache to disk count': 822140,
+  'application threads page write from cache to disk time (usecs)': 83878620,
+  'bytes allocated for updates': 50038028,
+  'bytes belonging to page images in the cache': Long('5956157700'),
+  'bytes belonging to the history store table in the cache': 1648870,
+  'bytes currently in the cache': Long('6035263704'),
+  'bytes dirty in the cache cumulative': Long('97424881281'),
+  'bytes not belonging to page images in the cache': 79106004,
+  'bytes read into cache': Long('5795066067'),
+  'bytes written from cache': Long('54202574558'),
+  'checkpoint blocked page eviction': 0,
+  'checkpoint of history store file blocked non-history store page eviction': 0,
+  'eviction calls to get a page': 183356,
+  'eviction calls to get a page found queue empty': 166191,
+  'eviction calls to get a page found queue empty after locking': 85,
+  'eviction currently operating in aggressive mode': 0,
+  'eviction empty score': 0,
+  'eviction gave up due to detecting a disk value without a timestamp behind the last update on the chain': 0,
+  'eviction gave up due to detecting a tombstone without a timestamp ahead of the selected on disk update': 0,
+  'eviction gave up due to detecting a tombstone without a timestamp ahead of the selected on disk update after validating the update chain': 0,
+  'eviction gave up due to detecting update chain entries without timestamps after the selected on disk update': 0,
+  'eviction gave up due to needing to remove a record from the history store but checkpoint is running': 0,
+  'eviction passes of a file': 0,
+  'eviction server candidate queue empty when topping up': 0,
+  'eviction server candidate queue not empty when topping up': 0,
+  'eviction server evicting pages': 0,
+  'eviction server slept, because we did not make progress with eviction': 16976,
+  'eviction server unable to reach eviction goal': 0,
+  'eviction server waiting for a leaf page': 434,
+  'eviction state': 32,
+  'eviction walk most recent sleeps for checkpoint handle gathering': 0,
+  'eviction walk target pages histogram - 0-9': 0,
+  'eviction walk target pages histogram - 10-31': 0,
+  'eviction walk target pages histogram - 128 and higher': 0,
+  'eviction walk target pages histogram - 32-63': 0,
+  'eviction walk target pages histogram - 64-128': 0,
+  'eviction walk target pages reduced due to history store cache pressure': 0,
+  'eviction walk target strategy both clean and dirty pages': 0,
+  'eviction walk target strategy only clean pages': 0,
+  'eviction walk target strategy only dirty pages': 0,
+  'eviction walks abandoned': 0,
+  'eviction walks gave up because they restarted their walk twice': 0,
+  'eviction walks gave up because they saw too many pages and found no candidates': 0,
+  'eviction walks gave up because they saw too many pages and found too few candidates': 0,
+  'eviction walks reached end of tree': 0,
+  'eviction walks restarted': 0,
+  'eviction walks started from root of tree': 0,
+  'eviction walks started from saved location in tree': 0,
+  'eviction worker thread active': 4,
+  'eviction worker thread created': 0,
+  'eviction worker thread evicting pages': 16879,
+  'eviction worker thread removed': 0,
+  'eviction worker thread stable number': 0,
+  'files with active eviction walks': 0,
+  'files with new eviction walks started': 0,
+  'force re-tuning of eviction workers once in a while': 0,
+  'forced eviction - do not retry count to evict pages selected to evict during reconciliation': 0,
+  'forced eviction - history store pages failed to evict while session has history store cursor open': 0,
+  'forced eviction - history store pages selected while session has history store cursor open': 1,
+  'forced eviction - history store pages successfully evicted while session has history store cursor open': 1,
+  'forced eviction - pages evicted that were clean count': 0,
+  'forced eviction - pages evicted that were clean time (usecs)': 0,
+  'forced eviction - pages evicted that were dirty count': 73,
+  'forced eviction - pages evicted that were dirty time (usecs)': 8187,
+  'forced eviction - pages selected because of a large number of updates to a single item': 1,
+  'forced eviction - pages selected because of too many deleted items count': 18,
+  'forced eviction - pages selected count': 73,
+  'forced eviction - pages selected unable to be evicted count': 0,
+  'forced eviction - pages selected unable to be evicted time': 0,
+  'hazard pointer blocked page eviction': 47,
+  'hazard pointer check calls': 16952,
+  'hazard pointer check entries walked': 43060,
+  'hazard pointer maximum array length': 2,
+  'history store table insert calls': 4898,
+  'history store table insert calls that returned restart': 0,
+  'history store table max on-disk size': 0,
+  'history store table on-disk size': 49152,
+  'history store table reads': 0,
+  'history store table reads missed': 0,
+  'history store table reads requiring squashed modifies': 0,
+  'history store table resolved updates without timestamps that lose their durable timestamp': 0,
+  'history store table truncation by rollback to stable to remove an unstable update': 0,
+  'history store table truncation by rollback to stable to remove an update': 0,
+  'history store table truncation to remove all the keys of a btree': 0,
+  'history store table truncation to remove an update': 0,
+  'history store table truncation to remove range of updates due to an update without a timestamp on data page': 0,
+  'history store table truncation to remove range of updates due to key being removed from the data page during reconciliation': 0,
+  'history store table truncations that would have happened in non-dryrun mode': 0,
+  'history store table truncations to remove an unstable update that would have happened in non-dryrun mode': 0,
+  'history store table truncations to remove an update that would have happened in non-dryrun mode': 0,
+  'history store table updates without timestamps fixed up by reinserting with the fixed timestamp': 0,
+  'history store table writes requiring squashed modifies': 75,
+  'in-memory page passed criteria to be split': 17,
+  'in-memory page splits': 5,
+  'internal page split blocked its eviction': 0,
+  'internal pages evicted': 16806,
+  'internal pages queued for eviction': 0,
+  'internal pages seen by eviction walk': 0,
+  'internal pages seen by eviction walk that are already queued': 0,
+  'internal pages split during eviction': 0,
+  'leaf pages split during eviction': 7,
+  'maximum bytes configured': Long('7849639936'),
+  'maximum milliseconds spent at a single eviction': 0,
+  'maximum page size seen at eviction': 0,
+  'modified pages evicted': 109,
+  'modified pages evicted by application threads': 0,
+  'operations timed out waiting for space in cache': 0,
+  'overflow keys on a multiblock row-store page blocked its eviction': 0,
+  'overflow pages read into cache': 0,
+  'page split during eviction deepened the tree': 0,
+  'page written requiring history store records': 281,
+  'pages currently held in the cache': 78928,
+  'pages evicted by application threads': 0,
+  'pages evicted in parallel with checkpoint': 16820,
+  'pages queued for eviction': 0,
+  'pages queued for eviction post lru sorting': 0,
+  'pages queued for urgent eviction': 16889,
+  'pages queued for urgent eviction during walk': 0,
+  'pages queued for urgent eviction from history store due to high dirty content': 0,
+  'pages read into cache': 101282,
+  'pages read into cache after truncate': 0,
+  'pages read into cache after truncate in prepare state': 0,
+  'pages removed from the ordinary queue to be queued for urgent eviction': 0,
+  'pages requested from the cache': 113819263,
+  'pages seen by eviction walk': 0,
+  'pages seen by eviction walk that are already queued': 0,
+  'pages selected for eviction unable to be evicted': 47,
+  'pages selected for eviction unable to be evicted because of active children on an internal page': 0,
+  'pages selected for eviction unable to be evicted because of failure in reconciliation': 0,
+  'pages selected for eviction unable to be evicted because of race between checkpoint and updates without timestamps': 0,
+  'pages walked for eviction': 0,
+  'pages written from cache': 822156,
+  'pages written requiring in-memory restoration': 82,
+  'percentage overhead': 8,
+  'recent modification of a page blocked its eviction': 0,
+  'reverse splits performed': 0,
+  'reverse splits skipped because of VLCS namespace gap restrictions': 0,
+  'skip dirty pages during a running checkpoint': 0,
+  'skip pages that are written with transactions greater than the last running': 0,
+  'skip pages that previously failed eviction and likely will again': 0,
+  'the number of times full update inserted to history store': 4637,
+  'the number of times reverse modify inserted to history store': 261,
+  'total milliseconds spent inside reentrant history store evictions in a reconciliation': 0,
+  'tracked bytes belonging to internal pages in the cache': 10015942,
+  'tracked bytes belonging to leaf pages in the cache': Long('6025247762'),
+  'tracked dirty bytes in the cache': 6397418,
+  'tracked dirty pages in the cache': 8,
+  'uncommitted truncate blocked page eviction': 0,
+  'unmodified pages evicted': 16838
+}
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Disk Space Usage :
+touadmin@mongodb-02:~$ ------------------------
+touadmin@mongodb-02:~$ df -h
+Filesystem                       Size  Used Avail Use% Mounted on
+udev                             7.8G     0  7.8G   0% /dev
+tmpfs                            1.6G  1.4M  1.6G   1% /run
+/dev/sda2                         98G   13G   81G  14% /
+tmpfs                            7.9G     0  7.9G   0% /dev/shm
+tmpfs                            5.0M     0  5.0M   0% /run/lock
+tmpfs                            7.9G     0  7.9G   0% /sys/fs/cgroup
+/dev/loop1                        64M   64M     0 100% /snap/core20/2434
+/dev/loop2                        92M   92M     0 100% /snap/lxd/24061
+/dev/loop3                        45M   45M     0 100% /snap/snapd/23258
+/dev/loop4                        92M   92M     0 100% /snap/lxd/29619
+/dev/loop5                        45M   45M     0 100% /snap/snapd/23545
+192.168.63.143:/mongodb2/backup 1007G  355G  602G  38% /mongo/backup
+192.168.63.143:/mongodb2/logs   1007G  355G  602G  38% /mongo/logs
+192.168.63.143:/mongodb2/data   1007G  355G  602G  38% /mongo/data
+/dev/loop6                        64M   64M     0 100% /snap/core20/2496
+tmpfs                            1.6G     0  1.6G   0% /run/user/1002
+touadmin@mongodb-02:~$ sudo du -sh /mongo/data
+3.5G    /mongo/data
+touadmin@mongodb-02:~$ sudo du -sh /mongo/logs/
+9.1G    /mongo/logs/
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ Operation Failures (Errors)
+touadmin@mongodb-02:~$ -------------------------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'db.currentOp().inprog.filter(op => op.errmsg && op.errmsg.includes("timeout")).map(op => op)'
+[]
+touadmin@mongodb-02:~$ Timeouts :
+touadmin@mongodb-02:~$ ----------------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'db.currentOp().inprog.filter(op => op.errmsg && (op.errmsg.includes("timeout") || op.errmsg.includes("operation exceeded time limit"))).map(op => op)'
+[]
+touadmin@mongodb-02:~$
+touadmin@mongodb-02:~$ uptime :
+touadmin@mongodb-02:~$ ------------
+touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'db.serverStatus().uptime'
+1312511
+touadmin@mongodb-02:~$
