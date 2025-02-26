@@ -659,3 +659,4 @@ touadmin@mongodb-02:~$ --------------
 touadmin@mongodb-02:~$ mongosh -u superAdmin -p $mongopwd --authenticationDatabase admin --quiet --eval 'db.currentOp().inprog.filter(op => op.errmsg && (op.errmsg.includes("timeout") || op.errmsg.includes("operation exceeded time limit"))).map(op => op)'
 []
 touadmin@mongodb-02:~$
+
