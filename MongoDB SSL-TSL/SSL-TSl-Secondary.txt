@@ -1,0 +1,46 @@
+venkata@mongodb-rep3:~$ sudo mkdir /etc/mongo
+venkata@mongodb-rep3:~$ sudo mkdir /etc/mongo/ssl/
+venkata@mongodb-rep3:~$ sudo chmod 700 /etc/mongo/ssl/
+venkata@mongodb-rep3:~$ sudo chown mongodb:mongodb /etc/mongo/ssl/
+venkata@mongodb-rep3:~$ sudo mv /tmp/ca.crt /etc/mongo/ssl/
+venkata@mongodb-rep3:~$ sudo mv /tmp/fullchain.pem /etc/mongo/ssl/
+venkata@mongodb-rep3:~$ sudo chmod 700  /etc/mongo/ssl/
+venkata@mongodb-rep3:~$ sudo chown -R mongodb:mongodb /etc/mongo/ssl/
+venkata@mongodb-rep3:~$ sudo systemctl restart mongod
+venkata@mongodb-rep3:~$ sudo systemctl status mongod
+● mongod.service - MongoDB Database Server
+     Loaded: loaded (/lib/systemd/system/mongod.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-02-04 12:12:10 UTC; 8s ago
+       Docs: https://docs.mongodb.org/manual
+   Main PID: 51506 (mongod)
+     Memory: 203.3M
+        CPU: 1.989s
+     CGroup: /system.slice/mongod.service
+             └─51506 /usr/bin/mongod --config /etc/mongod.conf
+
+Feb 04 12:12:10 mongodb-rep3 systemd[1]: Started MongoDB Database Server.
+Feb 04 12:12:10 mongodb-rep3 mongod[51506]: {"t":{"$date":"2025-02-04T12:12:10.211Z"},"s":"I",  "c":"CONTROL",  "id":7484500, "ctx":"main","msg":"Environment variable MONGODB_CONFIG_OVERRI>
+lines 1-12/12 (END)
+venkata@mongodb-rep3:~$ 
+venkata@mongodb-rep3:~$
+venkata@mongodb-rep3:~$  sudo mongosh --host 192.168.61.142 --port 27017 --tls --tlsCertificateKeyFile /etc/mongo/ssl/fullchain.pem --tlsCAFile /etc/mongo/ssl/ca.crt -u superAdmin -p --tlsAllowInvalidCertificates
+Enter password: **********
+Current Mongosh Log ID: 67a209db8a6ada81a2544ca6
+Connecting to:          mongodb://<credentials>@192.168.61.142:27017/?directConnection=true&tls=true&tlsCertificateKeyFile=%2Fetc%2Fmongo%2Fssl%2Ffullchain.pem&tlsCAFile=%2Fetc%2Fmongo%2Fssl%2Fca.crt&tlsAllowInvalidCertificates=true&appName=mongosh+2.3.8
+Using MongoDB:          8.0.4
+Using Mongosh:          2.3.8
+------
+mongo-poc-rs0 [direct: secondary] test> exit
+venkata@mongodb-rep3:~$
+venkata@mongodb-rep3:~$
+venkata@mongodb-rep3:~$ sudo mongosh -u superAdmin -p --tls --tlsCertificateKeyFile /etc/mongo/ssl/fullchain.pem   --tlsAllowInvalidCertificates
+Enter password: **********
+Current Mongosh Log ID: 67a20c076b5ef46185544ca6
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&tls=true&tlsCertificateKeyFile=%2Fetc%2Fmongo%2Fssl%2Ffullchain.pem&tlsAllowInvalidCertificates=true&appName=mongosh+2.3.8
+Using MongoDB:          8.0.4
+Using Mongosh:          2.3.8
+------
+   The server generated these startup warnings when booting
+   2025-02-04T12:12:11.727+00:00: While invalid X509 certificates may be used to connect to this server, they will not be considered permissible for authentication
+------
+mongo-poc-rs0 [direct: secondary] test>

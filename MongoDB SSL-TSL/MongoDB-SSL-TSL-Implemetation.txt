@@ -1,0 +1,213 @@
+To set up SSL for MongoDB step-by-step have both the private key and CA certificate files separately including proper permissions and configuration.
+
+Step-by-Step Process to Configure SSL in MongoDB Using Private Key and CA Files
+Here’s the complete process:
+
+Step 1: Prepare the Necessary Files
+You mentioned that you have both the private key and CA certificate. Let's assume:
+
+Private key is: /etc/mongo/ssl/server.key
+Server certificate is: /etc/mongo/ssl/server.crt (If you don’t have this, use the certificate generated from the private key)
+CA certificate is: /etc/mongo/ssl/ca.crt
+If you don’t have the server certificate (server.crt), you can generate it using OpenSSL:
+
+1.1 Generate the Server Certificate (server.crt) from the private key:
+
+openssl req -new -key /etc/mongo/ssl/server.key -out /etc/mongo/ssl/server.csr
+openssl x509 -req -in /etc/mongo/ssl/server.csr -CA /etc/mongo/ssl/ca.crt -CAkey /etc/mongo/ssl/ca.key -CAcreateserial -out /etc/mongo/ssl/server.crt -days 365
+This generates the server.crt signed by your CA certificate.
+
+Step 2: Set the Correct Permissions
+MongoDB needs the proper permissions to read the certificate and private key files.
+
+Change the ownership of the SSL files to mongodb user and group:
+
+sudo chown mongodb:mongodb /etc/mongo/ssl/server.key /etc/mongo/ssl/server.crt /etc/mongo/ssl/ca.crt
+Set appropriate permissions on the private key and certificate files:
+
+# Private key should only be readable by the mongodb user
+sudo chmod 600 /etc/mongo/ssl/server.key
+
+# Certificate and CA certificate should be readable by mongodb user
+sudo chmod 644 /etc/mongo/ssl/server.crt /etc/mongo/ssl/ca.crt
+Step 3: Configure MongoDB to Use SSL/TLS
+Edit the MongoDB configuration file (mongod.conf) to enable SSL.
+
+
+sudo nano /mongo/mongod.conf
+Ensure the net and security sections are configured to enable SSL/TLS:
+
+yaml
+Copy
+net:
+  tls:
+    mode: requireTLS                          # Enforce TLS connections
+    certificateKeyFile: /etc/mongo/ssl/server.key  # Private key file
+    certificateFile: /etc/mongo/ssl/server.crt    # Server certificate file
+    CAFile: /etc/mongo/ssl/ca.crt              # CA certificate file
+  bindIp: 127.0.0.1,192.168.61.135            # IP addresses MongoDB listens on
+  port: 27017                                 # Port MongoDB listens on
+
+security:
+  authorization: enabled                      # Enable authorization (role-based access control)
+  keyFile: /mongo/mongo-keyfile               # MongoDB internal key file for replica set
+Explanation of the configuration:
+
+certificateKeyFile: Path to your private key file (server.key).
+certificateFile: Path to the server certificate (server.crt).
+CAFile: Path to the CA certificate (ca.crt).
+Step 4: Restart MongoDB
+After editing the mongod.conf file, restart MongoDB to apply the changes:
+
+
+sudo systemctl restart mongod
+To check the status of the service:
+
+
+sudo systemctl status mongod
+Step 5: Verify SSL/TLS Configuration
+To test that SSL/TLS is working, you can connect to MongoDB using the mongo shell with SSL options:
+
+
+mongo --ssl --host <hostname> --sslPEMKeyFile /etc/mongo/ssl/server.key --sslCAFile /etc/mongo/ssl/ca.crt --port 27017
+Replace <hostname> with the actual hostname or IP address of your MongoDB server.
+
+If SSL is working, you should be able to connect securely.
+
+Step 6: Troubleshooting
+If MongoDB fails to start, check the logs for error details:
+
+
+tail -f /mongo/logs/mongod.log
+Common issues:
+
+Incorrect file paths: Double-check that the paths to the key, certificate, and CA file are correct.
+Permissions: Ensure the MongoDB user has read access to the certificate files.
+Invalid format: Make sure the certificates and private key are in the correct PEM format (especially server.key should start with -----BEGIN PRIVATE KEY----- and server.crt should start with -----BEGIN CERTIFICATE-----).
+Summary of Key Commands
+Generate the server certificate from the private key (if needed):
+
+
+openssl req -new -key /etc/mongo/ssl/server.key -out /etc/mongo/ssl/server.csr
+openssl x509 -req -in /etc/mongo/ssl/server.csr -CA /etc/mongo/ssl/ca.crt -CAkey /etc/mongo/ssl/ca.key -CAcreateserial -out /etc/mongo/ssl/server.crt -days 365
+Set permissions:
+
+
+sudo chown mongodb:mongodb /etc/mongo/ssl/server.key /etc/mongo/ssl/server.crt /etc/mongo/ssl/ca.crt
+sudo chmod 600 /etc/mongo/ssl/server.key
+sudo chmod 644 /etc/mongo/ssl/server.crt /etc/mongo/ssl/ca.crt
+Update mongod.conf:
+
+yaml
+Copy
+net:
+  tls:
+    mode: requireTLS
+    certificateKeyFile: /etc/mongo/ssl/server.key
+    certificateFile: /etc/mongo/ssl/server.crt
+    CAFile: /etc/mongo/ssl/ca.crt
+Restart MongoDB:
+
+
+sudo systemctl restart mongod
+Test the SSL/TLS connection:
+
+
+mongo --ssl --host <hostname> --sslPEMKeyFile /etc/mongo/ssl/server.key --sslCAFile /etc/mongo/ssl/ca.crt --port 27017
+
+step by step to set up SSL/TLS in MongoDB using your fullchain.pem file that contains both the private key and the certificate. 
+-====================================================================================================================================
+Step-by-Step Process for Setting Up SSL/TLS in MongoDB
+1. Prepare the Files
+Since you mentioned that fullchain.pem contains both the private key and the certificate, we'll break it into the necessary files:
+
+Private Key (server.key)
+Certificate (server.crt)
+CA Certificate (ca.crt)
+1.1 Extract Private Key from fullchain.pem
+Use the openssl command to extract the private key from your fullchain.pem:
+
+
+openssl pkey -in /etc/mongo/ssl/fullchain.pem -out /etc/mongo/ssl/server.key
+This command will extract the private key and save it in a new file /etc/mongo/ssl/server.key.
+
+1.2 Extract the Certificate from fullchain.pem
+Now, extract the certificate:
+
+openssl x509 -in /etc/mongo/ssl/fullchain.pem -out /etc/mongo/ssl/server.crt
+This will save the certificate into /etc/mongo/ssl/server.crt.
+
+1.3 Extract the CA Certificate (if needed)
+The CA certificate might be embedded in the fullchain.pem file, but if it's there, you can just use it directly. To verify:
+
+
+openssl x509 -in /etc/mongo/ssl/fullchain.pem -noout -text
+Look for the CA section. If it's there, it means the CA certificate is included, and you can save it to /etc/mongo/ssl/ca.crt.
+
+If it's already a separate file (or you have it separately), you can skip this step.
+
+2. Set Correct Permissions
+MongoDB needs to read these files, and they must have proper permissions.
+
+
+sudo chown mongodb:mongodb /etc/mongo/ssl/server.key /etc/mongo/ssl/server.crt /etc/mongo/ssl/ca.crt
+sudo chmod 600 /etc/mongo/ssl/server.key
+sudo chmod 644 /etc/mongo/ssl/server.crt /etc/mongo/ssl/ca.crt
+server.key should have 600 permissions because it's a private key.
+server.crt and ca.crt should have 644 permissions, so MongoDB can read them.
+3. Update the MongoDB Configuration
+Edit the mongod.conf file to enable TLS and point to the appropriate files:
+
+
+sudo nano /mongo/mongod.conf
+Make sure the configuration is as follows:
+
+yaml
+Copy
+net:
+  tls:
+    mode: requireTLS                         # Enforce TLS connections
+    certificateKeyFile: /etc/mongo/ssl/server.key  # Private key file
+    certificateFile: /etc/mongo/ssl/server.crt    # Certificate file (server certificate)
+    CAFile: /etc/mongo/ssl/ca.crt             # Path to the CA certificate
+  bindIp: 127.0.0.1,192.168.61.135           # IPs MongoDB listens on
+  port: 27017                                # Port MongoDB listens on
+
+security:
+  authorization: enabled                     # Enable security (role-based access control)
+  keyFile: /mongo/mongo-keyfile              # MongoDB internal key file for replication
+certificateKeyFile points to the private key.
+certificateFile points to the server certificate.
+CAFile points to the certificate authority file.
+4. Start MongoDB
+Now that everything is set up, restart MongoDB to apply the changes:
+
+
+sudo systemctl restart mongod
+Check the status to ensure MongoDB starts without issues:
+
+
+sudo systemctl status mongod
+If you are not using systemd, try running MongoDB manually with the --config option:
+
+
+/mongo/bin/mongod --config /mongo/mongod.conf
+5. Verify the Connection
+Once MongoDB starts, you can verify that TLS is working by connecting to MongoDB using SSL:
+
+
+mongo --ssl --host <hostname> --sslPEMKeyFile /etc/mongo/ssl/server.key --sslCAFile /etc/mongo/ssl/ca.crt --port 27017
+This command tells mongo to connect using SSL/TLS, specifying the key, certificate, and CA file.
+
+If everything is working correctly, the connection should be secured with SSL.
+
+6. Troubleshooting
+If you encounter errors, check the MongoDB logs for additional details:
+
+
+tail -f /mongo/logs/mongod.log
+Common issues include:
+
+Incorrect file paths: Double-check that the paths to your certificates and key files are correct.
+Permissions: Ensure that the mongodb user has access to read the certificate and key files.
+Incorrect certificate format: Make sure that your server.pem (or server.key and server.crt) are in the correct PEM format.
