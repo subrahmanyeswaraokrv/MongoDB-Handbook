@@ -1,0 +1,114 @@
+# MongoDB Data Export and Import Script
+
+This repository contains scripts for exporting 5 documents from each collection of all databases in a MongoDB 3.4 instance and restoring them to a MongoDB 8.0 instance.
+
+## Prerequisites
+
+Before you run the script, ensure the following:
+
+- MongoDB 3.4 and MongoDB 8.0 are installed and running.
+- You have the `mongoexport` and `mongoimport` tools installed (these come with the MongoDB installation).
+- You have network access to both the MongoDB 3.4 and MongoDB 8.0 instances.
+- You have appropriate credentials for authentication (username, password, and authentication database) for both MongoDB 3.4 and MongoDB 8.0.
+
+## Directory Structure
+
+The directory structure should look like this:
+
+./ ├── mongo_dumps/ # Directory where dumped files will be stored ├── dump_3_4.sh # Script to dump data from MongoDB 3.4 ├── restore_to_8_0.sh # Script to restore data to MongoDB 8.0 └── README.md # This file
+
+markdown
+Copy
+
+## Script Overview
+
+1. **`dump_3_4.sh`**: 
+    - Exports 5 documents from each collection of all databases in the MongoDB 3.4 instance.
+    - It uses `mongoexport` to dump the data into individual JSON files.
+    
+2. **`restore_to_8_0.sh`**: 
+    - Restores the dumped data into the MongoDB 8.0 instance using `mongoimport`.
+    - It reads the exported JSON files and imports them into the corresponding databases and collections in MongoDB 8.0.
+
+## Setup
+
+1. **Configure Connection Details**
+
+   Update the connection details in both `dump_3_4.sh` and `restore_to_8_0.sh` with the following values:
+
+   - `<username>`: MongoDB username.
+   - `<password>`: MongoDB password.
+   - `<auth_db>`: Authentication database (typically `admin`).
+   - `<host>`: MongoDB server hostname (e.g., `localhost`).
+   - `<port>`: MongoDB server port (default is `27017`).
+   
+   Example:
+
+   ```bash
+   MONGO_USER="myUser"
+   MONGO_PASS="myPassword"
+   AUTH_DB="admin"
+   MONGO_HOST="localhost"
+   MONGO_PORT="27017"
+Create an Output Directory
+
+The scripts will store the dumped data in the mongo_dumps directory. Ensure that the mongo_dumps folder exists or is created by the script automatically.
+
+bash
+Copy
+mkdir -p mongo_dumps
+Usage
+1. Dump Data from MongoDB 3.4
+Run the dump_3_4.sh script to dump 5 documents from each collection of all databases in MongoDB 3.4:
+
+bash
+Copy
+./dump_3_4.sh
+This script will:
+
+Connect to MongoDB 3.4.
+Dump 5 documents from each collection in every database.
+Save the output JSON files in the mongo_dumps directory with a filename format like database-collection.json.
+2. Restore Data to MongoDB 8.0
+Once you have exported the data, run the restore_to_8_0.sh script to restore the dumped data to your MongoDB 8.0 instance:
+
+bash
+Copy
+./restore_to_8_0.sh
+This script will:
+
+Connect to MongoDB 8.0.
+Import each JSON file from the mongo_dumps directory into the corresponding database and collection.
+Example Workflow
+Dump 5 documents from each collection in MongoDB 3.4:
+
+bash
+Copy
+./dump_3_4.sh
+Once the dump completes, restore the data to MongoDB 8.0:
+
+bash
+Copy
+./restore_to_8_0.sh
+Notes
+Data Compatibility: MongoDB 8.0 is backward-compatible with data from MongoDB 3.4, so the exported data should restore without issues.
+Limitations: The scripts dump only 5 documents from each collection. If you need to export more data or entire collections, adjust the --limit parameter in the mongoexport command.
+Authentication: Make sure the credentials provided have sufficient privileges to read data from MongoDB 3.4 and write to MongoDB 8.0.
+Troubleshooting
+Connection Issues: Ensure that both MongoDB 3.4 and MongoDB 8.0 instances are running and accessible from the machine where the script is being executed.
+Permission Issues: If you receive errors related to authentication or permissions, double-check the provided MongoDB username, password, and authentication database.
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+markdown
+Copy
+
+### Key Points to Note:
+- The `README.md` explains the **purpose** of the scripts and how they work.
+- It provides detailed **setup** instructions for configuring connection details.
+- There are clear **usage instructions** for running the scripts to **dump and restore data**.
+- It includes a basic **troubleshooting** section for common issues like connection or permission errors.
+
+### Customize:
+Feel free to customize the `README.md` with more details depending on your environment or any additional steps you need to clarify.
+
