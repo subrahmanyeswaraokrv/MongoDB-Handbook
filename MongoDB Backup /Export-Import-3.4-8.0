@@ -1,5 +1,6 @@
 # MongoDB Data Export and Import Script
-
+# Subrahmanyeswarao Karri 
+# MongoDB 3.4 to  MongoDB 8.0 
 This repository contains scripts for exporting 5 documents from each collection of all databases in a MongoDB 3.4 instance and restoring them to a MongoDB 8.0 instance.
 
 ## Prerequisites
@@ -16,9 +17,6 @@ Before you run the script, ensure the following:
 The directory structure should look like this:
 
 ./ ├── mongo_dumps/ # Directory where dumped files will be stored ├── dump_3_4.sh # Script to dump data from MongoDB 3.4 ├── restore_to_8_0.sh # Script to restore data to MongoDB 8.0 └── README.md # This file
-
-markdown
-Copy
 
 ## Script Overview
 
@@ -44,7 +42,7 @@ Copy
    
    Example:
 
-   ```bash
+   ```
    MONGO_USER="myUser"
    MONGO_PASS="myPassword"
    AUTH_DB="admin"
@@ -54,15 +52,15 @@ Create an Output Directory
 
 The scripts will store the dumped data in the mongo_dumps directory. Ensure that the mongo_dumps folder exists or is created by the script automatically.
 
-bash
-Copy
+
+Command Syntax :
 mkdir -p mongo_dumps
 Usage
 1. Dump Data from MongoDB 3.4
 Run the dump_3_4.sh script to dump 5 documents from each collection of all databases in MongoDB 3.4:
 
-bash
-Copy
+
+Command Syntax :
 ./dump_3_4.sh
 This script will:
 
@@ -72,8 +70,8 @@ Save the output JSON files in the mongo_dumps directory with a filename format l
 2. Restore Data to MongoDB 8.0
 Once you have exported the data, run the restore_to_8_0.sh script to restore the dumped data to your MongoDB 8.0 instance:
 
-bash
-Copy
+
+Command Syntax :
 ./restore_to_8_0.sh
 This script will:
 
@@ -82,13 +80,13 @@ Import each JSON file from the mongo_dumps directory into the corresponding data
 Example Workflow
 Dump 5 documents from each collection in MongoDB 3.4:
 
-bash
-Copy
+
+Command Syntax :
 ./dump_3_4.sh
 Once the dump completes, restore the data to MongoDB 8.0:
 
-bash
-Copy
+
+Command Syntax :
 ./restore_to_8_0.sh
 Notes
 Data Compatibility: MongoDB 8.0 is backward-compatible with data from MongoDB 3.4, so the exported data should restore without issues.
@@ -100,8 +98,7 @@ Permission Issues: If you receive errors related to authentication or permission
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-markdown
-Copy
+Command Syntax :
 
 ### Key Points to Note:
 - The `README.md` explains the **purpose** of the scripts and how they work.
