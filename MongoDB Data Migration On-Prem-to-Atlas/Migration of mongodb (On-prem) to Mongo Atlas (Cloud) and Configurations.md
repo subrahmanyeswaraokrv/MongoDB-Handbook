@@ -33,7 +33,9 @@ Set up & configure Mongo Atlas cluster
 MongoDB Atlas is one PaaS service where you need to create cluster that will hold the databases.  To create cluster from scratch, follow the steps below:
 
 Signup in Mongo Atlas from - https://account.mongodb.com/account/login
+
 ![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screen2.png?raw=true)
+
 2. After Signup and validating email, you will have to fill some basic details like below.
 
 
