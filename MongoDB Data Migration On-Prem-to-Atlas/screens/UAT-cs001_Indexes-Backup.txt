@@ -1,0 +1,91 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/): mongodb+srv://venkatas@pspuat.y5o1r.mongodb.net/?retryWrites=true&w=majority
+Please enter a MongoDB connection string (Default: mongodb://localhost/): mongodb+srv://venkatas@pspuat.y5o1r.mongodb.net/?retryWrites=true&w=majority
+Enter password: ****************
+Current Mongosh Log ID: 67c6ce951867a9af1cc27a64
+Connecting to:          mongodb+srv://<credentials>@pspuat.y5o1r.mongodb.net/?retryWrites=true&w=majority&appName=mongosh+2.0.0
+Using MongoDB:          7.0.17
+Using Mongosh:          2.0.0
+mongosh 2.4.0 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-28T15:05:31.896+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never' in this binary version
+------
+
+Atlas atlas-mtiklx-shard-0 [primary] test> show dbs
+admin   360.00 KiB
+config  412.00 KiB
+local    14.32 GiB
+touprd    1.13 GiB
+Atlas atlas-mtiklx-shard-0 [primary] test> use touprd
+switched to db touprd
+Atlas atlas-mtiklx-shard-0 [primary] touprd> db.cs001.getIndexes()
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { cs001: 1 }, name: 'cs001' },
+  { v: 2, key: { cs002: 1 }, name: 'cs002' },
+  { v: 2, key: { cs003: 1 }, name: 'cs003' },
+  { v: 2, key: { cs004: 1 }, name: 'cs004' },
+  { v: 2, key: { cs005: 1 }, name: 'cs005' },
+  { v: 2, key: { cs00140: 1 }, name: 'cs00140' },
+  { v: 2, key: { 'cs00217.f0007': 1 }, name: 'cs00217.f0007' },
+  { v: 2, key: { 'cs00217.f0056': 1 }, name: 'cs00217.f0056' },
+  { v: 2, key: { 'cs00217.f0057': 1 }, name: 'cs00217.f0057' },
+  { v: 2, key: { 'cs00218.d0024': 1 }, name: 'cs00218.d0024' },
+  { v: 2, key: { cs140: 1 }, name: 'cs140' },
+  { v: 2, key: { 'cs217.f0007': 1 }, name: 'cs217.f0007' },
+  { v: 2, key: { 'cs217.f0056': 1 }, name: 'cs217.f0056' },
+  { v: 2, key: { 'cs217.f0057': 1 }, name: 'cs217.f0057' },
+  { v: 2, key: { 'cs218.d0024': 1 }, name: 'cs218.d0024' },
+  { v: 2, key: { cs005: 1, cs140: 1 }, name: 'rrn_arn_idx' },
+  { v: 2, key: { cs019: 1 }, name: 'cs019' },
+  {
+    v: 2,
+    key: {
+      'cs218.merchantModelKey': 1,
+      'cs218.runNumber': 1,
+      'cs218.recordIdentifier': 1,
+      'cs218.creditAccNum': 1
+    },
+    name: 'cs218.merchant_run_record_creditAcc_idx'
+  },
+  {
+    v: 2,
+    key: {
+      'cs218.merchantModelKey': 1,
+      'cs218.runNumber': 1,
+      'cs218.recordIdentifier': 1,
+      'cs218.debitAccNum': 1
+    },
+    name: 'cs218.merchant_run_record_debitAcc_idx'
+  },
+  {
+    v: 2,
+    key: {
+      'cs218.merchantModelKey': 1,
+      'cs218.runNumber': 1,
+      'cs218.recordIdentifier': 1,
+      'cs218.creditAccNum': 1,
+      'cs218.paymentRefNum': 1
+    },
+    name: 'cs218.merchant_run_record_creditAcc_paymentRef_idx'
+  },
+  { v: 2, key: { 'cs218.d0002': 1 }, name: 'cs218.d0002' },
+  { v: 2, key: { 'cs218.d0003': 1 }, name: 'cs218.d0003' },
+  { v: 2, key: { 'cs218.d0013': 1 }, name: 'cs218.d0013' },
+  { v: 2, key: { 'cs219.p008': 1 }, name: 'cs219.p008' },
+  { v: 2, key: { cs012: 1 }, name: 'cs012' },
+  { v: 2, key: { cs072: 1 }, name: 'cs072' },
+  { v: 2, key: { cs077: 1 }, name: 'cs077' },
+  { v: 2, key: { cs078: 1 }, name: 'cs078' },
+  { v: 2, key: { cs142: 1 }, name: 'cs142' },
+  { v: 2, key: { cs146: 1 }, name: 'cs146' },
+  { v: 2, key: { cs212: 1 }, name: 'cs212' },
+  { v: 2, key: { cs220: 1 }, name: 'cs220' },
+  { v: 2, key: { cs221: 1 }, name: 'cs221' },
+  { v: 2, key: { cs223: 1 }, name: 'cs223' },
+  { v: 2, key: { cs254: 1 }, name: 'cs254' }
+]
+Atlas atlas-mtiklx-shard-0 [primary] touprd>
