@@ -1,6 +1,6 @@
 # Migration of MongoDB (On-prem) to MongoDB Atlas (Cloud) and Configurations
 
-![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screen1.jpg?raw=true)
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen1.jpg?raw=true)
 
 This article will show how to configure MongoDB Atlas from scratch, its features, and different ways to migrate data from on-prem to Atlas cloud.
 
