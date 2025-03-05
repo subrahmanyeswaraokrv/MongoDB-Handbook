@@ -34,35 +34,33 @@ MongoDB Atlas is one PaaS service where you need to create cluster that will hol
 
 Signup in Mongo Atlas from - https://account.mongodb.com/account/login
 
-![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screen2.png?raw=true)
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen2.jpg?raw=true)
 2. After Signup and validating email, you will have to fill some basic details like below.
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen3.jpg?raw=true)
 
 3. There are three types of clusters available in Atlas – Serverless, Dedicated, Shared (Just for learning purpose). There are some limitations like private endpoint can’t be configured with serverless instance. Find more info here, https://www.mongodb.com/cloud/atlas/serverless
 
 Select cloud provider, region, cluster Type (M0 will be free), MongoDB version, cluster name etc.
 
 One cluster will be created, and it looks like below.
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen4.jpg?raw=true)
 
 4. Next step is to create database user. Click on Database Access option from left side bar and click on Add New database User. There will be three types of authentication mechanism (password, certificate, AWS IAM). Now create user with specific role you want.
-
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen5.jpg?raw=true)
 5. To access the Atlas cluster there are three options as of now.
 
 IP whitelisting: We add the IPs (public IP) of the machine from where the cluster will be accessible.
 Peering: We can peer our application VPC /VNet to access the cluster which are hosted in Azure / AWS / GCP.
 Private Endpoint: We can use our existing private link of cloud to give access of the cluster.
 Go to Network Access from left side pane, we can see all the three options like below.
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen6.jpg?raw=true)
 
 Connect to Atlas cluster from IDE / Application
 
 Now the basic configuration of the Atlas cluster is in place. If you want to connect the cluster, need to do the following step.
 
 From the cluster view click on Connect It will show all the connect type we have configured. (I have configured private endpoint hence it is showing here) and click on Choose a connection method. If you configure private endpoint then only choose that option else go for Standard Connection.
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen7.jpg?raw=true)
 Once you choose the connection method, it will give connection string like below to connect from MongoDB compass / Shell or application or BI connector. 
 
 mongodb+srv://<username>:<password>@azrxxxxxxxx-pl-0.os3dd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
@@ -77,7 +75,7 @@ From Atlas GUI:
 
 Depending upon your frequency, backup will be taken automatically and that will be in Snapshots tab.
 
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen8.jpg?raw=true)
 
 2. We can restore the backups from into any target Atlas cluster by clicking Restore button under Snapshots tab.
 
@@ -100,7 +98,7 @@ Live Migration does not support VPC peering or private endpoints for either the 
 If we are not using VPC / private endpoint we can do migration to mongo atlas from on-prem database server. Find the steps to do live migration.
 
 Click on three dots (…) of your cluster then click on Migrate data to this cluster. Then select General Live Migration / Migrate from Ops Manager. Configure the source server properly and click on Start Migration.
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen9.jpg?raw=true)
 2. Cutover – Then optime gap reaches zero for Live Migration that means your own cluster & Atlas are in sync. Click on Prepare to Cutover. Stop your application, change the connect string in application & restart the containers / applications. Test if the application is working properly or not, then click on Cut Over to finish the migration.
 
 Mongo Mirror: If we are using private endpoint, we have to migrate the data in Atlas using one tool called mongo mirror.  We need to install the tool in source server and need to run the below command to migrate the data.
@@ -122,7 +120,7 @@ Monitoring Metric
 
 For monitoring the whole cluster about OpLog, IPOS, Latency, CPU usage etc, mongo Atlas allows us to enable the metrics.
 We can do that from Browse Collection ->  Metrics . Find the screenshot below.
-
+![MongoDB Data Migration](https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/blob/main/MongoDB%20Data%20Migration%20On-Prem-to-Atlas/screens/screen11.jpg?raw=true)
 
 Configuration of Alerts in Atlas
 
