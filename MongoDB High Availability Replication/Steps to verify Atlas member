@@ -1,0 +1,26 @@
+### Subrahmanyeswarao Karri 
+### Steps to verify if a member is out of sync
+
+In MongoDB Atlas, replica set members are fully managed, so you cannot manually resync a member like in a self-managed setup. 
+However, if a member is out of sync, here’s what you can do:
+
+1. Check Cluster Health
+Go to the MongoDB Atlas UI.
+Select your Cluster.
+Navigate to the Metrics tab to monitor the replication lag and node status.
+2. Restart the Out-of-Sync Node
+MongoDB Atlas automatically detects lagging members and may restart them. However, you can manually trigger a failover:
+
+Go to Cluster > Primary Node.
+Click "Test Failover" (this forces an election and may help sync the lagging node).
+3. Scale Up or Optimize Resources
+If the node is lagging due to insufficient resources:
+
+Upgrade the cluster tier to improve performance.
+Check network latency between nodes.
+4. Contact MongoDB Atlas Support
+If a node remains out of sync:
+
+Open a support ticket in the Atlas UI.
+MongoDB support can investigate and resync the node.
+Since MongoDB Atlas is fully managed, manual intervention is limited, and the system handles resyncing automatically.
