@@ -1,0 +1,78 @@
+#### Subrahmanyeswarao Karri 
+#### Resyncing a Member of a Self-Managed MongoDB Replica Set on Ubuntu
+
+Prerequisites
+
+A running MongoDB replica set
+
+Access to the MongoDB shell (mongosh or mongo command-line tool)
+
+Sufficient privileges to restart and reconfigure MongoDB
+
+Steps to Resync a Member of a Replica Set
+
+Step 1: Connect to the MongoDB Replica Set
+
+Log in to the primary node of your replica set:
+
+mongosh --host <primary-host>:<port>
+
+Replace <primary-host> with the actual hostname or IP of the primary node, and <port> with the MongoDB port (default is 27017).
+
+Step 2: Identify the Member to Resync
+
+Run the following command in the MongoDB shell to check the replica set status:
+
+rs.status()
+
+Look for the member that is out of sync or not up-to-date.
+
+Step 3: Remove the Out-of-Sync Member
+
+Connect to the primary and remove the out-of-sync member:
+
+rs.remove("<member-host>:<port>")
+
+Replace <member-host> with the actual hostname or IP of the member to be resynced and <port> with its MongoDB port.
+
+Step 4: Stop the MongoDB Service on the Member
+
+SSH into the out-of-sync member and stop the MongoDB service:
+
+sudo systemctl stop mongod
+
+Step 5: Clear the Data Directory
+
+To force a full resync, delete the MongoDB data directory:
+
+sudo rm -rf /var/lib/mongodb/*
+
+Make sure the correct path is specified for your MongoDB installation. The default data directory is /var/lib/mongodb/.
+
+Step 6: Restart the MongoDB Service
+
+Start the MongoDB service again:
+
+sudo systemctl start mongod
+
+Step 7: Re-add the Member to the Replica Set
+
+Go back to the primary node and re-add the member:
+
+rs.add("<member-host>:<port>")
+
+Step 8: Verify Resync Progress
+
+Monitor the sync progress by checking the replica set status:
+
+rs.status()
+
+Step 9: Check for Full Synchronization
+
+Once the member reaches SECONDARY state, the resync process is complete. You can verify with:
+
+rs.printSecondaryReplicationInfo()
+
+Conclusion
+
+You have successfully resynced a member of your MongoDB replica set. Ensure that replication is working as expected and regularly monitor your replica set health using rs.status().
