@@ -1,0 +1,64 @@
+#### Resync a Member of a Self-Managed Replica Set
+#### Subrahmanyeswarao Karri 
+
+Document :
+https://www.mongodb.com/docs/manual/tutorial/resync-replica-set-member/  
+-----------
+A replica set member becomes "stale" when its replication process falls so far behind that the primary overwrites oplog entries the member has not yet replicated. The member cannot catch up and becomes "stale." When this occurs, you must completely resynchronize the member by removing its data and performing an initial sync.
+
+This tutorial addresses both resyncing a stale member and creating a new member using seed data from another member, both of which can be used to restore a replica set member. When syncing a member, choose a time when the system has the bandwidth to move a large amount of data. Schedule the synchronization during a time of low usage or during a maintenance window.
+
+Important
+Resync from the most up to date member in the replica set.
+
+If you resync a node with stale data, the node rejoins the replica set at a point behind where it was previously. A write that was majority committed before the resync may no longer be majority committed. This can result in data loss.
+
+MongoDB provides two options for performing an initial sync:
+
+Restart the mongod with an empty data directory and let MongoDB's normal initial syncing feature restore the data. This is the more simple option but may take longer to replace the data.
+
+See Automatically Sync a Member.
+
+Restart the machine with a copy of a recent data directory from another member in the replica set. This procedure can replace the data more quickly but requires more manual steps.
+
+See Sync by Copying Data Files from Another Member.
+
+Procedures
+Note
+To prevent changing the write quorum, never rotate more than one replica set member at a time.
+
+Automatically Sync a Member
+Warning
+During initial sync, mongod removes the contents of the dbPath directory.
+
+This procedure relies on MongoDB's regular process for Replica Set Syncing. This stores the current data on the member. For an overview of MongoDB initial sync process, see the Replica Set Syncing section.
+
+Initial sync operations can impact the other members of the set and create additional traffic to the source member. The syncing member requires another member of the set that is accessible and up to date.
+
+If the instance has no data, you can follow the Add Members to a Self-Managed Replica Set or Replace a Self-Managed Replica Set Member procedure to add a new member to a replica set.
+
+You can also force a mongod that is already a member of the set to perform an initial sync by restarting the instance without the contents of the dbPath directory:
+
+Stop the member's mongod instance. To ensure a clean shutdown, use the db.shutdownServer() method from mongosh or on Linux systems, the mongod --shutdown option.
+
+(Optional) Make a backup of all data and sub-directories from the member's dbPath directory. If a full backup is not required, consider backing up just the diagnostic.data directory to preserve potentially-useful troubleshooting data in the event of an issue. See Full Time Diagnostic Data Capture for more information.
+
+Delete all data and sub-directories from the member's dbPath directory.
+
+Restart the mongod process.
+
+At this point, the mongod performs an initial sync. The length of the initial sync process depends on the size of the database and the network latency between members of the replica set.
+
+Sync by Copying Data Files from Another Member
+This approach "seeds" a new or stale member using the data files from an existing member of the replica set. The data files must be sufficiently recent to allow the new member to catch up with the oplog. Otherwise the member would need to perform an initial sync.
+
+Copy the Data Files
+You can capture the data files as either a snapshot or a direct copy. However, in most cases you cannot copy data files from a running mongod instance to another because the data files will change during the file copy operation.
+
+Important
+If copying data files, ensure that your copy includes the content of the local database.
+
+You cannot use a mongodump backup for the data files: only a snapshot backup. For approaches to capturing a consistent snapshot of a running mongod instance, see the Backup Methods for a Self-Managed Deployment documentation.
+
+Sync the Member
+After you have copied the data files from the "seed" source, start the mongod instance with a new members[n]._id and allow it to apply all operations from the oplog until it reflects the current state of the replica set. To see the current status of the replica set, use rs.printSecondaryReplicationInfo() or rs.status().
