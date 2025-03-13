@@ -1,0 +1,73 @@
+### MongoDB E-Commerce Project
+## Subrahmanyeswarao Karri
+Overview
+
+This project is a MongoDB-based e-commerce database that handles users, orders, and products using a document-oriented approach.
+
+Architecture
+Database: NoSQL (MongoDB)
+Collections: Users, Orders, Products
+
+Relationships:
+One-to-Many: Users → Orders
+Many-to-Many: Orders ↔ Products
+
+Embedded Documents for efficient data retrieval
+
+ER Diagram Implementation
+
+Users Collection
+
+_id, name, email, orders (Array of Order IDs)
+
+Orders Collection
+
+_id, user_id (Reference to Users), products (Array of Product IDs), total_price, status
+
+Products Collection
+
+_id, name, price, category
+
+Installation & Setup
+
+Install MongoDB:
+
+Download and install MongoDB from MongoDB Download Center
+
+Start MongoDB server using:
+
+mongod --dbpath /data/db
+
+Import Data:
+
+Use mongoimport to insert sample data:
+
+mongoimport --db ecommerce --collection users --file users.json --jsonArray
+
+Query Examples
+
+Find all orders of a specific user:
+
+db.orders.find({ user_id: ObjectId("123") })
+
+Get all products in a specific order:
+
+db.orders.aggregate([
+  { $match: { _id: ObjectId("456") } },
+  { $lookup: {
+      from: "products",
+      localField: "products",
+      foreignField: "_id",
+      as: "productDetails"
+  }}
+])
+
+Technologies Used
+MongoDB (NoSQL Database)
+Node.js (for API interactions)
+
+Mongoose (ODM for MongoDB in Node.js)
+
+License
+
+This project is licensed under the MIT License.
