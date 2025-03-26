@@ -96,6 +96,61 @@ Stop mongod Service
 venkata@tou-dev-mongo1:~#  sudo systemctl stop mongod
 Connect to mongo Shell
 venkata@tou-dev-mongo1:~#  mongosh 
+===============================================================
+=======Quick Steps ====Custom Installation=====================
+ cat /etc/lsb-release
+ sudo apt update
+ apt list --upgradable
+ sudo wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo tee /etc/apt/trusted.gpg.d/mongodb.asc
+ sudo echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+ sudo apt-get install -y gnupg curl
+ sudo curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server-8.0.gpg
+ sudo apt-get update
+ sudo apt-get install -y mongodb-org
+ sudo chown -R mongodb:mongodb /mongo/data
+ sudo mkdir /mongo/
+ sudo mkdir /mongo/data
+ sudo mkdir /mongo/logs
+ sudo chown -R mongodb:mongodb /mongo/data
+ sudo chown -R mongodb:mongodb /mongo/logs
+ sudo cat /etc/mongod.conf | grep dbPath
+ sudo cat /etc/mongod.conf | grep path
+ sudo vi /etc/mongod.conf
+ sudo cat /etc/mongod.conf | grep dbPath
+ sudo cat /etc/mongod.conf | grep path
+ sudo systemctl enable mongod
+ sudo systemctl start mongod
+ sudo systemctl status mongod
+ mongosh
+ test> use admin
+ admin> db.createUser({ user: "superAdmin", pwd: "xxxxxx", roles: [{ role: "root", db: "admin" }]})
+{ ok: 1 }
+admin> db.auth("superAdmin","xxxxx")
+{ ok: 1 }
+admin> use subbu
+switched to db subbu
+subbu> db.demo.insert({})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('67e3a6c5e863f5619f6b140b') }
+}
+touprd> show collections
+demo
+subbu> db.createUser({ user: "appusrdemo", pwd: "xxxxxxxxxxx", roles: [ { role: "readWrite", db: "subbu" } ] })
+{ ok: 1 }
+subbu> db.auth("appusrdemo", "xxxxxxxxxx")
+{ ok: 1 }
+touprd> exit
+
+sudo vi /etc/mongod.conf
+ security:
+  authorization: enabled
+
+ sudo systemctl restart mongod
+ mongosh -u superAdmin -p
+ mongosh -u appusrdemo -p
+ mongosh -u appusrdemo -p --authenticationDatabase touprd
 
 ===============================================================
 ************Below is the Shell notes from clip board **********
