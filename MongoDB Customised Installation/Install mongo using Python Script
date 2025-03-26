@@ -5,7 +5,7 @@ On your local machine, install paramiko if you haven’t already:
 
 pip install paramiko
 2. Save the Script
-Copy the script into a file, e.g., install_mongo.py.
+Copy the script into a file, e.g., install_mongo.py.(attached )
 
 3. Run the Script
 Open a terminal or command prompt and navigate to the directory where install_mongo.py is saved. Then run:
