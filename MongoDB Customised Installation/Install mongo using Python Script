@@ -1,0 +1,27 @@
+Steps to Run the Python Script
+=================================
+1. Install Required Python Library
+On your local machine, install paramiko if you haven’t already:
+
+pip install paramiko
+2. Save the Script
+Copy the script into a file, e.g., install_mongo.py.
+
+3. Run the Script
+Open a terminal or command prompt and navigate to the directory where install_mongo.py is saved. Then run:
+
+python install_mongo.py
+4. Enter SSH Details
+When prompted, enter:
+
+Server IP (e.g., 192.168.1.100)
+SSH Username (e.g., ubuntu or root)
+SSH Password
+
+The script will connect to the server and perform the MongoDB installation.
+
+5. Verify Installation
+After the script completes, you can manually check MongoDB status on the remote server:
+
+systemctl status mongod
+mongosh -u superAdmin -p
