@@ -80,7 +80,7 @@ venkata@dev-mongodb-poc:~$
 venkata@dev-mongodb-poc:~$ Add the official MongoDB APT Repository to sources lis ^C
 venkata@dev-mongodb-poc:~$ =======================================================^C
 venkata@dev-mongodb-poc:~$ sudo echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
-deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0 multiverse
+
 venkata@dev-mongodb-poc:~$
 venkata@dev-mongodb-poc:~$ Update package database ^C
 venkata@dev-mongodb-poc:~$ ===============================
