@@ -192,9 +192,6 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 venkata@dev-mongodb-poc:~$
 venkata@dev-mongodb-poc:~$ change ownership to mongodb user and group on data directory and log directory^C
 venkata@dev-mongodb-poc:~$ ==============================================================================^C
-venkata@dev-mongodb-poc:~$ chmod sudo chown -R mongodb:mongodb /mongo/data
-chmod: invalid mode: ‘sudo’
-Try 'chmod --help' for more information.
 venkata@dev-mongodb-poc:~$ sudo chown -R mongodb:mongodb /mongo/data
 venkata@dev-mongodb-poc:~$ sudo chown -R mongodb:mongodb /mongo/logs
 venkata@dev-mongodb-poc:~$
