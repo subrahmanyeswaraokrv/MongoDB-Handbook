@@ -7,9 +7,9 @@ This guide outlines how to configure a MongoDB 8 replica set with TLS enabled, i
 
 Replica Set: `mongopoc_rs0`
 Nodes:
-- Primary: `192.168.61.135`
-- Secondary: `192.168.61.137`
-- Secondary: `192.168.61.138`
+- Primary: `192.xxx.xx.01`
+- Secondary: `192.xxx.xx.02`
+- Secondary: `192.xxx.xx.03`
 
 ---
 
@@ -18,7 +18,7 @@ Nodes:
 #### 1. 📁 Prerequisites
 - MongoDB 8 installed on all nodes
 - TLS certificate files:
-  - `/etc/mongo/ssl/toucanint-full.pem` (contains private key + cert chain)
+  - `/etc/mongo/ssl/myfile-full.pem` (contains private key + cert chain)
   - `/etc/mongo/ssl/ca.crt` (CA certificate)
 
 ---
@@ -26,14 +26,14 @@ Nodes:
 #### 2. 📂 Copy TLS Files to All Nodes
 From the working node (e.g. `.135`):
 ```bash
-scp /etc/mongo/ssl/* venkata@192.168.61.137:/etc/mongo/ssl/
-scp /etc/mongo/ssl/* venkata@192.168.61.138:/etc/mongo/ssl/
+scp /etc/mongo/ssl/* venkata@192.xxx.xx.02:/etc/mongo/ssl/
+scp /etc/mongo/ssl/* venkata@192.xxx.xx.03:/etc/mongo/ssl/
 ```
 
 On each target node:
 ```bash
 sudo chown mongodb:mongodb /etc/mongo/ssl/*.pem /etc/mongo/ssl/*.crt
-sudo chmod 600 /etc/mongo/ssl/toucanint-full.pem
+sudo chmod 600 /etc/mongo/ssl/myfile-full.pem
 sudo chmod 644 /etc/mongo/ssl/ca.crt
 ```
 
@@ -48,7 +48,7 @@ net:
   bindIp: 127.0.0.1,<node_ip>
   tls:
     mode: requireTLS
-    certificateKeyFile: /etc/mongo/ssl/toucanint-full.pem
+    certificateKeyFile: /etc/mongo/ssl/myfile-full.pem
     CAFile: /etc/mongo/ssl/ca.crt
     allowInvalidHostnames: true
     allowInvalidCertificates: true
@@ -71,8 +71,8 @@ sudo systemctl status mongod
 #### 5. 🤖 Connect and Initiate Replica Set
 From the primary node:
 ```bash
-mongosh --host 192.168.61.135 --tls \
---tlsCertificateKeyFile /etc/mongo/ssl/toucanint-full.pem \
+mongosh --host 192.xxx.xx.01 --tls \
+--tlsCertificateKeyFile /etc/mongo/ssl/myfile-full.pem \
 --tlsCAFile /etc/mongo/ssl/ca.crt \
 -u superAdmin -p --tlsAllowInvalidCertificates
 ```
@@ -82,9 +82,9 @@ Inside mongosh:
 rs.initiate({
   _id: "mongopoc_rs0",
   members: [
-    { _id: 0, host: "192.168.61.135:27017" },
-    { _id: 1, host: "192.168.61.137:27017" },
-    { _id: 2, host: "192.168.61.138:27017" }
+    { _id: 0, host: "192.xxx.xx.01:27017" },
+    { _id: 1, host: "192.xxx.xx.02:27017" },
+    { _id: 2, host: "192.xxx.xx.03:27017" }
   ]
 })
 ```
