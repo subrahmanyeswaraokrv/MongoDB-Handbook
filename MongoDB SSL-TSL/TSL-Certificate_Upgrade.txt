@@ -1,0 +1,123 @@
+**MongoDB TLS Replica Set Setup Guide with Troubleshooting**
+
+---
+
+### 📅 Overview
+This guide outlines how to configure a MongoDB 8 replica set with TLS enabled, including all steps for preparing nodes, securing certificates, and troubleshooting common issues.
+
+Replica Set: `mongopoc_rs0`
+Nodes:
+- Primary: `192.168.61.135`
+- Secondary: `192.168.61.137`
+- Secondary: `192.168.61.138`
+
+---
+
+### 🔧 Step-by-Step TLS Setup
+
+#### 1. 📁 Prerequisites
+- MongoDB 8 installed on all nodes
+- TLS certificate files:
+  - `/etc/mongo/ssl/toucanint-full.pem` (contains private key + cert chain)
+  - `/etc/mongo/ssl/ca.crt` (CA certificate)
+
+---
+
+#### 2. 📂 Copy TLS Files to All Nodes
+From the working node (e.g. `.135`):
+```bash
+scp /etc/mongo/ssl/* venkata@192.168.61.137:/etc/mongo/ssl/
+scp /etc/mongo/ssl/* venkata@192.168.61.138:/etc/mongo/ssl/
+```
+
+On each target node:
+```bash
+sudo chown mongodb:mongodb /etc/mongo/ssl/*.pem /etc/mongo/ssl/*.crt
+sudo chmod 600 /etc/mongo/ssl/toucanint-full.pem
+sudo chmod 644 /etc/mongo/ssl/ca.crt
+```
+
+---
+
+#### 3. 📝 Update `mongod.conf`
+
+For each node (`/mongo/mongod.conf`):
+```yaml
+net:
+  port: 27017
+  bindIp: 127.0.0.1,<node_ip>
+  tls:
+    mode: requireTLS
+    certificateKeyFile: /etc/mongo/ssl/toucanint-full.pem
+    CAFile: /etc/mongo/ssl/ca.crt
+    allowInvalidHostnames: true
+    allowInvalidCertificates: true
+
+replication:
+  replSetName: mongopoc_rs0
+```
+
+---
+
+#### 4. ⏱ Start MongoDB on Each Node
+```bash
+sudo systemctl start mongod
+sudo systemctl enable mongod
+sudo systemctl status mongod
+```
+
+---
+
+#### 5. 🤖 Connect and Initiate Replica Set
+From the primary node:
+```bash
+mongosh --host 192.168.61.135 --tls \
+--tlsCertificateKeyFile /etc/mongo/ssl/toucanint-full.pem \
+--tlsCAFile /etc/mongo/ssl/ca.crt \
+-u superAdmin -p --tlsAllowInvalidCertificates
+```
+
+Inside mongosh:
+```js
+rs.initiate({
+  _id: "mongopoc_rs0",
+  members: [
+    { _id: 0, host: "192.168.61.135:27017" },
+    { _id: 1, host: "192.168.61.137:27017" },
+    { _id: 2, host: "192.168.61.138:27017" }
+  ]
+})
+```
+
+---
+
+### ⚡ Troubleshooting TLS Issues
+
+| Issue | Solution |
+|-------|----------|
+| **EACCES: permission denied** | Ensure file owned by `mongodb:mongodb` and `chmod 600`. Use `sudo` with `mongosh` or `chown` to user. |
+| **PEM routines::bad end line** | PEM file lines must be separate: `END` and `BEGIN` on different lines. Run `dos2unix` to clean line endings. |
+| **Socket disconnected before TLS** | Other nodes in replica set are offline or misconfigured. Try connecting to a single node. |
+| **TLS handshake fails** | Use `openssl s_client -connect <ip>:27017 -tls1_2` to verify cert chain. Check `mongod.conf` settings. |
+| **Mongo won't start** | Run `sudo tail -30 /mongo/logs/mongod.log` and look for TLS or PEM file issues. |
+
+---
+
+### 💪 System Tuning (Recommended)
+```bash
+echo "vm.max_map_count=128000" | sudo tee -a /etc/sysctl.conf
+echo "vm.swappiness=0" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+```
+
+---
+
+### 📆 Final Tips
+- Always verify file ownership & permissions
+- Confirm each node listens on its own IP (`bindIp`)
+- Restart `mongod` after each config change
+- Validate connection with `mongosh` or `openssl`
+
+---
+
+For advanced setups or scripting automation, reach out anytime!
