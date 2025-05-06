@@ -1,0 +1,73 @@
+Complete Title  :Database Restoration  
+Brief Title  : Mongo Database Restore using shell script 
+
+Table of contents 
+Objective..................................................................................
+Scope of the Document......................................................................
+General Description........................................................................
+Mongodb Database Restore using shell script................................................
+Mongodb script details..................................................................... 
+Conclusion................................................................................. 
+Reference Document......................................................................... 
+
+Objective 
+The objective of this document is to provide detailed instructions for restoring MongoDB databases from backups. Restoring from backups is a critical process in the event of data loss, corruption, or other incidents that require data recovery. This document aims to ensure that database administrators can effectively and efficiently restore MongoDB databases to their desired state 
+
+Scope of this Document  
+This document covers the following aspects of MongoDB database restoration: 
+Restore Strategy: Explanation of the restore method and steps involved. 
+User Permissions: Required permissions for users to perform restoration. 
+Restore Script: Detailed instructions and code for automated restoration. 
+Decompression: Steps to decompress backup files before restoration. 
+Verification: Ensuring the restoration process is successful. 
+Monitoring: Ensuring restorations are completed successfully and troubleshooting common issues. 
+
+General Description 
+MongoDB database restoration involves using the mongorestore utility to import data from backup files created using mongodump. The process typically includes decompressing the backup files (if they were compressed) and using mongorestore to load the data into the MongoDB instance. This document outlines the necessary steps and provides a script to automate the restoration process, ensuring that data can be quickly and accurately restored in the event of data loss. 
+
+ 
+MongoDB Restore Using Shell Script 
+Step 1 :   Login to mongo Server and set path to store scripts 
+touadmin@dev-mongodb-poc3: ~$ sudo mkdir /mongo/mongoscripts 
+touadmin@dev-mongodb-poc3: ~$ cd /mongo/mongoscripts/ 
+touadmin@dev-mongodb-poc3:/mongo$sudo chown -R mongodb:mongodb /mongo/mongoscripts/ 
+touadmin@dev-mongodb-poc3:/mongo$ sudo chown -R mongodb:mongodb /mongo 
+touadmin@dev-mongodb-poc3:/mongo$ 
+
+Step 2: Write script to file   
+touadmin@dev-mongodb-poc3:/mongo$ ll -lhrt  
+-rwxr-xr-x 1 venkata venkata 1.8K Dec 2 07:58 mongodb_restore_script.sh* 
+touadmin@dev-mongodb-poc3:/mongo$ vi mongodb_restore_script.sh 
+
+Step 3: Script Explanation 
+MongoDB Connection Details: 
+The script uses the new user backupusr with the appropriate credentials and connects to the replica set. 
+Backup File Details: 
+RESTORE_DIR: The directory where backups are stored. 
+BACKUP_FILE: The specific backup file to restore (update this to match the backup file name). 
+EXTRACT_DIR: The directory where the backup file will be decompressed. 
+Create Extraction Directory: 
+Ensure the extraction directory exists and create it if necessary. 
+Decompress the Backup File: 
+Use tar to decompress the backup file. 
+Verify the decompression process. 
+Perform the Restore using mongorestore: 
+Use mongorestore to restore the data from the decompressed backup directory. 
+
+The --oplogReplay option ensures the restoration includes operations from the oplog. 
+
+Verify the Restore: 
+Check if the mongorestore command was successful. 
+
+Conclusion  
+In conclusion, the MongoDB database restore script and the accompanying documentation provide a comprehensive guide to restoring databases from backups. By following the procedures outlined in this document, database administrators can effectively manage the restoration process, ensuring data integrity and availability. 
+
+References 
+For further reading and detailed information, please refer to the following resources: 
+
+MongoDB Documentation: 
+Restore a Self-Managed Replica Set from MongoDB Backups - MongoDB Manual v8.0  
+GIT Repository 
+https://github.com/subrahmanyeswaraokrv/MongoDB-Handbook/new/main/MongoDB%20Restore  
+
+These resources provide comprehensive guides and best practices for managing MongoDB restore, using mongorestore and shell script. 
