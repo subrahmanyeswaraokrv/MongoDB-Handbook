@@ -28,16 +28,16 @@ MongoDB database restoration involves using the mongorestore utility to import d
  
 MongoDB Restore Using Shell Script 
 Step 1 :   Login to mongo Server and set path to store scripts 
-touadmin@dev-mongodb-poc3: ~$ sudo mkdir /mongo/mongoscripts 
-touadmin@dev-mongodb-poc3: ~$ cd /mongo/mongoscripts/ 
-touadmin@dev-mongodb-poc3:/mongo$sudo chown -R mongodb:mongodb /mongo/mongoscripts/ 
-touadmin@dev-mongodb-poc3:/mongo$ sudo chown -R mongodb:mongodb /mongo 
-touadmin@dev-mongodb-poc3:/mongo$ 
+venkata@rep-mongodb-s1: ~$ sudo mkdir /mongo/mongoscripts 
+venkata@rep-mongodb-s1: ~$ cd /mongo/mongoscripts/ 
+venkata@rep-mongodb-s1:/mongo$sudo chown -R mongodb:mongodb /mongo/mongoscripts/ 
+venkata@rep-mongodb-s1:/mongo$ sudo chown -R mongodb:mongodb /mongo 
+venkata@rep-mongodb-s1:/mongo$ 
 
 Step 2: Write script to file   
-touadmin@dev-mongodb-poc3:/mongo$ ll -lhrt  
+venkata@rep-mongodb-s1:/mongo$ ll -lhrt  
 -rwxr-xr-x 1 venkata venkata 1.8K Dec 2 07:58 mongodb_restore_script.sh* 
-touadmin@dev-mongodb-poc3:/mongo$ vi mongodb_restore_script.sh 
+venkata@rep-mongodb-s1:/mongo$ vi mongodb_restore_script.sh 
 
 Step 3: Script Explanation 
 MongoDB Connection Details: 
