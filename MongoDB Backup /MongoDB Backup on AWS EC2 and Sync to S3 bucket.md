@@ -1,8 +1,8 @@
-root@ip-10-171-7-17:/mongodb/scripts# =====================================================================================================================^C
-root@ip-10-171-7-17:/mongodb/scripts#
-root@ip-10-171-7-17:/mongodb/scripts#                                  MongoDB Backup on AWS EC2 and Sync to S3 bucket                                     ^C
-root@ip-10-171-7-17:/mongodb/scripts# =====================================================================================================================^C
-root@ip-10-171-7-17:/mongodb/scripts# ll -lhrt
+subbu@ip-10-XX-X-01:/mongodb/scripts# =====================================================================================================================^C
+subbu@ip-10-XX-X-01:/mongodb/scripts#
+subbu@ip-10-XX-X-01:/mongodb/scripts#                                  MongoDB Backup on AWS EC2 and Sync to S3 bucket                                     ^C
+subbu@ip-10-XX-X-01:/mongodb/scripts# =====================================================================================================================^C
+subbu@ip-10-XX-X-01:/mongodb/scripts# ll -lhrt
 total 28K
 drwxr-xr-x 6 mongodb mongodb 4.0K May  2 14:28 ../
 -rw-r--r-- 1 root    root    1.6K May  7 17:18 mongo_log_rotation.sh
@@ -10,7 +10,7 @@ drwxr-xr-x 6 mongodb mongodb 4.0K May  2 14:28 ../
 -rwxr-xr-x 1 root    root    1.2K May 14 13:37 mongo_backup_sync_s3.sh*
 -rwxr-xr-x 1 root    root    3.4K May 14 17:57 mongodb_backup_check.sh*
 drwxr-xr-x 2 mongodb mongodb 4.0K May 14 17:57 ./
-root@ip-10-171-7-17:/mongodb/scripts# cat mongodb_backup_aws_server.sh
+subbu@ip-10-XX-X-01:/mongodb/scripts# cat mongodb_backup_aws_server.sh
 #!/bin/bash
 #===================================================================================================#
 # Script : MongoDB Database Backup                    Developed By :Venkata Subrahmanyeswarao Karri #
@@ -146,9 +146,9 @@ log " All backups completed successfully."
 log "---------------------------------------------"
 
 exit 0
-root@ip-10-171-7-17:/mongodb/scripts#
-root@ip-10-171-7-17:/mongodb/scripts#
-root@ip-10-171-7-17:/mongodb/scripts# cat mongo_backup_sync_s3.sh
+subbu@ip-10-XX-X-01:/mongodb/scripts#
+subbu@ip-10-XX-X-01:/mongodb/scripts#
+subbu@ip-10-XX-X-01:/mongodb/scripts# cat mongo_backup_sync_s3.sh
 #!/bin/bash
 #===================================================================================================#
 # Script : MongoDB Database Backup Sync S3 bucket     Developed By :Venkata Subrahmanyeswarao Karri #
@@ -172,9 +172,9 @@ echo "$TIMESTAMP - Deleting local backups older than 7 days..." >> $LOG_FILE
 find $LOCAL_BACKUP_DIR -type f -name "*.tar.gz" -mtime +7 -exec rm -f {} \; >> $LOG_FILE 2>&1
 
 echo "$TIMESTAMP - Backup sync completed." >> $LOG_FILE
-root@ip-10-171-7-17:/mongodb/scripts#
-root@ip-10-171-7-17:/mongodb/scripts#
-root@ip-10-171-7-17:/mongodb/scripts# cat mongodb_backup_check.sh
+subbu@ip-10-XX-X-01:/mongodb/scripts#
+subbu@ip-10-XX-X-01:/mongodb/scripts#
+subbu@ip-10-XX-X-01:/mongodb/scripts# cat mongodb_backup_check.sh
 #!/bin/bash
 #=========================================================================================================#
 # Script : MongoDB Backup Checker and Executor                   Author : Venkata Subrahmanyeswarao Karri #
@@ -253,4 +253,4 @@ else
     exit 1
 fi
 
-root@ip-10-171-7-17:/mongodb/scripts#
+subbu@ip-10-XX-X-01:/mongodb/scripts#
