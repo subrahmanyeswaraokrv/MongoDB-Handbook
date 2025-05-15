@@ -2,7 +2,7 @@
 #===================================================================================================#
 # Script : MongoDB Database Backup                    Developed By :Venkata Subrahmanyeswarao Karri #
 # Environment  : AWS-UAT                      Review & Updated By :Venkata Subrahmanyeswarao Karri  #
-# Version : 1.0                                        Authorized :  Toucan Payments India Pvt Ltd  #
+# Version : 1.0                                        Authorized :   Subrahmanyeswarao Karri       #
 #===================================================================================================#
 #------------------------------------------------------------------------------
 # Configuration
