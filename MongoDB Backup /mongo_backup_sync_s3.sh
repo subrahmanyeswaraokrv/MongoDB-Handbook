@@ -2,7 +2,7 @@
 #===================================================================================================#
 # Script : MongoDB Database Backup Sync S3 bucket     Developed By :Venkata Subrahmanyeswarao Karri #
 # Environment  : AWS-UAT                      Review & Updated By :Venkata Subrahmanyeswarao Karri  #
-# Version : 1.0                                        Authorized :  Toucan Payments India Pvt Ltd  #
+# Version : 1.0                                        Authorized :   Subrahmanyeswarao Karri       #
 #===================================================================================================#
 # Set variables
 LOCAL_BACKUP_DIR="/mongodb/backup/touprd"
