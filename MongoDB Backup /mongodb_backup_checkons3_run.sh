@@ -4,7 +4,7 @@
 #=========================================================================================================#
 # Script : MongoDB Backup Checker and Executor                   Author : Venkata Subrahmanyeswarao Karri #
 # Description : Checks if S3 has today's backup. If not, and if this node is a secondary, trigger backup  #
-# Environment : AWS UST                                                    Toucan Payments India Pvt Ltd  #
+# Environment : AWS UST                                                                                   #
 #=========================================================================================================#
 
 # ==== Configurable Variables ====
