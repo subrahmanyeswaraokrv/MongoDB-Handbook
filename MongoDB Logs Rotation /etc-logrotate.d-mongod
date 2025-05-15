@@ -1,0 +1,14 @@
+/var/log/mongodb/mongod.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+    delaycompress
+    create 640 mongodb mongodb
+    sharedscripts
+    postrotate
+        # Call custom logrotate script for MongoDB logs
+        /bin/bash /mongodb/scripts/mongo_logrotate_sync.sh
+    endscript
+}
