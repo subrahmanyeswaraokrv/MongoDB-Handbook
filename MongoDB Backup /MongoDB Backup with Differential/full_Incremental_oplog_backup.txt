@@ -1,0 +1,18 @@
+Requirement: Full_Incremental_oplog.sh
+-------------------------------------
+1.Single script to run on secondary node every hour with a delay (e.g., at HH:05)
+2.Checks if the respective full or differential backup file exists in S3
+3.If not found, it performs the full or differential backup accordingly
+4.Syncs to appropriate S3 folder (/full/ or /diff/)
+
+✅ Crontab (on secondary node)
+5 * * * * /mongodb/scripts/mongodb_smart_backup.sh >> /mongodb/backup/mongodb_cron_smart.log 2>&1
+✅ Summary
+Feature	Implemented
+Delayed execution (HH:05)	✅
+Checks full backup at 00:00	✅
+Checks differential hourly	✅
+Syncs full → s3://.../full/	✅
+Syncs diff → s3://.../diff/	✅
+Single script on secondary	✅
+Timestamp tracking	✅
