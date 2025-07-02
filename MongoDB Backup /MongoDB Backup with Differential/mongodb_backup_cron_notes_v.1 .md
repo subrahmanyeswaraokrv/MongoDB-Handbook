@@ -1,5 +1,13 @@
 ## MongoDB Backup & Restore: Cron & Fixes Summary
 
+db.updateUser("backupuser", {
+  roles: [
+    { role: "backup", db: "admin" },
+    { role: "read", db: "local" },
+    { role: "clusterMonitor", db: "admin" }
+  ]
+})
+
 ### 🕒 Cron Schedule
 
 ```cron
