@@ -7,9 +7,9 @@
 # === Required MongoDB connection details ===
 MONGO_USER="user"
 MONGO_PASS='xxxxx'
-MONGO_HOSTS="192.168.61.165:27017,192.168.61.185:27017,192.168.61.188:27017"
-DB_NAME="touprd"
-REPL_SET="smsrwaiss0"
+MONGO_HOSTS="192.168.61.xx1:27017,192.168.61.xx2:27017,192.168.61.xx3:27017"
+DB_NAME="xxxxx"
+REPL_SET="rep0"
 
 # === TLS certificate paths ===
 TLS_CERT="/etc/mongo/ssl/toucanint-full.pem"
@@ -29,7 +29,7 @@ awk 'NR==1 {print "c1,c2,c3,c4"; next}1' FS=',' OFS=',' "$COUNTRIES_FILE" > "$TM
 awk 'NR==1 {print "c1,c2,c3,c4,c5,c6"; next}1' FS=',' OFS=',' "$CURRENCIES_FILE" > "$TMP_DIR/currencies_mapped.csv"
 
 # === MongoDB URI ===
-MONGO_URI="mongodb://${MONGO_USER}:${MONGO_PASS}@192.168.61.165:27017,192.168.61.185:27017,192.168.61.188:27017/${DB_NAME}?authSource=admin&replicaSet=smsrwaiss0&retryWrites=true&w=majority"
+MONGO_URI="mongodb://${MONGO_USER}:${MONGO_PASS}@192.168.61.xx1:27017,192.168.61.xx2:27017,192.168.61.xx3:27017/${DB_NAME}?authSource=admin&replicaSet=rep0&retryWrites=true&w=majority"
 # === TLS options (common to all mongoimport calls) ===
 #TLS_OPTIONS="--tls --tlsCertificateKeyFile=${TLS_CERT} --tlsCAFile=${TLS_CA} --tlsAllowInvalidCertificates"
 TLS_OPTIONS="--ssl --sslPEMKeyFile=${TLS_CERT} --sslCAFile=${TLS_CA} --tlsInsecure"
