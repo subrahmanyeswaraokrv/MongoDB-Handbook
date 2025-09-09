@@ -936,13 +936,13 @@ mongopoc_rs0 [primary] admin> db.grantRolesToUser("backupusr", [{ role: "cluster
 mongopoc_rs0 [primary] admin> exit
 root@dev-mongodb-poc1:/mongo/backup/pbm# sudo systemctl restart pbm-agent
 root@dev-mongodb-poc1:/mongo/backup/pbm#
-root@dev-mongodb-poc1:/mongo/backup/pbm# pbm status --mongodb-uri="mongodb://backupusr:6ackU9u&Er@192.168.61.135,192.168.61.137,192.168.61.138/admin?replicaSet=mongopoc_rs0&tls=true&tlsInsecure=true&tlsAllowInvalidCertificates=true&tlsCAFile=/etc/mongo/ssl/ca.crt&tlsCertificateKeyFile=/etc/mongo/ssl/toucanint-full.pem&authSource=admin"
+root@dev-mongodb-poc1:/mongo/backup/pbm# pbm status --mongodb-uri="mongodb://backupusr:6ackU9u&Er@10.198.61..135,10.198.61..137,10.198.61..138/admin?replicaSet=mongopoc_rs0&tls=true&tlsInsecure=true&tlsAllowInvalidCertificates=true&tlsCAFile=/etc/mongo/ssl/ca.crt&tlsCertificateKeyFile=/etc/mongo/ssl/toucanint-full.pem&authSource=admin"
 Cluster:
 ========
 mongopoc_rs0:
-  - 192.168.61.135:27017 [S]: pbm-agent [v2.10.0] OK
-  - 192.168.61.137:27017 [P]: pbm-agent [v2.10.0] OK
-  - 192.168.61.138:27017 [S]: pbm-agent [v2.10.0] OK
+  - 10.198.61..135:27017 [S]: pbm-agent [v2.10.0] OK
+  - 10.198.61..137:27017 [P]: pbm-agent [v2.10.0] OK
+  - 10.198.61..138:27017 [S]: pbm-agent [v2.10.0] OK
 
 
 PITR incremental backup:
@@ -959,4 +959,11 @@ FS  /mongo/backup/pbm
   Snapshots:
     2025-09-09T11:32:58Z 106.45MB <logical> success [restore_to_time: 2025-09-09T11:33:31]
 root@dev-mongodb-poc1:/mongo/backup/pbm#
+
+==================================================
+root@dev-mongodb-poc1:/mongo/backup/pbm/2025-09-09T11:32:58Z# pbm restore 2025-09-09T11:32:58Z --mongodb-uri="mongodb://backupusr:6ackU9u&Er@10.198.61..135,10.198.61..137,10.198.61..138/admin?replicaSet=mongopoc_rs0&tls=true&tlsInsecure=true&tlsAllowInvalidCertificates=true&tlsCAFile=/etc/mongo/ssl/ca.crt&tlsCertificateKeyFile=/etc/mongo/ssl/toucanint-full.pem&authSource=admin"
+Starting restore 2025-09-09T12:30:04.954474403Z from '2025-09-09T11:32:58Z'.....Restore of the snapshot from '2025-09-09T11:32:58Z' has started
+root@dev-mongodb-poc1:/mongo/backup/pbm/2025-09-09T11:32:58Z#
+
+
 
