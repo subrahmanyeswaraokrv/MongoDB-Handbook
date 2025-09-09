@@ -919,3 +919,44 @@ Starting backup '2025-09-09T11:32:58Z'.....Backup '2025-09-09T11:32:58Z' to remo
 root@dev-mongodb-poc1:/mongo/backup/pbm# ls
 root@dev-mongodb-poc1:/mongo/backup/pbm# ls
 root@dev-mongodb-poc1:/mongo/backup/pbm#
+mongopoc_rs0 [primary] admin> use admin
+already on db admin
+mongopoc_rs0 [primary] admin> db.grantRolesToUser("backupusr", [{ role: "clusterMonitor", db: "admin" }])
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1757419026, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('DgUKlbyCyZxI2HuIivXSXHOsS5A=', 0),
+      keyId: Long('7510428050010406913')
+    }
+  },
+  operationTime: Timestamp({ t: 1757419026, i: 1 })
+}
+mongopoc_rs0 [primary] admin> exit
+root@dev-mongodb-poc1:/mongo/backup/pbm# sudo systemctl restart pbm-agent
+root@dev-mongodb-poc1:/mongo/backup/pbm#
+root@dev-mongodb-poc1:/mongo/backup/pbm# pbm status --mongodb-uri="mongodb://backupusr:6ackU9u&Er@192.168.61.135,192.168.61.137,192.168.61.138/admin?replicaSet=mongopoc_rs0&tls=true&tlsInsecure=true&tlsAllowInvalidCertificates=true&tlsCAFile=/etc/mongo/ssl/ca.crt&tlsCertificateKeyFile=/etc/mongo/ssl/toucanint-full.pem&authSource=admin"
+Cluster:
+========
+mongopoc_rs0:
+  - 192.168.61.135:27017 [S]: pbm-agent [v2.10.0] OK
+  - 192.168.61.137:27017 [P]: pbm-agent [v2.10.0] OK
+  - 192.168.61.138:27017 [S]: pbm-agent [v2.10.0] OK
+
+
+PITR incremental backup:
+========================
+Status [OFF]
+
+Currently running:
+==================
+(none)
+
+Backups:
+========
+FS  /mongo/backup/pbm
+  Snapshots:
+    2025-09-09T11:32:58Z 106.45MB <logical> success [restore_to_time: 2025-09-09T11:33:31]
+root@dev-mongodb-poc1:/mongo/backup/pbm#
+
