@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # ------------------------------
-# Export MongoDB rwaprod to JSON
+# Export MongoDB mydb to JSON
 # using mongosh (TLS + Client Cert)
 # ------------------------------
 
-DB_NAME="rwaprod"
+DB_NAME="mydb"
 OUTPUT_DIR="/tmp/mongo_json_export_${DB_NAME}_$(date +%Y-%m-%d_%H%M%S)"
 
 mkdir -p "$OUTPUT_DIR"
@@ -16,7 +16,7 @@ read -s -p "Enter MongoDB password for superAdmin: " PASSWORD
 echo ""
 
 # Run mongosh JS script to export each collection
-mongosh "mongodb://superAdmin@192.168.63.109:27017/admin?authSource=admin&tls=true" \
+mongosh "mongodb://superAdmin@192.xx.xx.xxx:27017/admin?authSource=admin&tls=true" \
   --tlsCertificateKeyFile /etc/mongo/ssl/toucanint-full.pem \
   --tlsCAFile /etc/mongo/ssl/ca.crt \
   --tlsAllowInvalidHostnames \
