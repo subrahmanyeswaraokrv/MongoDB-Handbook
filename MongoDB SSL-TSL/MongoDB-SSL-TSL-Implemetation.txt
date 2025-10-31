@@ -45,7 +45,7 @@ net:
     certificateKeyFile: /etc/mongo/ssl/server.key  # Private key file
     certificateFile: /etc/mongo/ssl/server.crt    # Server certificate file
     CAFile: /etc/mongo/ssl/ca.crt              # CA certificate file
-  bindIp: 127.0.0.1,192.168.61.135            # IP addresses MongoDB listens on
+  bindIp: 127.0.0.1,10.198.61.135            # IP addresses MongoDB listens on
   port: 27017                                 # Port MongoDB listens on
 
 security:
@@ -170,7 +170,7 @@ net:
     certificateKeyFile: /etc/mongo/ssl/server.key  # Private key file
     certificateFile: /etc/mongo/ssl/server.crt    # Certificate file (server certificate)
     CAFile: /etc/mongo/ssl/ca.crt             # Path to the CA certificate
-  bindIp: 127.0.0.1,192.168.61.135           # IPs MongoDB listens on
+  bindIp: 127.0.0.1,10.198.61.135           # IPs MongoDB listens on
   port: 27017                                # Port MongoDB listens on
 
 security:
@@ -211,3 +211,4 @@ Common issues include:
 Incorrect file paths: Double-check that the paths to your certificates and key files are correct.
 Permissions: Ensure that the mongodb user has access to read the certificate and key files.
 Incorrect certificate format: Make sure that your server.pem (or server.key and server.crt) are in the correct PEM format.
+
