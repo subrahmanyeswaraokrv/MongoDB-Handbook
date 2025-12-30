@@ -87,7 +87,73 @@ chmod +x tasks/*.sh
 Execution Flow
 
 Script password authentication
+[Script Password Protection (Controller Script)
+The main controller script (mongo_task_multi_env.sh) is protected by a SHA-256 hashed password to prevent unauthorized execution.
+This password is separate from MongoDB credentials and is required every time the toolkit is started.
+🔧 How Script Authentication Works
+User enters a password at runtime
+The password is hashed using SHA-256
+The hash is compared with a stored value in the script
+The script continues only if the hash matches
+No plaintext password is stored anywhere.
+🧪 Generate Script Password Hash
+Run the following command on the control node:
 
+read -s -p "Enter new script password: " PASS
+echo
+printf "%s" "$PASS" | sha256sum
+unset PASS
+
+Example output
+811786ad1ae74adfdd20dd0372abaaebc6246e343aebd01da0bfc4c02bf0106c
+Copy only the hash value (before the dash).
+✏️ Add / Update Password Hash in Script
+Open the controller script:
+vi mongo_task_multi_env.sh
+Locate this section:
+
+# =========================================================
+# Script password protection (SHA256)
+# =========================================================
+SCRIPT_HASH="811786ad1ae74adfdd20dd0372abaaebc6246e343aebd01da0bfc4c02bf0106c"
+Replace the value with your newly generated hash:
+SCRIPT_HASH="<PASTE_NEW_HASH_HERE>"
+Save and exit.
+
+▶️ Runtime Behavior
+When running the toolkit:
+./mongo_task_multi_env.sh
+You will see:
+Enter script password:
+Input is hidden
+If the password is incorrect, execution stops immediately
+If correct, the toolkit continues
+
+🔒 Security Best Practices
+✔ Never store plaintext passwords
+✔ Change script password periodically
+✔ Use a strong password (12+ characters)
+✔ Limit file permissions on the script
+
+Recommended permissions:
+
+chmod 750 mongo_task_multi_env.sh
+
+⚠️ Important Notes
+Script password protects execution, not MongoDB access
+MongoDB credentials are requested separately at runtime
+Script password is not logged
+Summary
+Item	Status
+Password stored	Hashed only
+Algorithm	SHA-256
+Plaintext saved	❌ No
+Runtime prompt	✅ Yes
+Easy rotation	✅ Yes
+This makes your toolkit:
+More secure
+Enterprise-ready
+Audit-friendly]
 MongoDB admin password prompt
 
 Environment selection
