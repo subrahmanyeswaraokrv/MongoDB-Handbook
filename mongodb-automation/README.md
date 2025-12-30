@@ -336,8 +336,53 @@ All operations are logged to:
 
 mongodb-automation/logs/mongo_dba.log
 
-
 Passwords are never logged.
+Task 11 – Long Running Queries
+
+task_11_long_running_queries.sh
+
+Purpose
+
+Identify MongoDB queries running longer than a specified threshold.
+
+Use cases
+
+Investigate application slowness
+
+Find missing indexes
+
+Detect blocking queries
+
+Production troubleshooting
+
+Input
+
+Threshold in milliseconds (e.g. 100)
+
+Option to include idle operations
+
+Output
+
+Operation ID
+
+Namespace
+
+Runtime
+
+Client IP
+
+Query / command
+
+Execution
+Select Environment → Task 11 → Enter threshold
+
+Notes
+
+Read-only
+
+Does not terminate operations
+
+Safe for production usage
 
 🧠 Best Practices Followed
 
