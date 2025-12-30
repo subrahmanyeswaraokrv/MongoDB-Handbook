@@ -1,5 +1,6 @@
-MongoDB Automation Toolkit (DBA Operations)
-
+# ============================================
+# MongoDB Automation Toolkit (DBA Operations)
+# ============================================
 This directory contains a menu-driven MongoDB DBA automation toolkit designed for on-prem and hybrid MongoDB environments.
 
 It automates daily DBA operational tasks safely, securely, and in a production-ready manner.
@@ -112,9 +113,9 @@ Open the controller script:
 vi mongo_task_multi_env.sh
 Locate this section:
 
-# =========================================================
+# ===========================================
 # Script password protection (SHA256)
-# =========================================================
+# ============================================
 SCRIPT_HASH="811786ad1ae74adfdd20dd0372abaaebc6246e343aebd01da0bfc4c02bf0106c"
 Replace the value with your newly generated hash:
 SCRIPT_HASH="<PASTE_NEW_HASH_HERE>"
