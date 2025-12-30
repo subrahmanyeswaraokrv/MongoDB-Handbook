@@ -162,9 +162,11 @@ Environment selection
 Task selection
 
 Guided execution
+# ============================================
+# 🧭 TASK-WISE DOCUMENTATION
+# ============================================
 
-🧭 TASK-WISE DOCUMENTATION
-🔹 Task 1 – Connect to Server
+# 🔹 Task 1 – Connect to Server
 
 task_1_connect_server.sh
 
@@ -189,7 +191,7 @@ Password or SSH key for venkata
 Execution
 Select Environment → Task 1 → Select server → SSH login
 
-🔹 Task 2 – Connect to MongoDB
+# 🔹 Task 2 – Connect to MongoDB
 
 task_2_connect_mongo.sh
 
@@ -214,7 +216,7 @@ MongoDB admin credentials
 Execution
 Select Environment → Task 2 → mongosh session opens
 
-🔹 Task 3 – Create MongoDB User
+# 🔹 Task 3 – Create MongoDB User
 
 task_3_create_user.sh
 
@@ -249,7 +251,7 @@ Role
 
 Ready-to-use connection string
 
-🔹 Task 4 – Update MongoDB User
+# 🔹 Task 4 – Update MongoDB User
 
 task_4_update_user.sh
 
@@ -270,7 +272,7 @@ Create user if not found
 Execution
 Select Environment → Task 4 → Follow prompts
 
-🔹 Task 5 – Update Document Fields
+# 🔹 Task 5 – Update Document Fields
 
 task_5_update_field.sh
 
@@ -297,7 +299,7 @@ Example Input
 Filter: { "_id": "22292939" }
 Update: { "d0010": "HKG" }
 
-🔹 Task 6 – MongoDB Backup
+# 🔹 Task 6 – MongoDB Backup
 
 task_6_backup_db.sh
 
@@ -324,7 +326,7 @@ Uses --nsInclude (best practice)
 Backup Location
 /mongo/mongo_backup/<env>/<timestamp>/
 
-🔹 Task 7 – MongoDB Log Rotation
+# 🔹 Task 7 – MongoDB Log Rotation
 
 task_7_log_rotation.sh
 
@@ -351,7 +353,7 @@ OS-level log rotation
 
 Triggers db.adminCommand({ logRotate: 1 })
 
-🔹 Task 8 – Verify Backup
+# 🔹 Task 8 – Verify Backup
 
 task_8_verify_backup.sh
 
@@ -367,7 +369,7 @@ BSON files present
 
 Size validation
 
-🔹 Task 9 – Disk / Filesystem Check
+# 🔹 Task 9 – Disk / Filesystem Check
 
 task_9_df_critical_check.sh
 
@@ -383,7 +385,7 @@ Highlights critical usage
 
 Useful before backups & restores
 
-🔹 Task 10 – Drop MongoDB User
+# 🔹 Task 10 – Drop MongoDB User
 
 task_10_drop_user.sh
 
@@ -404,7 +406,8 @@ All operations are logged to:
 mongodb-automation/logs/mongo_dba.log
 
 Passwords are never logged.
-Task 11 – Long Running Queries
+
+# Task 11 – Long Running Queries
 
 task_11_long_running_queries.sh
 
